@@ -17,6 +17,8 @@ import com.haqwat.mvp.splash_mvp.SplashView;
 import com.haqwat.preferences.Preferences;
 import com.haqwat.ui.activity_login.LoginActivity;
 
+import io.paperdb.Paper;
+
 public class SplashActivity extends AppCompatActivity implements SplashView {
     private ActivitySplashBinding binding;
     private SplashPresenter presenter;
@@ -24,9 +26,8 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(Language.updateResources(newBase,"ar"));
-
-
+        Paper.init(newBase);
+        super.attachBaseContext(Language.updateResources(newBase, Paper.book().read("lang", "ar")));
     }
 
     @Override

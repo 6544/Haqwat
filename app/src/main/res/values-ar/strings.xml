@@ -55,5 +55,29 @@
     <string name="log_in2">دخول</string>
     <string name="or">أو</string>
     <string name="create_an_account">ليس لدي حساب ؟</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="already_have_an_account">لدي حساب بالفعل؟</string>
+    <string name="name">الإسم</string>
+    <string name="date_of_birth">تاريخ الميلاد</string>
+    <string name="you_invited_by_a_subscriber_to_app">تمت دعوتك من قبل مشترك بالبرنامج</string>
+    <string name="favorite_league">الدوري المفضل</string>
+    <string name="your_favorite_team">فريقك المفضل</string>
+    <string name="next">التالي</string>
+    <string name="previous">السابق</string>
+    <string name="start">إبدا</string>
+    <string name="confirm_code">كود التحقق</string>
+    <string name="resend">إعادة إرسال الرمز</string>
+    <string name="enter_code_sent_to">أدخل الرمز المرسل الى</string>
+    <string name="password_short">كلمة المرور قصيرة جدا</string>
+    <string name="password_not_match">كلمة المرور غير متطابقة</string>
+    <string name="ch_nationality">إختر الجنسية</string>
+    <string name="ch_gender">إختر الجنس</string>
+    <string name="ch_league">إختر الدوري</string>
+    <string name="ch_team">إختر فريقك المفضل</string>
+    <string name="select">إختر</string>
+    <string name="male">ذكر</string>
+    <string name="female">انثى</string>
+    <string name="user_code">كود المستخدم</string>
+    <string name="no_data_to_show">لاتوجد عناصر لعرضها</string>
 
 </resources>

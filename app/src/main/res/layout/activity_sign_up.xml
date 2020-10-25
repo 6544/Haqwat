@@ -7,7 +7,7 @@
     <data>
         <variable
             name="model"
-            type="com.haqwat.models.LoginModel" />
+            type="com.haqwat.models.SignUpModel" />
     </data>
     <ScrollView
         android:layout_width="match_parent"
@@ -62,31 +62,29 @@
                     android:layout_width="40dp"
                     android:layout_height="45dp"
                     android:src="@drawable/login_square_icon"
-
                     />
             </FrameLayout>
-
-
             <FrameLayout
                 android:id="@+id/imageSquare2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/logo"
-                app:layout_constraintBottom_toTopOf="@id/imageCircle"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_bias="1"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layoutDirection="ltr"
-                tools:ignore="UnusedAttribute">
+                tools:ignore="UnusedAttribute"
+                android:layout_marginBottom="20dp"
+                >
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="45dp"
                     android:src="@drawable/login_square_icon"
+
                     />
             </FrameLayout>
-
-
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -120,7 +118,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="20dp"
-                            android:text="@string/login"
+                            android:text="@string/sign_up"
                             android:textColor="@color/white"
                             android:textSize="18sp"
                             />
@@ -183,9 +181,36 @@
                             error="@{model.error_password}"
                             />
                     </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/login_rounded_edt"
+                        app:startIconDrawable="@drawable/ic_lock"
+                        app:startIconTint="@color/colorPrimaryDark"
+                        app:hintEnabled="false"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/colorPrimaryDark"
+                        >
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:lines="1"
+                            android:hint="@string/confirm_password"
+                            android:background="@color/transparent"
+                            android:inputType="textPassword"
+                            android:text="@={model.re_password}"
+                            error="@{model.error_re_password}"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
-                        android:id="@+id/btnLogin"
+                        android:id="@+id/btnSignUp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -193,7 +218,7 @@
                         android:background="@drawable/login_rounded_edt"
                         android:textSize="15sp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:text="@string/log_in2"
+                        android:text="@string/sign_up"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:minWidth="120dp"
@@ -284,29 +309,24 @@
                     android:layout_marginBottom="10dp"
                     >
                     <TextView
-                        android:id="@+id/tvSignUp"
+                        android:id="@+id/tvLogin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:textSize="15sp"
-                        android:text="@string/create_an_account"
+                        android:text="@string/already_have_an_account"
                         />
                     <View
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_weight="1"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:text="@string/skip"
-                        />
+
                 </LinearLayout>
 
 
             </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

@@ -1,6 +1,7 @@
 package com.haqwat.general_ui_method;
 
 import android.net.Uri;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,8 +38,8 @@ public class GeneralMethod {
 
 
 
-    @BindingAdapter("image")
-    public static void image(View view, String endPoint) {
+    @BindingAdapter("user_image")
+    public static void user_image(View view, String endPoint) {
         if (view instanceof CircleImageView) {
             CircleImageView imageView = (CircleImageView) view;
             if (endPoint != null) {
@@ -67,6 +68,33 @@ public class GeneralMethod {
             } else {
                 Picasso.get().load(R.drawable.ic_avatar).into(imageView);
 
+            }
+        }
+
+    }
+
+    @BindingAdapter("image")
+    public static void image(View view, String endPoint) {
+        if (view instanceof CircleImageView) {
+            CircleImageView imageView = (CircleImageView) view;
+            if (endPoint != null) {
+
+                Picasso.get().load(Uri.parse(Tags.IMAGE_URL + endPoint)).into(imageView);
+            }
+        } else if (view instanceof RoundedImageView) {
+            RoundedImageView imageView = (RoundedImageView) view;
+
+            if (endPoint != null) {
+
+                Picasso.get().load(Uri.parse(Tags.IMAGE_URL + endPoint)).into(imageView);
+            }
+        } else if (view instanceof ImageView) {
+            ImageView imageView = (ImageView) view;
+
+
+            if (endPoint != null) {
+
+                Picasso.get().load(Uri.parse(Tags.IMAGE_URL + endPoint)).into(imageView);
             }
         }
 
