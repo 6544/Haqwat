@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">هقوات</string>
     <string name="field_req">الحقل مطلوب</string>
+    <string name="open">فتح</string>
+    <string name="close">غلق</string>
+
     <string name="login">تسجيل دخول</string>
     <string name="code">الكود</string>
     <string name="user_phone">رقم الجوال</string>
@@ -79,5 +82,17 @@
     <string name="female">انثى</string>
     <string name="user_code">كود المستخدم</string>
     <string name="no_data_to_show">لاتوجد عناصر لعرضها</string>
+    <string name="previous_matches">المباريات السابقة</string>
+    <string name="upcoming_matches">المباريات القادمة</string>
+    <string name="charge">رصيد هقوات</string>
+    <string name="stars">نجوم هقوات</string>
+    <string name="championship">بطولة هقوات</string>
+    <string name="switch_user">تبديل المستخدم</string>
+    <string name="notifications_control">التحكم في الإشعارات</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="time_clock">الساعة الزمنية</string>
+    <string name="contact_us">إتصل بنا</string>
+    <string name="average_rates">متوسط التقييمات</string>
+    <string name="you_rate">تقييمك</string>
 
 </resources>

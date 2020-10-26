@@ -62,7 +62,8 @@ public class SignUpPresenter {
             }
         }
         else if (fragment_sign_up3 !=null&& fragment_sign_up3.isAdded()&& fragment_sign_up3.isVisible()){
-
+            signUpModel = fragment_sign_up3.signUpModel;
+            Log.e("id",signUpModel.getTeam_id()+"__");
             if (next_previous==next){
                 if (signUpModel.isStep4Valid(context))
                 signUp();
@@ -125,6 +126,7 @@ public class SignUpPresenter {
 
         if (fragment_sign_up3 ==null){
             fragment_sign_up3 = Fragment_Sign_Up3.newInstance(signUpModel);
+
         }
 
         if (fragment_sign_up1!=null&&fragment_sign_up1.isAdded()){
@@ -138,6 +140,7 @@ public class SignUpPresenter {
 
         if (fragment_sign_up3 !=null&& fragment_sign_up3.isAdded()){
             fragmentManager.beginTransaction().show(fragment_sign_up3).commit();
+            fragment_sign_up3.getTeams();
         }else {
             fragmentManager.beginTransaction().add(R.id.fragment_container, fragment_sign_up3,"fragment_sign_up3").addToBackStack("fragment_sign_up3").commit();
         }

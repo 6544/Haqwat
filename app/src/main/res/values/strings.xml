@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Haqwat</string>
     <string name="field_req">Field required</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+
     <string name="login">Log In</string>
     <string name="code">Code</string>
     <string name="user_phone">User Phone</string>
@@ -79,4 +82,16 @@
     <string name="female">Female</string>
     <string name="user_code">User code</string>
     <string name="no_data_to_show">No Data To Show</string>
+    <string name="previous_matches">Previous matches</string>
+    <string name="upcoming_matches">Upcoming matches</string>
+    <string name="charge">Charge</string>
+    <string name="stars">Stars</string>
+    <string name="championship">Championship</string>
+    <string name="switch_user">Switch User</string>
+    <string name="notifications_control">Notifications Control</string>
+    <string name="change_language">Change Language</string>
+    <string name="time_clock">Time clock</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="average_rates">Average Rates</string>
+    <string name="you_rate">You Rate</string>
 </resources>

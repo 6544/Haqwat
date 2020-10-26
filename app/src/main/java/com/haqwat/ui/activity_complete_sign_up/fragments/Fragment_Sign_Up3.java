@@ -1,6 +1,7 @@
 package com.haqwat.ui.activity_complete_sign_up.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public class Fragment_Sign_Up3 extends Fragment implements FragmentSignUp3View {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up2,container,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up3,container,false);
         initView();
         return binding.getRoot();
 
@@ -66,8 +67,15 @@ public class Fragment_Sign_Up3 extends Fragment implements FragmentSignUp3View {
         adapter = new TeamAdapter(teamModelList,activity,presenter);
         binding.recView.setLayoutManager(new GridLayoutManager(activity,3));
         binding.recView.setAdapter(adapter);
+        getTeams();
+    }
+
+    public void getTeams() {
+        teamModelList.clear();
+        adapter.notifyDataSetChanged();
         presenter.getTeams(Integer.parseInt(signUpModel.getLeague_id()));
     }
+
     @Override
     public void onTeamDataSuccess(List<TeamModel> list)
     {
@@ -100,7 +108,7 @@ public class Fragment_Sign_Up3 extends Fragment implements FragmentSignUp3View {
 
     @Override
     public void onItemSelected(TeamModel teamModel) {
-        signUpModel.setLeague_id(String.valueOf(teamModel.getId()));
+        signUpModel.setTeam_id(String.valueOf(teamModel.getId()));
 
     }
 
