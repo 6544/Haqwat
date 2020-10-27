@@ -94,5 +94,19 @@
     <string name="contact_us">إتصل بنا</string>
     <string name="average_rates">متوسط التقييمات</string>
     <string name="you_rate">تقييمك</string>
+    <string name="haqawat_rating">تقييم هقوات</string>
+    <string name="ranking_table">جدول الترتيب</string>
+    <string name="tournament_history">تاريخ البطولة</string>
+    <string name="premier_league">الدوري الإنكليزي</string>
+    <string name="la_liga">الدوري الاسباني</string>
+    <string name="italian_league">الدوري الايطالي</string>
+    <string name="bundesliga">الدوري الالماني</string>
+    <string name="champions_league">دوري الابطال</string>
+    <string name="saudi_league">الدوري السعودي</string>
+    <string name="egyptian_league">الدوري المصري</string>
+    <string name="french_league">الدوري الفرنسي</string>
+    <string name="matches">عدد المباريات</string>
+    <string name="correct_expectations">التوقعات الصحيحة</string>
+    <string name="wrong_expectations">التوقعات الخاطئة</string>
 
 </resources>

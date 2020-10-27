@@ -73,6 +73,7 @@ public class GeneralMethod {
 
     }
 
+
     @BindingAdapter("image")
     public static void image(View view, String endPoint) {
         if (view instanceof CircleImageView) {
@@ -99,6 +100,24 @@ public class GeneralMethod {
         }
 
     }
+
+    @BindingAdapter("image_resource")
+    public static void imageResource(View view, int resource) {
+        if (view instanceof CircleImageView) {
+            CircleImageView imageView = (CircleImageView) view;
+            imageView.setImageResource(resource);
+        } else if (view instanceof RoundedImageView) {
+            RoundedImageView imageView = (RoundedImageView) view;
+            imageView.setImageResource(resource);
+
+        } else if (view instanceof ImageView) {
+            ImageView imageView = (ImageView) view;
+            imageView.setImageResource(resource);
+
+        }
+
+    }
+
 
 
 }

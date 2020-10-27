@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -16,6 +17,7 @@ import com.haqwat.databinding.ActivityHomeBinding;
 import com.haqwat.language.Language;
 import com.haqwat.mvp.activity_home_mvp.ActivityHomePresenter;
 import com.haqwat.mvp.activity_home_mvp.ActivityHomeView;
+import com.haqwat.ui.activity_matches.MatchesActivity;
 
 import io.paperdb.Paper;
 
@@ -49,6 +51,21 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             backPress = false;
             return true;
         });
+        
+        binding.btnUpComingMatches.setOnClickListener(view -> {
+            navigateToMatchesActivity(0);
+        });
+
+        binding.btnPreviousMatches.setOnClickListener(view -> {
+            navigateToMatchesActivity(1);
+        });
+    }
+
+    private void navigateToMatchesActivity(int pos) {
+        Intent intent = new Intent(this, MatchesActivity.class);
+        intent.putExtra("data",pos);
+        startActivity(intent);
+
     }
 
     @Override

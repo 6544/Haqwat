@@ -94,4 +94,18 @@
     <string name="contact_us">Contact Us</string>
     <string name="average_rates">Average Rates</string>
     <string name="you_rate">You Rate</string>
+    <string name="haqawat_rating">Haqawat Rating</string>
+    <string name="ranking_table">Ranking table</string>
+    <string name="tournament_history">Tournament history</string>
+    <string name="premier_league">Premier League</string>
+    <string name="la_liga">La Liga</string>
+    <string name="italian_league">Italian League</string>
+    <string name="bundesliga">Bundesliga</string>
+    <string name="champions_league">Champions League</string>
+    <string name="saudi_league">Saudi League</string>
+    <string name="egyptian_league">Egyptian League</string>
+    <string name="french_league">French League</string>
+    <string name="matches">Matches</string>
+    <string name="correct_expectations">Correct expectations</string>
+    <string name="wrong_expectations">Wrong expectations</string>
 </resources>
