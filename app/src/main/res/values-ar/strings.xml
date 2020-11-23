@@ -108,5 +108,9 @@
     <string name="matches">عدد المباريات</string>
     <string name="correct_expectations">التوقعات الصحيحة</string>
     <string name="wrong_expectations">التوقعات الخاطئة</string>
+    <string name="email_exist">البريد الإلكتروني موجود بالفعل</string>
+    <string name="user_is_block">تم حظر المستخدم</string>
+    <string name="conf_code_incorrect">كود التحقق غير صحيح</string>
+    <string name="sub_code_incorrect">كود الدعوة غير صحيح</string>
 
 </resources>

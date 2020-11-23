@@ -108,4 +108,8 @@
     <string name="matches">Matches</string>
     <string name="correct_expectations">Correct expectations</string>
     <string name="wrong_expectations">Wrong expectations</string>
+    <string name="email_exist">Email exist</string>
+    <string name="user_is_block">User is blocked</string>
+    <string name="conf_code_incorrect">Confirm code is incorrect</string>
+    <string name="sub_code_incorrect">Subscribe invitation code incorrect</string>
 </resources>

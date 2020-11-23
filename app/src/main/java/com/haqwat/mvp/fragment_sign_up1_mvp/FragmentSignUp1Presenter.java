@@ -137,7 +137,7 @@ public class FragmentSignUp1Presenter implements DatePickerDialog.OnDateSetListe
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         calendar.set(Calendar.MONTH, monthOfYear);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         String date = dateFormat.format(new Date(calendar.getTimeInMillis()));
         signUpModel.setBirth_date(date);
         this.view.onDateSelected(signUpModel);

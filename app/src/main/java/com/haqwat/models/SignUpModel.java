@@ -18,7 +18,7 @@ public class SignUpModel extends BaseObservable implements Serializable {
     private String email;
     private String password;
     private String re_password;
-    private int user_type;
+    private String user_type;
     private String name;
     private String gender;
     private String birth_date;
@@ -29,7 +29,7 @@ public class SignUpModel extends BaseObservable implements Serializable {
     private String social_image;
     private String another_user_code;
     private boolean isFromOtherUser;
-    public static int Normal_User=1,Social_User=2;
+    public String withSocial="no";
 
 
     public ObservableField<String> error_email = new ObservableField<>();
@@ -41,10 +41,10 @@ public class SignUpModel extends BaseObservable implements Serializable {
 
 
     public SignUpModel() {
-        email = "e@gmail.com";
+        email = "";
         password="";
         re_password="";
-        user_type = Normal_User;
+        user_type = withSocial;
         name="";
         gender="";
         birth_date="";
@@ -208,11 +208,11 @@ public class SignUpModel extends BaseObservable implements Serializable {
 
     }
 
-    public int getUser_type() {
+    public String getUser_type() {
         return user_type;
     }
 
-    public void setUser_type(int user_type) {
+    public void setUser_type(String user_type) {
         this.user_type = user_type;
     }
     @Bindable

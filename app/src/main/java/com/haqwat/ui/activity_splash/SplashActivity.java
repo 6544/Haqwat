@@ -15,6 +15,7 @@ import com.haqwat.models.UserModel;
 import com.haqwat.mvp.splash_mvp.SplashPresenter;
 import com.haqwat.mvp.splash_mvp.SplashView;
 import com.haqwat.preferences.Preferences;
+import com.haqwat.ui.activity_home.HomeActivity;
 import com.haqwat.ui.activity_login.LoginActivity;
 
 import io.paperdb.Paper;
@@ -51,6 +52,8 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
 
     @Override
     public void onNavigateToHomeActivity() {
-
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

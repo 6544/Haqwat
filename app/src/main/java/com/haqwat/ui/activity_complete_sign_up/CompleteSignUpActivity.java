@@ -7,10 +7,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.haqwat.R;
 import com.haqwat.databinding.ActivityCompleteSignUpBinding;
@@ -19,6 +21,9 @@ import com.haqwat.models.SignUpModel;
 import com.haqwat.models.UserModel;
 import com.haqwat.mvp.sign_up_mpv.SignUpPresenter;
 import com.haqwat.mvp.sign_up_mpv.SignUpView;
+import com.haqwat.preferences.Preferences;
+import com.haqwat.share.Common;
+import com.haqwat.ui.activity_home.HomeActivity;
 import com.haqwat.ui.activity_login.LoginActivity;
 import com.haqwat.ui.activity_sign_up.SignUpActivity;
 
@@ -30,7 +35,9 @@ public class CompleteSignUpActivity extends AppCompatActivity implements SignUpV
     private ActivityCompleteSignUpBinding binding;
     private FragmentManager fragmentManager;
     private SignUpPresenter presenter;
-    private SignUpModel signUpModel;
+    private UserModel userModel;
+    private ProgressDialog dialog;
+    private Preferences preferences;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -48,17 +55,20 @@ public class CompleteSignUpActivity extends AppCompatActivity implements SignUpV
 
     private void getDataFromIntent() {
         Intent intent = getIntent();
-        signUpModel = (SignUpModel) intent.getSerializableExtra("data");
+        userModel = (UserModel) intent.getSerializableExtra("data");
     }
     private void initView() {
+        preferences = Preferences.getInstance();
         fragmentManager = getSupportFragmentManager();
-        presenter = new SignUpPresenter(getApplicationContext(),this,fragmentManager,signUpModel);
+        presenter = new SignUpPresenter(getApplicationContext(),this,fragmentManager,userModel);
         binding.btnNex1.setOnClickListener(view -> {
             presenter.manageFragments(SignUpPresenter.next);
         });
         binding.btnNex2.setOnClickListener(view -> {presenter.manageFragments(SignUpPresenter.next);});
         binding.btnPrevious.setOnClickListener(view -> {presenter.manageFragments(SignUpPresenter.previous);});
 
+        dialog = Common.createProgressDialog(this,getString(R.string.wait));
+        dialog.setCanceledOnTouchOutside(false);
     }
 
 
@@ -101,22 +111,25 @@ public class CompleteSignUpActivity extends AppCompatActivity implements SignUpV
 
     @Override
     public void onSuccess(UserModel userModel) {
-
+        preferences.create_update_userdata(this,userModel);
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     public void onFailed(String msg) {
-
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void hideProgressBar() {
-
+    public void hideProgressDialog() {
+        dialog.dismiss();
     }
 
     @Override
-    public void showProgressBar() {
-
+    public void showProgressDialog() {
+        dialog.show();
     }
 
 

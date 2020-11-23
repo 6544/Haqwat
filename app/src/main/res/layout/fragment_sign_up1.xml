@@ -66,9 +66,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/transparent"
-                    android:enabled='@{model.user_type==2?false:true,default=true}'
-                    android:focusable="@{model.user_type==2?false:true,default=true}"
-                    android:focusableInTouchMode="@{model.user_type==2?false:true,default=true}"
+                    android:enabled='@{model.user_type.equals("yes")?false:true,default=true}'
+                    android:focusable='@{model.user_type.equals("yes")?false:true,default=true}'
+                    android:focusableInTouchMode='@{model.user_type.equals("yes")?false:true,default=true}'
                     android:hint="@string/name"
                     android:lines="1"
                     android:text="@={model.name}"

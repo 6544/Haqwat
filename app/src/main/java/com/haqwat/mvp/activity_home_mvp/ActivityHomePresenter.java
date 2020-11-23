@@ -1,6 +1,7 @@
 package com.haqwat.mvp.activity_home_mvp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.fragment.app.Fragment;
@@ -8,12 +9,21 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.haqwat.R;
+import com.haqwat.models.UserModel;
+import com.haqwat.remote.Api;
+import com.haqwat.tags.Tags;
 import com.haqwat.ui.activity_home.fragments.Fragment_Champions;
 import com.haqwat.ui.activity_home.fragments.Fragment_Charge;
 import com.haqwat.ui.activity_home.fragments.Fragment_Home;
 import com.haqwat.ui.activity_home.fragments.Fragment_Stars;
 
+import java.io.IOException;
 import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ActivityHomePresenter {
     private ActivityHomeView view;
@@ -133,5 +143,53 @@ public class ActivityHomePresenter {
             }
         }
         return false;
+    }
+
+    public void logout(UserModel userModel){
+        view.showProgressDialog();
+        Api.getService(Tags.base_url).logout("Bearer "+userModel.getToken())
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        view.hideProgressDialog();
+                        if (response.isSuccessful()){
+
+                            view.onLogoutSuccess();
+
+                        }else {
+                            view.hideProgressDialog();
+
+                            try {
+                                view.onLogoutFailed(context.getString(R.string.failed));
+                                Log.e("error",response.code()+"_"+response.errorBody().string());
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        try {
+                            view.hideProgressDialog();
+
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage() + "__");
+
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    view.onLogoutFailed(context.getString(R.string.something));
+
+                                } else {
+                                    view.onLogoutFailed(context.getString(R.string.failed));
+
+                                }
+                            }
+
+
+                        }catch (Exception e){}
+
+                    }
+                });
     }
 }

@@ -4,200 +4,84 @@ import java.io.Serializable;
 import java.util.List;
 
 public class UserModel implements Serializable {
+    private int id;
+    private String name;
+    private String email;
+    private String code;
+    private String has_haqawat_subscribe;
+    private String is_social_media_register;
+    private int allowable_teams_count;
+    private String country_id;
+    private String league_id;
+    private String team_id;
+    private String phone_code;
+    private String phone;
+    private String logo;
+    private String is_confirmed;
+    private String token;
+    private String firebase_token;
 
-    private User data;
-
-    public User getData() {
-        return data;
+    public int getId() {
+        return id;
     }
 
-    public void setData(User data) {
-        this.data = data;
+    public String getName() {
+        return name;
     }
 
-    public static class User implements Serializable {
-        private int id;
-        private String name;
-        private String email;
-        private String city;
-        private String phone_code;
-        private String phone;
-        private String image;
-        private String logo;
-        private String token;
-        private String latitude;
-        private String longitude;
-        private String address;
-        private String user_type;
-        private String details;
-        private List<Stage> stage_fk;
-        private List<Stage_CLASS> class_fk;
-        private List<SkillModel> skills_fk;
-        private String fireBaseToken;
+    public String getEmail() {
+        return email;
+    }
 
-        public User() {
-        }
+    public String getCode() {
+        return code;
+    }
 
-        public User(int id, String name, String phone_code, String phone, String logo, String token) {
-            this.id = id;
-            this.name = name;
-            this.phone_code = phone_code;
-            this.phone = phone;
-            this.logo = logo;
-            this.token = token;
-        }
+    public String getHas_haqawat_subscribe() {
+        return has_haqawat_subscribe;
+    }
 
-        public int getId() {
-            return id;
-        }
+    public String getIs_social_media_register() {
+        return is_social_media_register;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public int getAllowable_teams_count() {
+        return allowable_teams_count;
+    }
 
-        public String getEmail() {
-            return email;
-        }
+    public String getCountry_id() {
+        return country_id;
+    }
 
-        public String getCity() {
-            return city;
-        }
+    public String getLeague_id() {
+        return league_id;
+    }
 
-        public String getPhone_code() {
-            return phone_code;
-        }
+    public String getTeam_id() {
+        return team_id;
+    }
 
-        public String getPhone() {
-            return phone;
-        }
+    public String getPhone_code() {
+        return phone_code;
+    }
 
-        public String getImage() {
-            return image;
-        }
+    public String getPhone() {
+        return phone;
+    }
 
-        public String getLogo() {
-            return logo;
-        }
+    public String getLogo() {
+        return logo;
+    }
 
-        public String getToken() {
-            return token;
-        }
+    public String getToken() {
+        return token;
+    }
 
-        public String getLatitude() {
-            return latitude;
-        }
+    public String getFirebase_token() {
+        return firebase_token;
+    }
 
-        public String getLongitude() {
-            return longitude;
-        }
-
-        public String getAddress() {
-            return address;
-        }
-
-        public String getType() {
-            return user_type;
-        }
-
-        public String getFireBaseToken() {
-            return fireBaseToken;
-        }
-
-        public void setFireBaseToken(String fireBaseToken) {
-            this.fireBaseToken = fireBaseToken;
-        }
-
-        public List<SkillModel> getSkills_fk() {
-            return skills_fk;
-        }
-
-        public String getDetails() {
-            return details;
-        }
-
-        public List<Stage> getStage_fk() {
-            return stage_fk;
-        }
-
-
-        public List<Stage_CLASS> getClass_fk() {
-            return class_fk;
-        }
-
-        public static class Stage implements Serializable {
-            private int id;
-            private int stage_id;
-            private StageClassName stage_class_name;
-
-            public int getId() {
-                return id;
-            }
-
-            public int getStage_id() {
-                return stage_id;
-            }
-
-            public StageClassName getStage_class_name() {
-                return stage_class_name;
-            }
-
-            public class StageClassName implements Serializable {
-                private int id;
-                private String title;
-
-                public int getId() {
-                    return id;
-                }
-
-                public String getTitle() {
-                    return title;
-                }
-            }
-        }
-
-        public static class Stage_CLASS implements Serializable {
-            private int id;
-            private int class_id;
-            private StageClassName stage_class_name;
-
-            public int getId() {
-                return id;
-            }
-
-            public int getClass_id() {
-                return class_id;
-            }
-
-            public StageClassName getStage_class_name() {
-                return stage_class_name;
-            }
-
-            public class StageClassName implements Serializable {
-                private int id;
-                private String title;
-
-                public int getId() {
-                    return id;
-                }
-
-                public String getTitle() {
-                    return title;
-                }
-            }
-        }
-
-
-        public static class SkillModel implements Serializable{
-            private int id;
-            private String skill_type;
-
-            public int getId() {
-                return id;
-            }
-
-            public String getSkill_type() {
-                return skill_type;
-            }
-        }
+    public String getIs_confirmed() {
+        return is_confirmed;
     }
 }

@@ -11,8 +11,8 @@ public interface SignUpView {
     void onBack();
     void onSuccess(UserModel userModel);
     void onFailed(String msg);
-    void hideProgressBar();
-    void showProgressBar();
+    void hideProgressDialog();
+    void showProgressDialog();
 
 
 }
