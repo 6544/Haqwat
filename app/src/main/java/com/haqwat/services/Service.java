@@ -1,5 +1,6 @@
 package com.haqwat.services;
 
+import com.haqwat.models.HomeModel;
 import com.haqwat.models.LeagueDataModel;
 import com.haqwat.models.NationalityDataModel;
 import com.haqwat.models.PlaceGeocodeData;
@@ -100,4 +101,8 @@ public interface Service {
     @POST("api/logout")
     Call<ResponseBody> logout(@Header("Authorization") String bearer_token
     );
+
+
+    @GET("api/home-link")
+    Call<HomeModel> getHomeLinks(@Header("Authorization") String bearer_token);
 }

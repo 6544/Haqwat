@@ -9,6 +9,7 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.ObservableField;
 
+//import com.haqwat.BR;
 import com.haqwat.BR;
 import com.haqwat.R;
 

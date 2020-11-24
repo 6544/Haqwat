@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.haqwat.R;
+import com.haqwat.models.HomeModel;
 import com.haqwat.models.UserModel;
 import com.haqwat.remote.Api;
 import com.haqwat.tags.Tags;
@@ -145,7 +146,8 @@ public class ActivityHomePresenter {
         return false;
     }
 
-    public void logout(UserModel userModel){
+    public void logout(UserModel userModel)
+    {
         view.showProgressDialog();
         Api.getService(Tags.base_url).logout("Bearer "+userModel.getToken())
                 .enqueue(new Callback<ResponseBody>() {
@@ -192,4 +194,5 @@ public class ActivityHomePresenter {
                     }
                 });
     }
+
 }
