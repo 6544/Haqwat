@@ -13,4 +13,16 @@
         <item name="android:windowExitAnimation">@anim/dialog_congratulation_exit</item>
     </style>
 
+    <style name="custom_horizontal_progress_bar_win" parent="Widget.AppCompat.ProgressBar.Horizontal"
+        >
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/horizontal_progress_bar_win</item>
+    </style>
+
+    <style name="custom_horizontal_progress_bar_lose" parent="Widget.AppCompat.ProgressBar.Horizontal"
+        >
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/horizontal_progress_bar_lose</item>
+    </style>
+
 </resources>

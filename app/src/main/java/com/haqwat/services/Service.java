@@ -2,6 +2,7 @@ package com.haqwat.services;
 
 import com.haqwat.models.HomeModel;
 import com.haqwat.models.LeagueDataModel;
+import com.haqwat.models.MatchesDataModel;
 import com.haqwat.models.NationalityDataModel;
 import com.haqwat.models.PlaceGeocodeData;
 import com.haqwat.models.PlaceMapDetailsData;
@@ -105,4 +106,7 @@ public interface Service {
 
     @GET("api/home-link")
     Call<HomeModel> getHomeLinks(@Header("Authorization") String bearer_token);
+
+    @GET("api/matchesDisplayInHomePage")
+    Call<MatchesDataModel> getCurrentRound(@Header("Authorization") String bearer_token);
 }

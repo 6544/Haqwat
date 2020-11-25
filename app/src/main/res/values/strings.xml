@@ -112,4 +112,6 @@
     <string name="user_is_block">User is blocked</string>
     <string name="conf_code_incorrect">Confirm code is incorrect</string>
     <string name="sub_code_incorrect">Subscribe invitation code incorrect</string>
+    <string name="round">Round</string>
+    <string name="expect_now">Expect Now</string>
 </resources>

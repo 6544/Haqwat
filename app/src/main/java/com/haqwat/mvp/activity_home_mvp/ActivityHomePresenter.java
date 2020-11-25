@@ -57,6 +57,7 @@ public class ActivityHomePresenter {
                     fragment_charge = Fragment_Charge.newInstance();
                 }
                 FragmentTransaction transaction = fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment_charge, tag);
+
                 if (!isFirstFragment&&!isInBackStack(tag)){
                     transaction.addToBackStack(null);
                 }

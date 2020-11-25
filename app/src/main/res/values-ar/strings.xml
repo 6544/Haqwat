@@ -112,5 +112,7 @@
     <string name="user_is_block">تم حظر المستخدم</string>
     <string name="conf_code_incorrect">كود التحقق غير صحيح</string>
     <string name="sub_code_incorrect">كود الدعوة غير صحيح</string>
+    <string name="round">الجولة</string>
+    <string name="expect_now">توقع الان</string>
 
 </resources>
