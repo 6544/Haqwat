@@ -1,5 +1,6 @@
 package com.haqwat.services;
 
+import com.haqwat.models.ChargeDataModel;
 import com.haqwat.models.HomeModel;
 import com.haqwat.models.LeagueDataModel;
 import com.haqwat.models.MatchesDataModel;
@@ -81,7 +82,7 @@ public interface Service {
                                      @Part("league_id") RequestBody league_id,
                                      @Part("team_id") RequestBody team_id,
                                      @Part MultipartBody.Part image
-                                     );
+    );
 
     @GET("api/sendConfirmCode")
     Call<ResponseBody> sendConfirmationCode(@Header("Authorization") String bearer_token);
@@ -109,4 +110,16 @@ public interface Service {
 
     @GET("api/matchesDisplayInHomePage")
     Call<MatchesDataModel> getCurrentRound(@Header("Authorization") String bearer_token);
+
+    @FormUrlEncoded
+    @POST("api/makeMatchExpectation")
+    Call<ResponseBody> makeExpectation(@Header("Authorization") String bearer_token,
+                                       @Field("match_id") int match_id,
+                                       @Field("first_team_goals_count") int first_team_goals_count,
+                                       @Field("second_team_goals_count") int second_team_goals_count
+    );
+
+    @GET("api/haqawatBalanceDisplay")
+    Call<ChargeDataModel> getCharge(@Header("Authorization") String bearer_token);
+
 }

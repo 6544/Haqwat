@@ -10,27 +10,28 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.haqwat.R;
-import com.haqwat.databinding.FavoriteTeamRowBinding;
-import com.haqwat.databinding.MatchRowBinding;
+import com.haqwat.databinding.RoundPreviousRowBinding;
 import com.haqwat.databinding.RoundRowBinding;
 import com.haqwat.models.MatchesModel;
-import com.haqwat.models.TeamOrderModel;
-import com.haqwat.ui.activity_matches.fragments.Fragment_UpComing_Matches;
+import com.haqwat.ui.activity_matches.fragments.Fragment_Previous_Matches;
 
 import java.util.List;
 
-public class RoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+import io.paperdb.Paper;
+
+public class PreviousRoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<MatchesModel> list;
     private Context context;
     private LayoutInflater inflater;
-    private Fragment_UpComing_Matches fragment;
+    private String lang;
 
-    public RoundAdapter(List<MatchesModel> list, Context context,Fragment_UpComing_Matches fragment) {
+    public PreviousRoundAdapter(List<MatchesModel> list, Context context) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
-        this.fragment = fragment;
+        Paper.init(context);
+        lang = Paper.book().read("lang","ar");
 
     }
 
@@ -39,7 +40,7 @@ public class RoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
 
-        RoundRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.round_row, parent, false);
+        RoundPreviousRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.round_previous_row, parent, false);
         return new MyHolder(binding);
 
 
@@ -57,9 +58,17 @@ public class RoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             myHolder.binding.arrow.animate().setDuration(800).rotation(180).start();
         }
 
+        if (lang.equals("ar")){
+            myHolder.binding.progBarRate.setRotation(180);
+        }else {
+            myHolder.binding.progBarRate.setRotation(0);
+
+        }
 
 
-        MatchAdapter adapter = new MatchAdapter(matchesModel.getNext_matches(),context,position,fragment);
+
+
+        MatchPreviousAdapter adapter = new MatchPreviousAdapter(matchesModel.getPrev_matches(),context);
         myHolder.binding.recView.setLayoutManager(new LinearLayoutManager(context));
         myHolder.binding.recView.setAdapter(adapter);
 
@@ -85,9 +94,9 @@ public class RoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder {
-        public RoundRowBinding binding;
+        public RoundPreviousRowBinding binding;
 
-        public MyHolder(@NonNull RoundRowBinding binding) {
+        public MyHolder(@NonNull RoundPreviousRowBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
 

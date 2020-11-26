@@ -3,46 +3,40 @@ package com.haqwat.adapters;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.haqwat.R;
+import com.haqwat.databinding.MatchPreviousRowBinding;
 import com.haqwat.databinding.MatchRowBinding;
-import com.haqwat.databinding.RoundRowBinding;
 import com.haqwat.models.MatchesModel;
 import com.haqwat.ui.activity_matches.MatchesActivity;
-import com.haqwat.ui.activity_matches.fragments.Fragment_UpComing_Matches;
 
 import java.util.List;
 import java.util.Locale;
 
 import io.paperdb.Paper;
 
-public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MatchPreviousAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<MatchesModel.MatchModel> list;
     private Context context;
     private LayoutInflater inflater;
     private String lang;
     private MatchesActivity activity;
-    private int parent_pos;
-    private Fragment_UpComing_Matches fragment;
-    public MatchAdapter(List<MatchesModel.MatchModel> list, Context context, int position, Fragment_UpComing_Matches fragment) {
+    public MatchPreviousAdapter(List<MatchesModel.MatchModel> list, Context context) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
         Paper.init(context);
         lang = Paper.book().read("lang","ar");
         activity = (MatchesActivity) context;
-        this.parent_pos = position;
-        this.fragment = fragment;
 
     }
 
@@ -51,7 +45,7 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
 
-        MatchRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.match_row, parent, false);
+        MatchPreviousRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.match_previous_row, parent, false);
         return new MyHolder(binding);
 
 
@@ -75,10 +69,25 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             myHolder.binding.progBarLose.setRotation(0);
         }
 
+        if (matchModel.getMatch_expectation_result().equals("no_expect")){
+            myHolder.binding.icon.setVisibility(View.GONE);
+        }else if (matchModel.getMatch_expectation_result().equals("true_expect")){
+            myHolder.binding.icon.setVisibility(View.VISIBLE);
+            myHolder.binding.icon.setImageResource(R.drawable.ic_correct);
+            myHolder.binding.icon.setColorFilter(ContextCompat.getColor(context,R.color.white));
+
+
+
+        }else {
+            myHolder.binding.icon.setVisibility(View.VISIBLE);
+            myHolder.binding.icon.setImageResource(R.drawable.ic_close2);
+            myHolder.binding.icon.setColorFilter(ContextCompat.getColor(context,R.color.white));
+
+        }
+
         if (matchModel.getWin_first_team_rate()==0){
             myHolder.binding.tvWin.setVisibility(View.GONE);
         }else {
-            myHolder.binding.progBarWin.setProgress(matchModel.getWin_first_team_rate());
             myHolder.binding.tvWin.setText(String.format(Locale.ENGLISH,"%s%s",matchModel.getWin_first_team_rate(),"%"));
             myHolder.binding.tvWin.setVisibility(View.VISIBLE);
 
@@ -87,8 +96,6 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (matchModel.getWin_second_team_rate()==0){
             myHolder.binding.tvLose.setVisibility(View.GONE);
         }else {
-            myHolder.binding.progBarLose.setProgress(matchModel.getWin_second_team_rate());
-
             myHolder.binding.tvLose.setText(String.format(Locale.ENGLISH,"%s%s",matchModel.getWin_second_team_rate(),"%"));
             myHolder.binding.tvLose.setVisibility(View.VISIBLE);
 
@@ -103,14 +110,6 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
 
-        myHolder.binding.flExpect.setOnClickListener(view -> {
-            MatchesModel.MatchModel matchModel2 = list.get(myHolder.getAdapterPosition());
-
-            fragment.showDialogExpectation(matchModel2,myHolder.getAdapterPosition(),parent_pos);
-        });
-
-
-
     }
 
     @Override
@@ -119,9 +118,9 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder {
-        public MatchRowBinding binding;
+        public MatchPreviousRowBinding binding;
 
-        public MyHolder(@NonNull MatchRowBinding binding) {
+        public MyHolder(@NonNull MatchPreviousRowBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
 

@@ -9,4 +9,7 @@ public interface FragmentMatchesView {
     void onFailed(String msg);
     void showProgressBar();
     void hideProgressBar();
+    void showProgressDialog();
+    void hideProgressDialog();
+    void onExpectationSuccess();
 }

@@ -38,13 +38,6 @@
 
                 >
 
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/color16"
-                    />
-
                 <TextView
                     android:id="@+id/tvMid"
                     android:layout_width="wrap_content"
@@ -52,6 +45,12 @@
                     android:textSize="14sp"
                     android:textColor="@color/white"
                     android:layout_gravity="center"
+
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color16"
                     />
 
             </FrameLayout>
@@ -61,14 +60,6 @@
                 android:layout_height="15dp"
                 android:layout_gravity="start"
                 >
-
-                <ProgressBar
-                    android:id="@+id/progBarWin"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/custom_horizontal_progress_bar_win"
-                    android:indeterminate="false"
-                    />
                 <TextView
                     android:id="@+id/tvWin"
                     android:layout_width="wrap_content"
@@ -79,6 +70,13 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     />
+                <ProgressBar
+                    android:id="@+id/progBarWin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/custom_horizontal_progress_bar_win"
+                    android:indeterminate="false"
+                    />
             </FrameLayout>
             <FrameLayout
                 android:id="@+id/flLose"
@@ -86,16 +84,6 @@
                 android:layout_height="15dp"
                 android:layout_gravity="end"
                 >
-
-                <ProgressBar
-                    android:id="@+id/progBarLose"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/custom_horizontal_progress_bar_lose"
-                    android:indeterminate="false"
-                    android:layout_gravity="end"
-                    />
-
                 <TextView
                     android:id="@+id/tvLose"
                     android:layout_width="wrap_content"
@@ -106,6 +94,14 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
 
+                    />
+                <ProgressBar
+                    android:id="@+id/progBarLose"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/custom_horizontal_progress_bar_lose"
+                    android:indeterminate="false"
+                    android:layout_gravity="end"
                     />
             </FrameLayout>
 
@@ -153,11 +149,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/color9"
-                android:textSize="9sp"
+                android:textSize="14sp"
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:gravity="center"
-                android:text="@{model.date_for_order}"
+                android:text='@{model.first_team_goals_count+"/"+model.second_team_goals_count}'
 
                 />
             <View
@@ -187,112 +183,41 @@
                 android:layout_height="0dp"/>
         </LinearLayout>
 
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/flStatus"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/llTeam"
-            android:background="@drawable/rounded_round"
+            android:background='@{model.match_expectation_result.equals("no_expect")?@drawable/rounded_round_gray:(model.match_expectation_result.equals("true_expect")?@drawable/rounded_round_gray:@drawable/rounded_round_red)}'
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             >
-            <FrameLayout
-                android:id="@+id/flExpect"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/rounded_round_green"
-
-
-
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 >
-                <LinearLayout
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+
+                    />
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="0dp"/>
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:textColor="@color/white"
-                        android:text="@string/expect_now"
-                        />
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_right_arrow"
-                        app:tint="@color/white"
-                        android:padding="5dp"
-                        android:rotation='@{lang.equals("ar")?180:0}'
-                        />
-                </LinearLayout>
-            </FrameLayout>
-            <LinearLayout
-                android:id="@+id/llResult"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical">
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/tvFirst"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:textColor="@color/color9"
-                    android:gravity="center"
-                    android:background="@drawable/circle_white"
-                    android:textSize="12sp"
-                    tools:ignore="SmallSp"
-                    android:singleLine="true"
-                    android:maxLength="2"
-                    android:text='@{model.user_expectation!=null?String.valueOf(model.user_expectation.first_team_goals_count):"0"}'
-
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text='@{model.match_expectation_result.equals("no_expect")?@string/no_expectation:(model.match_expectation_result.equals("true_expect")?@string/correct_expectation:@string/wrong_expectation)}'
                     />
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:textColor="@color/color9"
-                    android:gravity="center"
-                    android:background="@drawable/circle_white"
-                    android:textSize="12sp"
-                    tools:ignore="SmallSp"
-                    android:text="x"
-                    />
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:id="@+id/tvSecond"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:textColor="@color/color9"
-                    android:gravity="center"
-                    android:background="@drawable/circle_white"
-                    android:textSize="12sp"
-                    tools:ignore="SmallSp"
-                    android:singleLine="true"
-                    android:maxLength="2"
-                    android:text='@{model.user_expectation!=null?String.valueOf(model.user_expectation.second_team_goals_count):"0"}'
-                    />
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
             </LinearLayout>
-        </LinearLayout>
+        </FrameLayout>
 
         <FrameLayout
             android:layout_width="70dp"
@@ -317,14 +242,6 @@
                 image="@{model.first_team.logo}"
                 android:scaleType="centerCrop"
                 />
-
-            <View
-                android:layout_width="5dp"
-                android:layout_height="5dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/circle_bg_primary_dark"
-                />
         </FrameLayout>
 
         <FrameLayout
@@ -346,13 +263,6 @@
                 android:layout_gravity="center"
                 image="@{model.second_team.logo}"
                 android:scaleType="centerCrop"
-                />
-            <View
-                android:layout_width="5dp"
-                android:layout_height="5dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/circle_primary"
                 />
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

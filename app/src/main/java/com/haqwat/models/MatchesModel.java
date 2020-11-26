@@ -89,6 +89,8 @@ public class MatchesModel implements Serializable {
         private String is_finished;
         private String created_at;
         private String updated_at;
+        private int count_of_played_matches;
+        private int user_true_expectation_count;
 
         public int getId() {
             return id;
@@ -128,6 +130,14 @@ public class MatchesModel implements Serializable {
 
         public String getUpdated_at() {
             return updated_at;
+        }
+
+        public int getCount_of_played_matches() {
+            return count_of_played_matches;
+        }
+
+        public int getUser_true_expectation_count() {
+            return user_true_expectation_count;
         }
     }
     public static class FirstTeam implements Serializable

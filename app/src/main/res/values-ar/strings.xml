@@ -114,5 +114,11 @@
     <string name="sub_code_incorrect">كود الدعوة غير صحيح</string>
     <string name="round">الجولة</string>
     <string name="expect_now">توقع الان</string>
+    <string name="no_expectation">لم تتوقع</string>
+    <string name="correct_expectation">تهانينا توقعك صحيح</string>
+    <string name="wrong_expectation">للاسف توقعك خاطئ</string>
+    <string name="connot_expt_match">للاسف لايمكنك توقع هذا المباراة</string>
+    <string name="league">الدوري</string>
+    <string name="total">الإجمالي :</string>
 
 </resources>

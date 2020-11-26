@@ -5,14 +5,18 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 
 import com.haqwat.R;
 import com.haqwat.adapters.MatchesPagerAdapter;
 import com.haqwat.databinding.ActivityMatchesBinding;
+import com.haqwat.databinding.DialogAlertBinding;
 import com.haqwat.language.Language;
+import com.haqwat.models.MatchesModel;
 import com.haqwat.ui.activity_matches.fragments.Fragment_Previous_Matches;
 import com.haqwat.ui.activity_matches.fragments.Fragment_UpComing_Matches;
 
@@ -68,4 +72,8 @@ public class MatchesActivity extends AppCompatActivity {
         binding.llBack.setOnClickListener(view -> finish());
 
     }
+
+
+
+
 }

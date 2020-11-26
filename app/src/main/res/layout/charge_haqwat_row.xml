@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="model"
+            type="com.haqwat.models.ChargeModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/color1"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="1dp"
+            android:orientation="horizontal"
+
+            >
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="0dp"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1.8"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                >
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:scaleType="centerCrop"
+                    image="@{model.logo}"
+                    />
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="0dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:text="@{model.title}"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:text='@{model.true_expectations_count+"/"+model.all_expectations_count}'
+                />
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight=".7"
+                android:layout_height="match_parent"
+                >
+                <ProgressBar
+                    android:id="@+id/progBar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:indeterminateOnly="false"
+                    android:progressDrawable="@drawable/progress_bar_text6"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:text='@{model.rate+"%"}'
+                    />
+            </FrameLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/color9"
+            />
+    </LinearLayout>
+
+</layout>

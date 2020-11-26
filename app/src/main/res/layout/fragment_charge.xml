@@ -1,24 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android" >
-
-    <ScrollView
+    <data>
+        <variable
+            name="model"
+            type="com.haqwat.models.ChargeTotalModel" />
+        <import type="android.view.View"/>
+    </data>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:background="@color/color18"
+
         >
         <LinearLayout
+            android:id="@+id/llTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color9"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="@{model==null?View.GONE:View.VISIBLE,default=gone}"
             >
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="0dp"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="charge"
+                android:layout_weight="1.8"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:text="@string/league"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:text="@string/correct_expectations"
+                android:gravity="center"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".7"
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="%"
+                android:gravity="center"
                 />
         </LinearLayout>
-    </ScrollView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <ProgressBar
+                android:id="@+id/progBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                />
+            <TextView
+                android:id="@+id/tvNoData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:text="@string/no_data_to_show"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/llTotal"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color9"
+            android:visibility="@{model==null?View.GONE:View.VISIBLE,default=gone}"
+            >
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="0dp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.8"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:text="@string/total"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:text='@{model.total_true_expectation_count+"/"+model.total_expectation_count}'
+                />
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight=".7"
+                android:layout_height="match_parent"
+                >
+                <ProgressBar
+                    android:id="@+id/progBarTotal"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:progress="50"
+                    android:indeterminateOnly="false"
+                    android:progressDrawable="@drawable/progress_bar_text6"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:text="0%"
+                    />
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </layout>

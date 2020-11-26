@@ -114,4 +114,10 @@
     <string name="sub_code_incorrect">Subscribe invitation code incorrect</string>
     <string name="round">Round</string>
     <string name="expect_now">Expect Now</string>
+    <string name="no_expectation">No Expectation</string>
+    <string name="correct_expectation">Correct Expectation</string>
+    <string name="wrong_expectation">Wrong Expectation</string>
+    <string name="connot_expt_match">Cannot expect this match</string>
+    <string name="league">League</string>
+    <string name="total">Total :</string>
 </resources>
