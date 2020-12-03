@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,9 +25,9 @@ public class RoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<MatchesModel> list;
     private Context context;
     private LayoutInflater inflater;
-    private Fragment_UpComing_Matches fragment;
+    private Fragment fragment;
 
-    public RoundAdapter(List<MatchesModel> list, Context context,Fragment_UpComing_Matches fragment) {
+    public RoundAdapter(List<MatchesModel> list, Context context,Fragment fragment) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -58,10 +59,14 @@ public class RoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
 
 
+        if (matchesModel.getNext_matches()!=null&&matchesModel.getNext_matches().size()>0){
 
-        MatchAdapter adapter = new MatchAdapter(matchesModel.getNext_matches(),context,position,fragment);
-        myHolder.binding.recView.setLayoutManager(new LinearLayoutManager(context));
-        myHolder.binding.recView.setAdapter(adapter);
+            MatchAdapter adapter = new MatchAdapter(matchesModel.getNext_matches(),context,position,fragment);
+            myHolder.binding.recView.setLayoutManager(new LinearLayoutManager(context));
+            myHolder.binding.recView.setAdapter(adapter);
+
+        }
+
 
         myHolder.itemView.setOnClickListener(view -> {
             if (myHolder.binding.expandLayout.isExpanded()){

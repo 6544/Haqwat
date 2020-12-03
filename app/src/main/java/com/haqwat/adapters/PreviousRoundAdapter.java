@@ -67,10 +67,13 @@ public class PreviousRoundAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
 
+        if (matchesModel.getPrev_matches()!=null&&matchesModel.getPrev_matches().size()>0){
+            MatchPreviousAdapter adapter = new MatchPreviousAdapter(matchesModel.getPrev_matches(),context);
+            myHolder.binding.recView.setLayoutManager(new LinearLayoutManager(context));
+            myHolder.binding.recView.setAdapter(adapter);
+        }
 
-        MatchPreviousAdapter adapter = new MatchPreviousAdapter(matchesModel.getPrev_matches(),context);
-        myHolder.binding.recView.setLayoutManager(new LinearLayoutManager(context));
-        myHolder.binding.recView.setAdapter(adapter);
+
 
         myHolder.itemView.setOnClickListener(view -> {
             if (myHolder.binding.expandLayout.isExpanded()){

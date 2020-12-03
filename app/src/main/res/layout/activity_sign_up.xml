@@ -152,6 +152,8 @@
                             android:inputType="textEmailAddress"
                             android:text="@={model.email}"
                             error="@{model.error_email}"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
                             />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -179,6 +181,8 @@
                             android:inputType="textPassword"
                             android:text="@={model.password}"
                             error="@{model.error_password}"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
                             />
                     </com.google.android.material.textfield.TextInputLayout>
                     <com.google.android.material.textfield.TextInputLayout
@@ -205,6 +209,8 @@
                             android:inputType="textPassword"
                             android:text="@={model.re_password}"
                             error="@{model.error_re_password}"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>

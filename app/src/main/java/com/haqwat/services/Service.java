@@ -3,10 +3,14 @@ package com.haqwat.services;
 import com.haqwat.models.ChargeDataModel;
 import com.haqwat.models.HomeModel;
 import com.haqwat.models.LeagueDataModel;
+import com.haqwat.models.LeagueHistoryModel;
+import com.haqwat.models.LeagueRateModel;
 import com.haqwat.models.MatchesDataModel;
+import com.haqwat.models.MatchesModel;
 import com.haqwat.models.NationalityDataModel;
 import com.haqwat.models.PlaceGeocodeData;
 import com.haqwat.models.PlaceMapDetailsData;
+import com.haqwat.models.TableArrangementDataModel;
 import com.haqwat.models.TeamDataModel;
 import com.haqwat.models.UserModel;
 
@@ -121,5 +125,30 @@ public interface Service {
 
     @GET("api/haqawatBalanceDisplay")
     Call<ChargeDataModel> getCharge(@Header("Authorization") String bearer_token);
+
+    @FormUrlEncoded
+    @POST("api/haqawatRateDisplay")
+    Call<LeagueRateModel> getLeagueRate(@Header("Authorization") String bearer_token,
+                                        @Field("league_id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("api/leagueMatches")
+    Call<MatchesModel> getLeagueMatches(@Header("Authorization") String bearer_token,
+                                        @Field("league_id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("api/teamsTableOrder")
+    Call<TableArrangementDataModel> getTableArrangement(@Header("Authorization") String bearer_token,
+                                                        @Field("league_id") String league_id
+    );
+
+    @FormUrlEncoded
+    @POST("api/leagueHistory")
+    Call<LeagueHistoryModel> getLeagueHistory(@Header("Authorization") String bearer_token,
+                                              @Field("league_id") String league_id
+    );
+
 
 }

@@ -315,7 +315,6 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 image="@{model.first_team.logo}"
-                android:scaleType="centerCrop"
                 />
 
             <View
@@ -345,7 +344,6 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 image="@{model.second_team.logo}"
-                android:scaleType="centerCrop"
                 />
             <View
                 android:layout_width="5dp"

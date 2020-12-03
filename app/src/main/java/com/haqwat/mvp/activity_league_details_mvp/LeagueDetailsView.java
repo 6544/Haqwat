@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface LeagueDetailsView {
     void onLeagueCategorySuccess(List<LeagueCategory> leagueCategoryList);
+    void onFragmentSelected(String tag);
 }

@@ -11,12 +11,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.haqwat.R;
 import com.haqwat.databinding.MatchRowBinding;
 import com.haqwat.databinding.RoundRowBinding;
 import com.haqwat.models.MatchesModel;
+import com.haqwat.ui.activity_league_details.fragments.Fragment_League_UpComing_Matches;
 import com.haqwat.ui.activity_matches.MatchesActivity;
 import com.haqwat.ui.activity_matches.fragments.Fragment_UpComing_Matches;
 
@@ -31,16 +33,14 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private Context context;
     private LayoutInflater inflater;
     private String lang;
-    private MatchesActivity activity;
     private int parent_pos;
-    private Fragment_UpComing_Matches fragment;
-    public MatchAdapter(List<MatchesModel.MatchModel> list, Context context, int position, Fragment_UpComing_Matches fragment) {
+    private Fragment fragment;
+    public MatchAdapter(List<MatchesModel.MatchModel> list, Context context, int position, Fragment fragment) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
         Paper.init(context);
         lang = Paper.book().read("lang","ar");
-        activity = (MatchesActivity) context;
         this.parent_pos = position;
         this.fragment = fragment;
 
@@ -104,9 +104,16 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
         myHolder.binding.flExpect.setOnClickListener(view -> {
-            MatchesModel.MatchModel matchModel2 = list.get(myHolder.getAdapterPosition());
+            if (fragment instanceof Fragment_UpComing_Matches){
+                Fragment_UpComing_Matches fragment_upComing_matches = (Fragment_UpComing_Matches) fragment;
+                MatchesModel.MatchModel matchModel2 = list.get(myHolder.getAdapterPosition());
+                fragment_upComing_matches.showDialogExpectation(matchModel2,myHolder.getAdapterPosition(),parent_pos);
+            }else if (fragment instanceof Fragment_League_UpComing_Matches){
+                Fragment_League_UpComing_Matches fragment_league_upComing_matches = (Fragment_League_UpComing_Matches) fragment;
+                MatchesModel.MatchModel matchModel2 = list.get(myHolder.getAdapterPosition());
+                fragment_league_upComing_matches.showDialogExpectation(matchModel2,myHolder.getAdapterPosition(),parent_pos);
+            }
 
-            fragment.showDialogExpectation(matchModel2,myHolder.getAdapterPosition(),parent_pos);
         });
 
 
@@ -115,7 +122,7 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return list!=null?list.size():0;
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder {

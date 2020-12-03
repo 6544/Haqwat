@@ -240,7 +240,6 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 image="@{model.first_team.logo}"
-                android:scaleType="centerCrop"
                 />
         </FrameLayout>
 
@@ -262,7 +261,6 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 image="@{model.second_team.logo}"
-                android:scaleType="centerCrop"
                 />
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,14 +24,16 @@ public class LeagueCategoryAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private Context context;
     private LayoutInflater inflater;
     private LeagueDetailsPresenter presenter;
+    private String league_id="";
     private int selected_pos = 0;
     private int old_pos = 0;
 
-    public LeagueCategoryAdapter(List<LeagueCategory> list, Context context,LeagueDetailsPresenter presenter) {
+    public LeagueCategoryAdapter(List<LeagueCategory> list, Context context,LeagueDetailsPresenter presenter,String league_id) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.presenter = presenter;
+        this.league_id = league_id;
 
 
     }
@@ -79,7 +81,7 @@ public class LeagueCategoryAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             list.set(selected_pos,leagueCategory3);
             notifyItemChanged(selected_pos);
             old_pos = selected_pos;
-            presenter.displayFragments(false,leagueCategory3.getTag());
+            presenter.displayFragments(false,leagueCategory3.getTag(),league_id);
 
         });
     }
@@ -99,6 +101,23 @@ public class LeagueCategoryAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
+    public void setSelected_pos(int pos){
+        this.selected_pos = pos;
+
+        if (old_pos!=-1){
+            LeagueCategory leagueCategory2 = list.get(old_pos);
+            leagueCategory2.setSelected(false);
+            list.set(old_pos,leagueCategory2);
+            notifyItemChanged(old_pos);
+        }
+
+
+        LeagueCategory leagueCategory3 = list.get(selected_pos);
+        leagueCategory3.setSelected(true);
+        list.set(selected_pos,leagueCategory3);
+        notifyItemChanged(selected_pos);
+        old_pos = selected_pos;
+    }
 
 
 

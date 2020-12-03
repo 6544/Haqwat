@@ -6,10 +6,63 @@
         android:layout_height="match_parent"
         android:background="@color/color1"
         >
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:id="@+id/llRank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:visibility="gone"
+                >
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight=".6"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".13"
+                    android:textColor="@color/color5"
+                    android:textSize="13sp"
+                    android:text="@string/m"
+                    android:gravity="center"
+
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".13"
+                    android:textColor="@color/color5"
+                    android:textSize="13sp"
+                    android:text="@string/w"
+                    android:gravity="center"
+
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".13"
+                    android:textColor="@color/color5"
+                    android:textSize="13sp"
+                    android:text="@string/p"
+                    android:gravity="center"
+
+                    />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
         <ProgressBar
             android:id="@+id/progBar"
             android:layout_width="wrap_content"

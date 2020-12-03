@@ -25,5 +25,6 @@
     <color name="color18">#2C2E43</color>
     <color name="color19">#A57388A9</color>
     <color name="transparent">#00000000</color>
+    <color name="primary_transparent">#55000533</color>
 
 </resources>

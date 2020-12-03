@@ -3,11 +3,13 @@ package com.haqwat.ui.activity_league_details;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.haqwat.R;
 import com.haqwat.adapters.LeagueCategoryAdapter;
@@ -19,6 +21,11 @@ import com.haqwat.models.SignUpModel;
 import com.haqwat.mvp.activity_league_details_mvp.LeagueDetailsPresenter;
 import com.haqwat.mvp.activity_league_details_mvp.LeagueDetailsView;
 import com.haqwat.mvp.sign_up_mpv.SignUpPresenter;
+import com.haqwat.ui.activity_league_details.fragments.Fragment_League_Previous_Matches;
+import com.haqwat.ui.activity_league_details.fragments.Fragment_League_Ranking_Table;
+import com.haqwat.ui.activity_league_details.fragments.Fragment_League_Rating;
+import com.haqwat.ui.activity_league_details.fragments.Fragment_League_Tournament_History;
+import com.haqwat.ui.activity_league_details.fragments.Fragment_League_UpComing_Matches;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +40,7 @@ public class LeagueDetailsActivity extends AppCompatActivity implements LeagueDe
     private LeagueCategoryAdapter adapter;
     private List<LeagueCategory> leagueCategoryList;
     private String lang="ar";
+    private String league_id="";
 
 
     @Override
@@ -52,6 +60,7 @@ public class LeagueDetailsActivity extends AppCompatActivity implements LeagueDe
     private void getDataFromIntent() {
         Intent intent = getIntent();
         leagueName = intent.getStringExtra("data");
+        league_id = intent.getStringExtra("id");
     }
 
     private void initView() {
@@ -61,12 +70,16 @@ public class LeagueDetailsActivity extends AppCompatActivity implements LeagueDe
         fragmentManager = getSupportFragmentManager();
         binding.setLeagueName(leagueName);
         binding.setLang(lang);
-        presenter = new LeagueDetailsPresenter(this,this,fragmentManager);
-        adapter = new LeagueCategoryAdapter(leagueCategoryList,this,presenter);
+        presenter = new LeagueDetailsPresenter(this,this,fragmentManager,league_id);
+        adapter = new LeagueCategoryAdapter(leagueCategoryList,this,presenter,league_id);
         binding.recView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         binding.recView.setAdapter(adapter);
         presenter.getLeagueCategory();
         binding.llBack.setOnClickListener(view -> finish());
+    }
+
+    public void secondFragment(){
+        presenter.displayFragments(false,LeagueDetailsPresenter.fragmentUpComingMatchesTag,league_id);
     }
 
     @Override
@@ -77,5 +90,44 @@ public class LeagueDetailsActivity extends AppCompatActivity implements LeagueDe
         leagueCategory.setSelected(true);
         leagueCategoryList.set(0,leagueCategory);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onFragmentSelected(String tag)
+    {
+        switch (tag){
+            case "fragment_league_upComing_matches":
+                if (adapter!=null){
+                    adapter.setSelected_pos(1);
+                }
+                break;
+            case "fragment_league_previous_matches":
+                if (adapter!=null){
+                    adapter.setSelected_pos(2);
+                }
+                break;
+            case"fragment_league_ranking_table":
+                if (adapter!=null){
+                    adapter.setSelected_pos(3);
+                }
+                break;
+            case "fragment_league_tournament_history":
+                if (adapter!=null){
+                    adapter.setSelected_pos(4);
+                }
+                break;
+            default:
+                if (adapter!=null){
+                    adapter.setSelected_pos(0);
+                }
+                break;
+        }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        presenter.onBackPress();
     }
 }

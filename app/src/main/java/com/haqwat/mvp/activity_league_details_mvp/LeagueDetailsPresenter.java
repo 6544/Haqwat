@@ -26,18 +26,20 @@ public class LeagueDetailsPresenter {
     private Fragment_League_Previous_Matches fragment_league_previous_matches;
     private Fragment_League_Ranking_Table fragment_league_ranking_table;
     private Fragment_League_Tournament_History fragment_league_tournament_history;
-    private static final String fragmentRateTag="fragment_league_rating";
-    private static final String fragmentUpComingMatchesTag="fragment_league_upComing_matches";
-    private static final String fragmentPreviousMatchesTag="fragment_league_previous_matches";
-    private static final String fragmentRankTag="fragment_league_ranking_table";
-    private static final String fragmentHistoryTag="fragment_league_tournament_history";
+    public static final String fragmentRateTag="fragment_league_rating";
+    public static final String fragmentUpComingMatchesTag="fragment_league_upComing_matches";
+    public static final String fragmentPreviousMatchesTag="fragment_league_previous_matches";
+    public static final String fragmentRankTag="fragment_league_ranking_table";
+    public static final String fragmentHistoryTag="fragment_league_tournament_history";
+    private String league_id="";
 
 
-    public LeagueDetailsPresenter(Context context, LeagueDetailsView view,FragmentManager fragmentManager) {
+    public LeagueDetailsPresenter(Context context, LeagueDetailsView view,FragmentManager fragmentManager,String league_id) {
         this.context = context;
         this.view = view;
         this.fragmentManager = fragmentManager;
-        displayFragments(true,fragmentRateTag);
+        this.league_id = league_id;
+        displayFragments(true,fragmentRateTag,league_id);
     }
 
     public void getLeagueCategory(){
@@ -51,11 +53,11 @@ public class LeagueDetailsPresenter {
 
     }
 
-    public void displayFragments(boolean isFirstFragment,String tag){
+    public void displayFragments(boolean isFirstFragment,String tag,String league_id){
         switch (tag){
             case fragmentUpComingMatchesTag:
                 if (fragment_league_upComing_matches==null){
-                    fragment_league_upComing_matches = Fragment_League_UpComing_Matches.newInstance();
+                    fragment_league_upComing_matches = Fragment_League_UpComing_Matches.newInstance(league_id);
                 }
                 FragmentTransaction transaction1 = fragmentManager.beginTransaction().replace(R.id.fragment_container,fragment_league_upComing_matches,tag);
                 if (!isFirstFragment&&!isInBackStack(tag)){
@@ -65,7 +67,7 @@ public class LeagueDetailsPresenter {
                 break;
             case fragmentPreviousMatchesTag:
                 if (fragment_league_previous_matches==null){
-                    fragment_league_previous_matches = Fragment_League_Previous_Matches.newInstance();
+                    fragment_league_previous_matches = Fragment_League_Previous_Matches.newInstance(league_id);
                 }
                 FragmentTransaction transaction2 = fragmentManager.beginTransaction().replace(R.id.fragment_container,fragment_league_previous_matches,tag);
                 if (!isFirstFragment&&!isInBackStack(tag)){
@@ -76,7 +78,7 @@ public class LeagueDetailsPresenter {
             case fragmentRankTag:
 
                 if (fragment_league_ranking_table==null){
-                    fragment_league_ranking_table = Fragment_League_Ranking_Table.newInstance();
+                    fragment_league_ranking_table = Fragment_League_Ranking_Table.newInstance(league_id);
                 }
                 FragmentTransaction transaction3 = fragmentManager.beginTransaction().replace(R.id.fragment_container,fragment_league_ranking_table,tag);
                 if (!isFirstFragment&&!isInBackStack(tag)){
@@ -87,7 +89,7 @@ public class LeagueDetailsPresenter {
                 break;
             case fragmentHistoryTag:
                 if (fragment_league_tournament_history==null){
-                    fragment_league_tournament_history = Fragment_League_Tournament_History.newInstance();
+                    fragment_league_tournament_history = Fragment_League_Tournament_History.newInstance(league_id);
                 }
                 FragmentTransaction transaction4 = fragmentManager.beginTransaction().replace(R.id.fragment_container,fragment_league_tournament_history,tag);
                 if (!isFirstFragment&&!isInBackStack(tag)){
@@ -97,7 +99,7 @@ public class LeagueDetailsPresenter {
                 break;
             default:
                 if (fragment_league_rating==null){
-                    fragment_league_rating = Fragment_League_Rating.newInstance();
+                    fragment_league_rating = Fragment_League_Rating.newInstance(league_id);
                 }
                 FragmentTransaction transaction5 = fragmentManager.beginTransaction().replace(R.id.fragment_container,fragment_league_rating,tag);
                 if (!isFirstFragment&&!isInBackStack(tag)){
@@ -105,7 +107,12 @@ public class LeagueDetailsPresenter {
                 }
                 transaction5.commit();
                 break;
+
+
         }
+
+        view.onFragmentSelected(tag);
+
     }
 
 
@@ -118,5 +125,11 @@ public class LeagueDetailsPresenter {
             }
         }
         return false;
+    }
+
+    public void onBackPress(){
+        String tag = fragmentManager.findFragmentById(R.id.fragment_container).getTag();
+        view.onFragmentSelected(tag);
+
     }
 }

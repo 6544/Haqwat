@@ -29,14 +29,12 @@ public class MatchPreviousAdapter extends RecyclerView.Adapter<RecyclerView.View
     private Context context;
     private LayoutInflater inflater;
     private String lang;
-    private MatchesActivity activity;
     public MatchPreviousAdapter(List<MatchesModel.MatchModel> list, Context context) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
         Paper.init(context);
         lang = Paper.book().read("lang","ar");
-        activity = (MatchesActivity) context;
 
     }
 

@@ -120,5 +120,14 @@
     <string name="connot_expt_match">للاسف لايمكنك توقع هذا المباراة</string>
     <string name="league">الدوري</string>
     <string name="total">الإجمالي :</string>
+    <string name="favorite_team">الفريق المفضل</string>
+    <string name="candidate_club_for_the_championship">الفريق المرشح للبطولة</string>
+    <string name="no_team">لايوجد فريق</string>
+    <string name="m">لعب</string>
+    <string name="w">فاز</string>
+    <string name="p">نقاط</string>
+    <string name="upgrade_account">من فضلك قم بترقية حسابك عن طريق دعوة اصدقائك او الدفع</string>
+    <string name="payment">الدفع</string>
+    <string name="continue2">إستمرار</string>
 
 </resources>

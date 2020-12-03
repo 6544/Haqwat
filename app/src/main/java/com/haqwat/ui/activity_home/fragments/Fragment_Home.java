@@ -25,6 +25,7 @@ import com.haqwat.models.UserModel;
 import com.haqwat.mvp.fragment_home_mvp.FragmentHomePresenter;
 import com.haqwat.mvp.fragment_home_mvp.FragmentHomeView;
 import com.haqwat.preferences.Preferences;
+import com.haqwat.tags.Tags;
 import com.haqwat.ui.activity_home.HomeActivity;
 import com.haqwat.ui.activity_league_details.LeagueDetailsActivity;
 
@@ -63,35 +64,34 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
         presenter = new FragmentHomePresenter(this,activity);
         presenter.getData(userModel);
 
-
         adapter = new FavoriteTeamAdapter(teamOrderModelList,activity);
         binding.recView.setLayoutManager(new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false));
         binding.recView.setAdapter(adapter);
 
 
         binding.img1.setOnClickListener(view -> {
-            navigateToLeagueDetailsActivity(getString(R.string.champions_league));
+            navigateToLeagueDetailsActivity(getString(R.string.champions_league), Tags.CHAMPIONS_LEAGUE);
         });
         binding.img2.setOnClickListener(view -> {
-            navigateToLeagueDetailsActivity(getString(R.string.french_league));
+            navigateToLeagueDetailsActivity(getString(R.string.french_league),Tags.FRANCE_LEAGUE);
         });
         binding.img3.setOnClickListener(view -> {
-            navigateToLeagueDetailsActivity(getString(R.string.la_liga));
+            navigateToLeagueDetailsActivity(getString(R.string.la_liga),Tags.LA_LEAGUE);
         });
         binding.img4.setOnClickListener(view -> {
-            navigateToLeagueDetailsActivity(getString(R.string.italian_league));
+            navigateToLeagueDetailsActivity(getString(R.string.italian_league),Tags.SERIA_LEAGUE);
         });
         binding.img5.setOnClickListener(view -> {
-            navigateToLeagueDetailsActivity(getString(R.string.saudi_league));
+            navigateToLeagueDetailsActivity(getString(R.string.saudi_league),Tags.SAUDI_LEAGUE);
         });
         binding.img6.setOnClickListener(view -> {
-            navigateToLeagueDetailsActivity(getString(R.string.egyptian_league));
+            navigateToLeagueDetailsActivity(getString(R.string.egyptian_league),Tags.EGYPTIAN_LEAGUE);
         });
         binding.img7.setOnClickListener(view -> {
-            navigateToLeagueDetailsActivity(getString(R.string.bundesliga));
+            navigateToLeagueDetailsActivity(getString(R.string.bundesliga),Tags.JERMAN_LEAGUE);
         });
         binding.img8.setOnClickListener(view -> {
-            navigateToLeagueDetailsActivity(getString(R.string.premier_league));
+            navigateToLeagueDetailsActivity(getString(R.string.premier_league),Tags.PREMIER_LEAGUE);
         });
         binding.progBarLoadAverageRate.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
         binding.progBarLoadRate.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
@@ -99,10 +99,11 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
 
     }
 
-    private void navigateToLeagueDetailsActivity(String name)
+    private void navigateToLeagueDetailsActivity(String name,String id)
     {
         Intent intent = new Intent(activity, LeagueDetailsActivity.class);
         intent.putExtra("data",name);
+        intent.putExtra("id",id);
         startActivity(intent);
 
     }

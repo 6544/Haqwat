@@ -99,7 +99,7 @@
     <string name="tournament_history">Tournament history</string>
     <string name="premier_league">Premier League</string>
     <string name="la_liga">La Liga</string>
-    <string name="italian_league">Italian League</string>
+    <string name="italian_league">Serie A League</string>
     <string name="bundesliga">Bundesliga</string>
     <string name="champions_league">Champions League</string>
     <string name="saudi_league">Saudi League</string>
@@ -120,4 +120,13 @@
     <string name="connot_expt_match">Cannot expect this match</string>
     <string name="league">League</string>
     <string name="total">Total :</string>
+    <string name="favorite_team">Favorite Team</string>
+    <string name="candidate_club_for_the_championship">Recommended Team</string>
+    <string name="no_team">No Team</string>
+    <string name="m">M</string>
+    <string name="w">W</string>
+    <string name="p">P</string>
+    <string name="upgrade_account">Please upgrade your account by invitation or payment</string>
+    <string name="payment">Payment</string>
+    <string name="continue2">Continue</string>
 </resources>
