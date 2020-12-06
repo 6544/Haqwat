@@ -9,11 +9,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.haqwat.R;
-import com.haqwat.models.HomeModel;
 import com.haqwat.models.UserModel;
 import com.haqwat.remote.Api;
 import com.haqwat.tags.Tags;
-import com.haqwat.ui.activity_home.fragments.Fragment_Champions;
+import com.haqwat.ui.activity_home.fragments.fragment_champions.Fragment_Champions;
 import com.haqwat.ui.activity_home.fragments.Fragment_Charge;
 import com.haqwat.ui.activity_home.fragments.Fragment_Home;
 import com.haqwat.ui.activity_home.fragments.Fragment_Stars;

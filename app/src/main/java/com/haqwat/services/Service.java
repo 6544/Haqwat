@@ -10,8 +10,12 @@ import com.haqwat.models.MatchesModel;
 import com.haqwat.models.NationalityDataModel;
 import com.haqwat.models.PlaceGeocodeData;
 import com.haqwat.models.PlaceMapDetailsData;
+import com.haqwat.models.RewardDataModel;
+import com.haqwat.models.SystemDataModel;
 import com.haqwat.models.TableArrangementDataModel;
 import com.haqwat.models.TeamDataModel;
+import com.haqwat.models.TopChampionModel;
+import com.haqwat.models.UpgradeDataModel;
 import com.haqwat.models.UserModel;
 
 import okhttp3.MultipartBody;
@@ -150,5 +154,19 @@ public interface Service {
                                               @Field("league_id") String league_id
     );
 
+    @GET("api/myPointsInHaqawat")
+    Call<ChargeDataModel> getPoints(@Header("Authorization") String bearer_token);
+
+    @GET("api/HaqawatUserHigherRates")
+    Call<TopChampionModel> getTopChampion(@Header("Authorization") String bearer_token);
+
+    @GET("api/haqawatRewards")
+    Call<RewardDataModel> getRewards(@Header("Authorization") String bearer_token);
+
+    @GET("api/haqawatSystem")
+    Call<SystemDataModel> getSystem(@Header("Authorization") String bearer_token);
+
+    @GET("api/haqawatSystemForSubscribe")
+    Call<UpgradeDataModel> getUpgrade(@Header("Authorization") String bearer_token);
 
 }

@@ -28,6 +28,7 @@ import com.haqwat.preferences.Preferences;
 import com.haqwat.tags.Tags;
 import com.haqwat.ui.activity_home.HomeActivity;
 import com.haqwat.ui.activity_league_details.LeagueDetailsActivity;
+import com.haqwat.ui.activity_matches.MatchesActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,12 +94,26 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
         binding.img8.setOnClickListener(view -> {
             navigateToLeagueDetailsActivity(getString(R.string.premier_league),Tags.PREMIER_LEAGUE);
         });
+
+        binding.btnUpComingMatches.setOnClickListener(view -> {
+            navigateToMatchesActivity(0);
+        });
+
+        binding.btnPreviousMatches.setOnClickListener(view -> {
+            navigateToMatchesActivity(1);
+        });
         binding.progBarLoadAverageRate.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
         binding.progBarLoadRate.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
         binding.progBarLoadTeam.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
 
     }
 
+    private void navigateToMatchesActivity(int pos) {
+        Intent intent = new Intent(activity, MatchesActivity.class);
+        intent.putExtra("data",pos);
+        startActivity(intent);
+
+    }
     private void navigateToLeagueDetailsActivity(String name,String id)
     {
         Intent intent = new Intent(activity, LeagueDetailsActivity.class);

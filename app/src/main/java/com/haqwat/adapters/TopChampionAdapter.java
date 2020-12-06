@@ -1,6 +1,7 @@
 package com.haqwat.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -11,18 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.haqwat.R;
 import com.haqwat.databinding.ChargeHaqwatRowBinding;
-import com.haqwat.databinding.FavoriteTeamRowBinding;
+import com.haqwat.databinding.TopChampionRowBinding;
 import com.haqwat.models.ChargeModel;
-import com.haqwat.models.TeamOrderModel;
+import com.haqwat.models.UserModel;
 
 import java.util.List;
 
-public class ChargeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TopChampionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<ChargeModel> list;
+    private List<UserModel> list;
     private Context context;
     private LayoutInflater inflater;
-    public ChargeAdapter(List<ChargeModel> list, Context context) {
+    public TopChampionAdapter(List<UserModel> list, Context context) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -34,7 +35,7 @@ public class ChargeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
 
-        ChargeHaqwatRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.charge_haqwat_row, parent, false);
+        TopChampionRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.top_champion_row, parent, false);
         return new MyHolder(binding);
 
 
@@ -44,17 +45,20 @@ public class ChargeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         MyHolder myHolder = (MyHolder) holder;
-        ChargeModel chargeModel = list.get(position);
-        myHolder.binding.setModel(chargeModel);
-        myHolder.binding.progBar.setProgress(chargeModel.getRate());
-        if (chargeModel.getIn_haqawat_competition().equals("no")){
-            myHolder.binding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.white));
-            myHolder.binding.tvExpectation.setTextColor(ContextCompat.getColor(context,R.color.white));
+        UserModel userModel = list.get(position);
+        if (position==0){
+            myHolder.binding.imagePos.setImageResource(R.color.color12);
+        }else if (position==1)
+        {
+            myHolder.binding.imagePos.setImageResource(R.color.colorPrimaryDark);
+
         }else {
-            myHolder.binding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.color12));
-            myHolder.binding.tvExpectation.setTextColor(ContextCompat.getColor(context,R.color.color12));
+            myHolder.binding.imagePos.setImageResource(R.color.color5);
 
         }
+        myHolder.binding.setModel(userModel);
+        myHolder.binding.setPos(position+1);
+
 
 
     }
@@ -65,9 +69,9 @@ public class ChargeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder {
-        public ChargeHaqwatRowBinding binding;
+        public TopChampionRowBinding binding;
 
-        public MyHolder(@NonNull ChargeHaqwatRowBinding binding) {
+        public MyHolder(@NonNull TopChampionRowBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
 

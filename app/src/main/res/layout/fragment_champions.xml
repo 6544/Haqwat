@@ -12,17 +12,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabSelectedTextColor="@color/color12"
-            app:tabTextColor="@color/white"
+            app:tabTextColor="@color/color5"
             app:tabIndicatorHeight="0dp"
             app:tabMode="scrollable"
             app:tabGravity="fill"
+            android:background="@color/color9"
             />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
             />
     </LinearLayout>
 </layout>

@@ -1,7 +1,8 @@
 package com.haqwat.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
-import java.util.List;
 
 public class UserModel implements Serializable {
     private int id;
@@ -20,6 +21,10 @@ public class UserModel implements Serializable {
     private String is_confirmed;
     private String token;
     private String firebase_token;
+    private String points_count;
+    private Country country;
+
+
 
     public int getId() {
         return id;
@@ -84,4 +89,75 @@ public class UserModel implements Serializable {
     public String getIs_confirmed() {
         return is_confirmed;
     }
+
+    public String getPoints_count() {
+        return points_count;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    /////////////////////////
+
+    public static abstract class Country implements Serializable {
+
+        private String updated_at;
+        private String created_at;
+        private String flag_extra_larg;
+        private String flag_large;
+        private String flag_medium;
+        private String flag;
+        private String code;
+        private String countryname_ar;
+        private String countryname;
+        private String countrycode;
+        private int id;
+
+        public String getUpdated_at() {
+            return updated_at;
+        }
+
+        public String getCreated_at() {
+            return created_at;
+        }
+
+        public String getFlag_extra_larg() {
+            return flag_extra_larg;
+        }
+
+        public String getFlag_large() {
+            return flag_large;
+        }
+
+        public String getFlag_medium() {
+            return flag_medium;
+        }
+
+        public String getFlag() {
+            return flag;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public String getCountryname_ar() {
+            return countryname_ar;
+        }
+
+        public String getCountryname() {
+            return countryname;
+        }
+
+        public String getCountrycode() {
+            return countrycode;
+        }
+
+        public int getId() {
+            return id;
+        }
+    }
+
+
 }

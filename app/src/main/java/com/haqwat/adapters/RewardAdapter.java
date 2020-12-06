@@ -11,18 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.haqwat.R;
 import com.haqwat.databinding.ChargeHaqwatRowBinding;
-import com.haqwat.databinding.FavoriteTeamRowBinding;
+import com.haqwat.databinding.RewardRowBinding;
 import com.haqwat.models.ChargeModel;
-import com.haqwat.models.TeamOrderModel;
+import com.haqwat.models.RewardModel;
 
 import java.util.List;
 
-public class ChargeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RewardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<ChargeModel> list;
+    private List<RewardModel> list;
     private Context context;
     private LayoutInflater inflater;
-    public ChargeAdapter(List<ChargeModel> list, Context context) {
+    public RewardAdapter(List<RewardModel> list, Context context) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -34,7 +34,7 @@ public class ChargeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
 
-        ChargeHaqwatRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.charge_haqwat_row, parent, false);
+        RewardRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.reward_row, parent, false);
         return new MyHolder(binding);
 
 
@@ -44,17 +44,9 @@ public class ChargeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         MyHolder myHolder = (MyHolder) holder;
-        ChargeModel chargeModel = list.get(position);
-        myHolder.binding.setModel(chargeModel);
-        myHolder.binding.progBar.setProgress(chargeModel.getRate());
-        if (chargeModel.getIn_haqawat_competition().equals("no")){
-            myHolder.binding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.white));
-            myHolder.binding.tvExpectation.setTextColor(ContextCompat.getColor(context,R.color.white));
-        }else {
-            myHolder.binding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.color12));
-            myHolder.binding.tvExpectation.setTextColor(ContextCompat.getColor(context,R.color.color12));
+        RewardModel rewardModel = list.get(position);
+        myHolder.binding.setModel(rewardModel);
 
-        }
 
 
     }
@@ -65,9 +57,9 @@ public class ChargeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public static class MyHolder extends RecyclerView.ViewHolder {
-        public ChargeHaqwatRowBinding binding;
+        public RewardRowBinding binding;
 
-        public MyHolder(@NonNull ChargeHaqwatRowBinding binding) {
+        public MyHolder(@NonNull RewardRowBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
 

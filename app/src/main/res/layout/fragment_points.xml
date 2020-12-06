@@ -117,9 +117,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
                 android:layout_gravity="center_vertical"
+                android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:gravity="center"
                 android:text='@{model.total_true_expectation_count+"/"+model.total_expectation_count}'
                 />
             <FrameLayout

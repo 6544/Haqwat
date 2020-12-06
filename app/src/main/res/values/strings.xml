@@ -129,4 +129,17 @@
     <string name="upgrade_account">Please upgrade your account by invitation or payment</string>
     <string name="payment">Payment</string>
     <string name="continue2">Continue</string>
+    <string name="points_balance">Points balance</string>
+    <string name="top_tournament">Top of the champion</string>
+    <string name="champion_bonus">Champion bonus</string>
+    <string name="champion_system">Champion system</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="pinned_nominations">Pinned nominations </string>
+    <string name="points">Points</string>
+    <string name="press_here"><![CDATA[<font color="#d22727">Click here</font>]]></string>
+    <string name="competition">Competition</string>
+    <string name="recommended_team">Recommended Team</string>
+    <string name="control">Control</string>
+    <string name="send">Send</string>
+
 </resources>

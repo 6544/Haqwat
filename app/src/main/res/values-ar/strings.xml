@@ -129,5 +129,18 @@
     <string name="upgrade_account">من فضلك قم بترقية حسابك عن طريق دعوة اصدقائك او الدفع</string>
     <string name="payment">الدفع</string>
     <string name="continue2">إستمرار</string>
+    <string name="points_balance">رصيد النقاط</string>
+    <string name="top_tournament">صدارة البطولة</string>
+    <string name="champion_bonus">مكافئة البطولة</string>
+    <string name="champion_system">نظام البطولة</string>
+    <string name="upgrade">ترقية الاشتراك</string>
+    <string name="pinned_nominations">الترشيحات المثبتة</string>
+    <string name="points">نقاط</string>
+    <string name="press_here"><![CDATA[<font color="#d22727">إضغط هنا</font>]]></string>
+    <string name="competition">المسابقة</string>
+    <string name="recommended_team">الفريق المرشح</string>
+    <string name="control">التحكم</string>
+    <string name="send">إرسال</string>
+
 
 </resources>

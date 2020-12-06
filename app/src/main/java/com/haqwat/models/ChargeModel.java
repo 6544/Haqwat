@@ -13,7 +13,7 @@ public class ChargeModel implements Serializable {
     private String is_active;
     private String created_at;
     private String updated_at;
-    private String in_haqawat_competition;
+    private String in_haqawat_competition="";
     private int true_expectations_count;
     private int all_expectations_count;
     private int rate;

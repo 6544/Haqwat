@@ -1,11 +1,12 @@
-package com.haqwat.mvp.fragment_home_mvp;
+package com.haqwat.mvp.fragment_points_mvp;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.haqwat.R;
-import com.haqwat.models.HomeModel;
+import com.haqwat.models.ChargeDataModel;
 import com.haqwat.models.UserModel;
+import com.haqwat.mvp.fragment_charge_mvp.FragmentChargeView;
 import com.haqwat.remote.Api;
 import com.haqwat.tags.Tags;
 
@@ -15,36 +16,34 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentHomePresenter {
-    private FragmentHomeView view;
+public class FragmentPointsPresenter {
+    private FragmentPointsView view;
     private Context context;
 
-
-
-    public FragmentHomePresenter(FragmentHomeView view, Context context) {
+    public FragmentPointsPresenter(FragmentPointsView view, Context context) {
         this.view = view;
         this.context = context;
-
     }
 
-
-
-    public void getData(UserModel userModel){
-        Api.getService(Tags.base_url).getHomeLinks("Bearer "+userModel.getToken())
-                .enqueue(new Callback<HomeModel>() {
+    public void getCharge(UserModel userModel) {
+        view.showProgressBar();
+        Api.getService(Tags.base_url).getPoints("Bearer " + userModel.getToken())
+                .enqueue(new Callback<ChargeDataModel>() {
                     @Override
-                    public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {
+                    public void onResponse(Call<ChargeDataModel> call, Response<ChargeDataModel> response) {
 
-                        if (response.isSuccessful()){
-                            view.hideLoadRate();
-                            view.hideLoadAverageRate();
-                            view.onDataSuccess(response.body());
+                        if (response.isSuccessful()) {
+                            view.hideProgressBar();
+                            if (response.body() != null ) {
+                                view.onSuccess(response.body());
 
-                        }else {
+                            }
+
+                        } else {
 
                             try {
                                 view.onFailed(context.getString(R.string.failed));
-                                Log.e("error",response.code()+"_"+response.errorBody().string());
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
 
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -53,7 +52,7 @@ public class FragmentHomePresenter {
                     }
 
                     @Override
-                    public void onFailure(Call<HomeModel> call, Throwable t) {
+                    public void onFailure(Call<ChargeDataModel> call, Throwable t) {
                         try {
 
                             if (t.getMessage() != null) {
@@ -69,9 +68,11 @@ public class FragmentHomePresenter {
                             }
 
 
-                        }catch (Exception e){}
+                        } catch (Exception e) {
+                        }
 
                     }
                 });
     }
+
 }

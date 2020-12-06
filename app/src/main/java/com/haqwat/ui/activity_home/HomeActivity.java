@@ -64,13 +64,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             return true;
         });
         
-        binding.btnUpComingMatches.setOnClickListener(view -> {
-            navigateToMatchesActivity(0);
-        });
 
-        binding.btnPreviousMatches.setOnClickListener(view -> {
-            navigateToMatchesActivity(1);
-        });
 
         binding.llLogout.setOnClickListener(view -> {
             presenter.logout(userModel);
@@ -80,12 +74,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
 
     }
 
-    private void navigateToMatchesActivity(int pos) {
-        Intent intent = new Intent(this, MatchesActivity.class);
-        intent.putExtra("data",pos);
-        startActivity(intent);
 
-    }
 
     @Override
     public void onBackPressed(int itemId) {

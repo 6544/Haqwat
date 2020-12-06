@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.activity_home.HomeActivity"
-        tools:openDrawer="start"
+        tools:openDrawer="end"
         >
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -67,43 +67,6 @@
                     android:layout_height="1px"
                     android:background="@color/white" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnUpComingMatches"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/upcoming_matches"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-
-                        />
-
-                    <View
-                        android:layout_width="1px"
-                        android:layout_height="match_parent"
-                        android:background="@color/white" />
-
-                    <Button
-                        android:id="@+id/btnPreviousMatches"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/previous_matches"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-
-                        />
-                </LinearLayout>
 
                 <FrameLayout
                     android:id="@+id/fragment_container"
