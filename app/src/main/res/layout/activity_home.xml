@@ -137,6 +137,7 @@
                                     android:src="@drawable/ic_edit"
                                     app:tint="@color/white"
                                     android:padding="8dp"
+                                    android:visibility="invisible"
                                     />
                             </FrameLayout>
                             <TextView
