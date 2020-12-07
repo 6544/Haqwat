@@ -100,7 +100,7 @@ public class UserModel implements Serializable {
 
     /////////////////////////
 
-    public static abstract class Country implements Serializable {
+    public static  class Country implements Serializable {
 
         private String updated_at;
         private String created_at;

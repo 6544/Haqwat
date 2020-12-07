@@ -141,6 +141,14 @@
     <string name="recommended_team">الفريق المرشح</string>
     <string name="control">التحكم</string>
     <string name="send">إرسال</string>
+    <string name="ch">إختر</string>
+    <string name="no_season_league">لا يوجد موسم لهذا الدوري</string>
+    <string name="season_finished">الموسم انتهى</string>
+    <string name="favorite_team_belongs_league">الفريق المفضل لا ينتمى لهذا الدوري</string>
+    <string name="recommended_team_not_belongs_league">الفريق المرشح لا ينتمى لهذا الدوري</string>
+    <string name="phone_number">رقم الجوال</string>
+    <string name="message">الرسالة</string>
+    <string name="suc">تم بنجاح!</string>
 
 
 </resources>

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.activity_home.HomeActivity"
-        tools:openDrawer="end"
+        tools:openDrawer="start"
         >
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -150,6 +150,7 @@
                                 android:layout_marginEnd="10dp"
                                 android:maxLines="2"
                                 android:ellipsize="end"
+                                android:text='@{model!=null?model.name:""}'
                                 />
                         </LinearLayout>
                     </FrameLayout>
@@ -231,6 +232,7 @@
                             android:layerType="software"
                             />
                         <LinearLayout
+                            android:id="@+id/llChangeLanguage"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:orientation="horizontal"
@@ -333,6 +335,7 @@
                             android:layerType="software"
                             />
                         <LinearLayout
+                            android:id="@+id/llContactUs"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:orientation="horizontal"

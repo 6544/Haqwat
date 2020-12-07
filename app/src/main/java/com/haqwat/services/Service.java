@@ -1,5 +1,7 @@
 package com.haqwat.services;
 
+import com.haqwat.models.AppDataModel;
+import com.haqwat.models.NominationDataModel;
 import com.haqwat.models.ChargeDataModel;
 import com.haqwat.models.HomeModel;
 import com.haqwat.models.LeagueDataModel;
@@ -168,5 +170,33 @@ public interface Service {
 
     @GET("api/haqawatSystemForSubscribe")
     Call<UpgradeDataModel> getUpgrade(@Header("Authorization") String bearer_token);
+
+    @GET("api/userNominations")
+    Call<NominationDataModel> getNomination(@Header("Authorization") String bearer_token);
+
+    @FormUrlEncoded
+    @POST("api/addNominations")
+    Call<ResponseBody> addNomination(@Header("Authorization") String bearer_token,
+                                     @Field("league_id") int league_id,
+                                     @Field("favorite_team_id") int favorite_team_id,
+                                     @Field("recommended_team_id") int recommended_team_id
+    );
+
+    @GET("api/app/info")
+    Call<AppDataModel> getAppData(@Header("Authorization") String bearer_token,
+                                  @Header("lang") String lang
+
+    );
+
+    @FormUrlEncoded
+    @POST("api/contactUs")
+    Call<ResponseBody> contactUs(@Header("Authorization") String bearer_token,
+                                 @Header("lang") String lang,
+                                 @Field("name") String name,
+                                 @Field("email") String email,
+                                 @Field("phone") String phone,
+                                 @Field("message") String message
+    );
+
 
 }

@@ -60,7 +60,7 @@ public class Fragment_Champions extends Fragment {
         fragmentList.add(Fragment_Rewards.newInstance());
         fragmentList.add(Fragment_System.newInstance());
         fragmentList.add(Fragment_Upgrades.newInstance());
-        fragmentList.add(Fragment_Stars.newInstance());
+        fragmentList.add(Fragment_Nomination.newInstance());
 
         binding.tab.setupWithViewPager(binding.pager);
 

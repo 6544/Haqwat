@@ -141,5 +141,13 @@
     <string name="recommended_team">Recommended Team</string>
     <string name="control">Control</string>
     <string name="send">Send</string>
+    <string name="ch">Choose</string>
+    <string name="no_season_league">No season to this league</string>
+    <string name="season_finished">This season is finished</string>
+    <string name="favorite_team_belongs_league">This favorite team not belongs to this league</string>
+    <string name="recommended_team_not_belongs_league">This recommended team not belongs to this league</string>
+    <string name="phone_number">Phone number</string>
+    <string name="message">Message</string>
+    <string name="suc">Success!</string>
 
 </resources>
