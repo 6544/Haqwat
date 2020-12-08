@@ -6,6 +6,7 @@ import android.util.Log;
 import com.haqwat.R;
 import com.haqwat.models.LeagueDataModel;
 import com.haqwat.models.LeagueModel;
+import com.haqwat.models.StarDataModel;
 import com.haqwat.models.SystemDataModel;
 import com.haqwat.models.UserModel;
 import com.haqwat.mvp.fragment_system_mvp.FragmentSystemView;
@@ -83,5 +84,62 @@ public class FragmentStarPresenter {
                     }
                 });
     }
+
+    public void getStars(int league_id)
+    {
+        view.showProgressBar();
+        Api.getService(Tags.base_url)
+                .getStars(league_id)
+                .enqueue(new Callback<StarDataModel>() {
+                    @Override
+                    public void onResponse(Call<StarDataModel> call, Response<StarDataModel> response) {
+                        view.hideProgressBar();
+                        if (response.isSuccessful() && response.body() != null&&response.body().getStars()!=null) {
+                            view.onStarSuccess(response.body().getStars());
+
+                        } else {
+                            view.hideProgressBar();
+                            switch (response.code()){
+                                case 500:
+                                    view.onFailed("Server Error");
+                                    break;
+                                default:
+                                    view.onFailed(context.getString(R.string.failed));
+                                    break;
+                            }
+                            try {
+                                Log.e("error_code",response.code()+"_"+response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<StarDataModel> call, Throwable t) {
+                        try {
+                            view.hideProgressBar();
+
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    view.onFailed(context.getString(R.string.something));
+                                }
+                                else if (t.getMessage().toLowerCase().contains("socket")||t.getMessage().toLowerCase().contains("canceled")){ }
+                                else {
+                                    view.onFailed(t.getMessage());
+                                }
+                            }
+
+                        } catch (Exception e) {
+
+                        }
+                    }
+                });
+    }
+
+
 
 }

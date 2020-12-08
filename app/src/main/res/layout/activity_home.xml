@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.activity_home.HomeActivity"
-        tools:openDrawer="start"
+        tools:openDrawer="end"
         >
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -47,7 +47,7 @@
                             android:layout_height="35dp"
                             android:padding="5dp"
                             android:src="@drawable/ic_notification"
-                            android:layout_gravity="start"
+                            android:layout_gravity="start|top"
                             />
 
                         <ImageView

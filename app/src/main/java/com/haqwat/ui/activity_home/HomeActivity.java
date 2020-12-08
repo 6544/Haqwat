@@ -29,6 +29,7 @@ import com.haqwat.ui.activity_contact_us.ContactUsActivity;
 import com.haqwat.ui.activity_language.LanguageActivity;
 import com.haqwat.ui.activity_login.LoginActivity;
 import com.haqwat.ui.activity_matches.MatchesActivity;
+import com.haqwat.ui.activity_notification.NotificationActivity;
 
 import io.paperdb.Paper;
 
@@ -78,6 +79,11 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
 
         binding.llContactUs.setOnClickListener(view -> {
             Intent intent = new Intent(this, ContactUsActivity.class);
+            startActivity(intent);
+        });
+
+        binding.imageNotification.setOnClickListener(view -> {
+            Intent intent = new Intent(this, NotificationActivity.class);
             startActivity(intent);
         });
 

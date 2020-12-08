@@ -10,9 +10,11 @@ import com.haqwat.models.LeagueRateModel;
 import com.haqwat.models.MatchesDataModel;
 import com.haqwat.models.MatchesModel;
 import com.haqwat.models.NationalityDataModel;
+import com.haqwat.models.NotificationDataModel;
 import com.haqwat.models.PlaceGeocodeData;
 import com.haqwat.models.PlaceMapDetailsData;
 import com.haqwat.models.RewardDataModel;
+import com.haqwat.models.StarDataModel;
 import com.haqwat.models.SystemDataModel;
 import com.haqwat.models.TableArrangementDataModel;
 import com.haqwat.models.TeamDataModel;
@@ -196,6 +198,19 @@ public interface Service {
                                  @Field("email") String email,
                                  @Field("phone") String phone,
                                  @Field("message") String message
+    );
+
+
+    @GET("api/leagueStarsDisplay")
+    Call<StarDataModel> getStars(@Query("league_id") int league_id
+
+    );
+
+    @GET("api/my-notifications")
+    Call<NotificationDataModel> getNotifications(@Header("Authorization") String bearer_token,
+                                                 @Header("lang") String lang,
+                                                 @Query("page") int page
+
     );
 
 
