@@ -99,6 +99,7 @@ public class CompleteSignUpActivity extends AppCompatActivity implements SignUpV
         binding.imageStep1.setBackgroundResource(R.drawable.ic_hexagon_empty);
         binding.imageStep2.setBackgroundResource(R.drawable.ic_hexagon_empty);
         binding.imageStep3.setBackgroundResource(R.drawable.ic_hexagon_fill);
+
     }
 
 

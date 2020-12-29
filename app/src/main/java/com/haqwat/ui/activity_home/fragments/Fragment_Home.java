@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.haqwat.R;
 import com.haqwat.adapters.FavoriteTeamAdapter;
+import com.haqwat.adapters.HomeJoinedTeamAdapter;
 import com.haqwat.databinding.FragmentHomeBinding;
+import com.haqwat.models.HomeJoinedTeamsModel;
 import com.haqwat.models.HomeModel;
 import com.haqwat.models.TeamOrderModel;
 import com.haqwat.models.UserModel;
@@ -40,8 +42,9 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
     private FragmentHomePresenter presenter;
     private Preferences preferences;
     private UserModel userModel;
-    private FavoriteTeamAdapter adapter;
-    private List<TeamOrderModel> teamOrderModelList;
+    private List<HomeJoinedTeamsModel> homeJoinedTeamsModelList;
+    private HomeJoinedTeamAdapter  adapter;
+
 
 
     public static Fragment_Home newInstance(){
@@ -57,17 +60,19 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
 
     private void initView()
     {
+        homeJoinedTeamsModelList = new ArrayList<>();
         activity = (HomeActivity) getActivity();
-        teamOrderModelList = new ArrayList<>();
 
         preferences = Preferences.getInstance();
         userModel = preferences.getUserData(activity);
+
+        binding.recView.setLayoutManager(new LinearLayoutManager(activity));
+        adapter = new HomeJoinedTeamAdapter(homeJoinedTeamsModelList,activity);
+        binding.recView.setAdapter(adapter);
+
         presenter = new FragmentHomePresenter(this,activity);
         presenter.getData(userModel);
 
-        adapter = new FavoriteTeamAdapter(teamOrderModelList,activity);
-        binding.recView.setLayoutManager(new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false));
-        binding.recView.setAdapter(adapter);
 
 
         binding.img1.setOnClickListener(view -> {
@@ -139,65 +144,18 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
 
     @Override
     public void onDataSuccess(HomeModel homeModel) {
-        String title = "أكثر الفرق المفضلة فى "+homeModel.getUserDefaultLeague().getTitle();
-        binding.tvLeagueName.setText(title);
+
         binding.progBarAverageRate.setVisibility(View.VISIBLE);
         binding.progBarYourRate.setVisibility(View.VISIBLE);
-        binding.progBarAverageRate.setProgress(homeModel.getAllUsersRate());
+        binding.progBarAverageRate.setProgress((int) homeModel.getAllUsersRate());
         binding.tvAverageRate.setText(String.format(Locale.ENGLISH,"%s%s",homeModel.getAllUsersRate(),"%"));
-        binding.progBarYourRate.setProgress(homeModel.getCurrentUserRate());
+        binding.progBarYourRate.setProgress((int) homeModel.getCurrentUserRate());
         binding.tvYourRate.setText(String.format(Locale.ENGLISH,"%s%s",homeModel.getCurrentUserRate(),"%"));
-        teamOrderModelList.addAll(homeModel.getTeamsOrderInDesc());
+        homeJoinedTeamsModelList.addAll(homeModel.getList_of_leagues_with_teams());
         adapter.notifyDataSetChanged();
-        updateProgress(homeModel.getTeamsOrderInDesc());
 
     }
 
-    private void updateProgress(List<TeamOrderModel> teamsOrderInDesc) {
-        int size = teamsOrderInDesc.size();
-        int gap = 2;//%100
-        double gap_degree = gap*360/100;// degree 360
-        double base_progress = (360-(gap_degree*size))/360;
-        if (size==0){
-            binding.progBar1.setProgress(0);
-            binding.progBar2.setProgress(0);
-            binding.progBar3.setProgress(0);
-        }else if (size==1){
-            binding.tvPercentage.setText(String.format(Locale.ENGLISH,"%s%s",teamsOrderInDesc.get(0).getRate_to_display(),"%"));
-            binding.progBar1.setProgress(teamsOrderInDesc.get(0).getRate_to_display());
-            binding.progBar2.setProgress(0);
-            binding.progBar3.setProgress(0);
-
-        }else if (size==2){
-            binding.tvPercentage.setText(String.format(Locale.ENGLISH,"%s%s",teamsOrderInDesc.get(0).getRate_to_display(),"%"));
-
-            int progress1 = (int) Math.round(base_progress*teamsOrderInDesc.get(0).getRate_to_display());
-            int progress2 = (int) Math.round(base_progress*teamsOrderInDesc.get(1).getRate_to_display());
-            int end_first = (int) ((int) Math.round(progress1*3.6)+gap_degree);
-            binding.progBar1.setProgress(progress1);
-            binding.progBar2.setProgress(progress2);
-            binding.progBar3.setProgress(0);
-            binding.progBar2.setRotation(end_first);
-
-        }else if (size==3){
-            binding.tvPercentage.setText(String.format(Locale.ENGLISH,"%s%s",teamsOrderInDesc.get(0).getRate_to_display(),"%"));
-
-            int progress1 = (int) Math.round(base_progress*teamsOrderInDesc.get(0).getRate_to_display());
-            int progress2 = (int) Math.round(base_progress*teamsOrderInDesc.get(1).getRate_to_display());
-            int progress3 = (int) Math.round(base_progress*teamsOrderInDesc.get(2).getRate_to_display());
-            int end_first = (int) ((int) Math.round(progress1*3.6)+gap_degree);
-            int end_second = end_first + (int) ((int) Math.round(progress2*3.6)+gap_degree);
-
-
-
-            binding.progBar1.setProgress(progress1);
-            binding.progBar2.setProgress(progress2);
-            binding.progBar3.setProgress(progress3);
-            binding.progBar2.setRotation(end_first);
-            binding.progBar3.setRotation(end_second);
-
-        }
-    }
 
     @Override
     public void onFailed(String msg) {

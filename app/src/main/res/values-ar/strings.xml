@@ -3,7 +3,6 @@
     <string name="field_req">الحقل مطلوب</string>
     <string name="open">فتح</string>
     <string name="close">غلق</string>
-
     <string name="login">تسجيل دخول</string>
     <string name="code">الكود</string>
     <string name="user_phone">رقم الجوال</string>
@@ -131,12 +130,12 @@
     <string name="continue2">إستمرار</string>
     <string name="points_balance">رصيد النقاط</string>
     <string name="top_tournament">صدارة البطولة</string>
-    <string name="champion_bonus">مكافئة البطولة</string>
+    <string name="champion_bonus">مكافآت البطولة</string>
     <string name="champion_system">نظام البطولة</string>
-    <string name="upgrade">ترقية الاشتراك</string>
+    <string name="upgrade">الاشتراك بالبطولة</string>
     <string name="pinned_nominations">الترشيحات المثبتة</string>
     <string name="points">نقاط</string>
-    <string name="press_here"><![CDATA[<font color="#d22727">إضغط هنا</font>]]></string>
+    <string name="press_here"><![CDATA[من <font color="#d22727">(هنا)</font>]]></string>
     <string name="competition">المسابقة</string>
     <string name="recommended_team">الفريق المرشح</string>
     <string name="control">التحكم</string>
@@ -149,6 +148,19 @@
     <string name="phone_number">رقم الجوال</string>
     <string name="message">الرسالة</string>
     <string name="suc">تم بنجاح!</string>
+    <string name="select2">تثبيت</string>
+    <string name="reward_monthlt">ملاحظة: تحديد قيمة المكافآت الشهرية للمتسابقين (الفائزين العشرة) بعد انتهاء الفترة التجريبية للبرنامج وتحدث شهرياً</string>
+    <string name="total_points">المجموع الكلي للنقاط:</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="update">تعديل</string>
+    <string name="user_not_found">المستخدم غير موجود</string>
+    <string name="comp_sign_up">اكمل بيانات التسجيل</string>
+    <string name="accounts">الحسابات</string>
+    <string name="remove">حذف</string>
+    <string name="no_accounts_to_show">لاتوجد حسابات لعرضها</string>
+    <string name="gifts">هدايا</string>
+    <string name="copied">تم النسخ</string>
+    <string name="invitation">هدايا دعوات الاصدقاء</string>
 
 
 </resources>

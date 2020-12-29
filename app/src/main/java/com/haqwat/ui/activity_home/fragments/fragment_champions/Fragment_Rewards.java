@@ -72,9 +72,11 @@ public class Fragment_Rewards extends Fragment implements FragmentRewardView {
         if (this.rewardModelList.size()>0){
             binding.tvNoData.setVisibility(View.GONE);
             adapter.notifyDataSetChanged();
+            binding.tvNote.setVisibility(View.VISIBLE);
 
         }else {
             binding.tvNoData.setVisibility(View.VISIBLE);
+            binding.tvNote.setVisibility(View.GONE);
 
         }
     }

@@ -136,7 +136,7 @@
     <string name="upgrade">Upgrade</string>
     <string name="pinned_nominations">Pinned nominations </string>
     <string name="points">Points</string>
-    <string name="press_here"><![CDATA[<font color="#d22727">Click here</font>]]></string>
+    <string name="press_here"><![CDATA[<font color="#d22727">(here)</font>]]></string>
     <string name="competition">Competition</string>
     <string name="recommended_team">Recommended Team</string>
     <string name="control">Control</string>
@@ -149,5 +149,18 @@
     <string name="phone_number">Phone number</string>
     <string name="message">Message</string>
     <string name="suc">Success!</string>
+    <string name="select2">Select</string>
+    <string name="reward_monthlt">Note: Determining the value of the monthly rewards for the contestants (the ten winners) after the trial period of the program ends, and it will be updated monthly.</string>
+    <string name="total_points">Total points:</string>
+    <string name="change_password">Change password</string>
+    <string name="update">Update</string>
+    <string name="user_not_found">User not found</string>
+    <string name="comp_sign_up">Please complete sign up</string>
+    <string name="accounts">Accounts</string>
+    <string name="remove">Remove</string>
+    <string name="no_accounts_to_show">No accounts to show</string>
+    <string name="gifts">Gifts</string>
+    <string name="copied">Copied</string>
+    <string name="invitation">Friends invitations gifts</string>
 
 </resources>

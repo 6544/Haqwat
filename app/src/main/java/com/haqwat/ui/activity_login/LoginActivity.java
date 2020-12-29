@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.haqwat.R;
 import com.haqwat.databinding.ActivityLoginBinding;
 import com.haqwat.language.Language;
+import com.haqwat.models.AccountsModel;
 import com.haqwat.models.LoginModel;
 import com.haqwat.models.UserModel;
 import com.haqwat.mvp.login_mvp.LoginPresenter;
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     private LoginPresenter presenter;
     private Preferences preferences;
     private ProgressDialog dialog;
+    private AccountsModel accountsModel;
 
 
     @Override
@@ -43,14 +45,27 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_login);
+        getDataFromIntent();
         initView();
     }
 
+    private void getDataFromIntent() {
+        Intent intent = getIntent();
+        accountsModel = (AccountsModel) intent.getSerializableExtra("account");
+
+    }
+
     private void initView() {
+        dialog = Common.createProgressDialog(this,getString(R.string.wait));
+        dialog.setCanceledOnTouchOutside(false);
+
         preferences = Preferences.getInstance();
         loginModel = new LoginModel();
         binding.setModel(loginModel);
         presenter = new LoginPresenter(this,this);
+
+
+
         binding.tvSignUp.setOnClickListener(view -> {
             Intent intent = new Intent(this, SignUpActivity.class);
             startActivity(intent);
@@ -62,16 +77,25 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             presenter.isDataValid(loginModel);
         });
 
-        dialog = Common.createProgressDialog(this,getString(R.string.wait));
-        dialog.setCanceledOnTouchOutside(false);
+
+
+        if (accountsModel!=null){
+            loginModel.setEmail(accountsModel.getEmail());
+            loginModel.setPassword(accountsModel.getPassword());
+            presenter.isDataValid(loginModel);
+        }
     }
 
     @Override
     public void onSuccess(UserModel userModel) {
         if (userModel.getHas_haqawat_subscribe().equals("no")){
             navigateToCompleteSignUp(userModel);
+
         }else {
             preferences.create_update_userdata(this,userModel);
+            AccountsModel model = new AccountsModel(loginModel.getEmail(),loginModel.getPassword());
+            model.setLoggedIn(true);
+            preferences.createAccount(this,model);
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
             finish();

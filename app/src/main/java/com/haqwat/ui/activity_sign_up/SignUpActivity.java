@@ -15,8 +15,10 @@ import android.widget.Toast;
 import com.haqwat.R;
 import com.haqwat.databinding.ActivitySignUpBinding;
 import com.haqwat.language.Language;
+import com.haqwat.models.AccountsModel;
 import com.haqwat.models.SignUpModel;
 import com.haqwat.models.UserModel;
+import com.haqwat.preferences.Preferences;
 import com.haqwat.remote.Api;
 import com.haqwat.share.Common;
 import com.haqwat.tags.Tags;
@@ -42,13 +44,14 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_sign_up);
         initView();
     }
-
-    private void initView() {
+    private void initView()
+    {
         if (signUpModel==null){
             signUpModel = new SignUpModel();
         }
@@ -65,8 +68,8 @@ public class SignUpActivity extends AppCompatActivity {
             navigateToLoginActivity();
         });
     }
-
-    private void signUp1() {
+    private void signUp1()
+    {
         ProgressDialog dialog = Common.createProgressDialog(this,getString(R.string.wait));
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
@@ -76,6 +79,11 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                         dialog.dismiss();
                         if (response.isSuccessful()){
+                            Preferences preferences = Preferences.getInstance();
+                            AccountsModel model = new AccountsModel(signUpModel.getEmail(),signUpModel.getPassword());
+                            model.setLoggedIn(true);
+                            preferences.createAccount(SignUpActivity.this,model);
+
                             Intent intent;
                             if (response.body().getIs_confirmed().equals("yes")){
                                 intent = new Intent(SignUpActivity.this, CompleteSignUpActivity.class);
@@ -122,8 +130,8 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    private void navigateToLoginActivity() {
+    private void navigateToLoginActivity()
+    {
         Intent intent  = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();

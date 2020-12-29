@@ -46,7 +46,7 @@ public class RewardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         MyHolder myHolder = (MyHolder) holder;
         RewardModel rewardModel = list.get(position);
         myHolder.binding.setModel(rewardModel);
-
+        myHolder.binding.setCount(String.valueOf(position+1));
 
 
     }

@@ -6,44 +6,100 @@
         <variable
             name="model"
             type="com.haqwat.models.RewardModel" />
+        <variable
+            name="count"
+            type="String" />
     </data>
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/small_rounded_color1"
-        android:layout_margin="3dp"
-
         >
-        <FrameLayout
-            android:layout_width="match_parent"
+        <Space
+            android:id="@+id/sp"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/small_rounded_color1"
+            android:layout_margin="3dp"
+            app:layout_constraintTop_toBottomOf="@id/sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+
             >
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                >
 
 
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    image="@{model.image}"
+                    />
+
+
+
+
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="15sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                image="@{model.image}"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:text='@{model.value+" "+model.currency}'
                 />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ll"
+            app:layout_constraintBottom_toTopOf="@id/ll"
+            >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@color/color20"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1px"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:text="@{count}"
+                android:gravity="center"
 
 
-
+                />
         </FrameLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:singleLine="true"
-            android:textStyle="bold"
-            android:text='@{model.value+" "+model.currency}'
-            />
-    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

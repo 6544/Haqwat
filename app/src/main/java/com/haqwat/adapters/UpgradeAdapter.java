@@ -22,6 +22,7 @@ public class UpgradeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private List<UpgradeModel> list;
     private Context context;
     private LayoutInflater inflater;
+
     public UpgradeAdapter(List<UpgradeModel> list, Context context) {
         this.list = list;
         this.context = context;
@@ -47,9 +48,13 @@ public class UpgradeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         UpgradeModel upgradeModel = list.get(position);
         myHolder.binding.setModel(upgradeModel);
         myHolder.binding.tvDescription.setText(upgradeModel.getDesc());
-        myHolder.binding.tvDescription.append(" ");
-        myHolder.binding.tvDescription.append(Html.fromHtml(context.getString(R.string.press_here)));
-
+        if (position == 1) {
+            myHolder.binding.tvDescription.append(" ");
+            myHolder.binding.tvDescription.append(Html.fromHtml(context.getString(R.string.press_here)));
+        } else if (position == 2) {
+            myHolder.binding.tvDescription.append(" ");
+            myHolder.binding.tvDescription.append(Html.fromHtml(context.getString(R.string.press_here)));
+        }
 
 
     }
@@ -68,8 +73,6 @@ public class UpgradeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         }
     }
-
-
 
 
 }

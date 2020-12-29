@@ -1,13 +1,30 @@
 package com.haqwat.mvp.fragment_home_mvp;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 
 import com.haqwat.R;
+import com.haqwat.databinding.DialogSelectImageBinding;
 import com.haqwat.models.HomeModel;
 import com.haqwat.models.UserModel;
+import com.haqwat.preferences.Preferences;
 import com.haqwat.remote.Api;
+import com.haqwat.share.Common;
 import com.haqwat.tags.Tags;
+import com.haqwat.ui.activity_home.HomeActivity;
 
 import java.io.IOException;
 
@@ -18,16 +35,19 @@ import retrofit2.Response;
 public class FragmentHomePresenter {
     private FragmentHomeView view;
     private Context context;
+    private Preferences preferences;
+    private UserModel userModel;
+
 
 
 
     public FragmentHomePresenter(FragmentHomeView view, Context context) {
         this.view = view;
         this.context = context;
+        preferences = Preferences.getInstance();
+        userModel = preferences.getUserData(context);
 
     }
-
-
 
     public void getData(UserModel userModel){
         Api.getService(Tags.base_url).getHomeLinks("Bearer "+userModel.getToken())
@@ -74,4 +94,7 @@ public class FragmentHomePresenter {
                     }
                 });
     }
+
+
+
 }

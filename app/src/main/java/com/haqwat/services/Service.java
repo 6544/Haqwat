@@ -82,6 +82,45 @@ public interface Service {
                                         @Field("team_id") String team_id
     );
 
+    @FormUrlEncoded
+    @POST("api/profile/update")
+    Call<UserModel> updateProfile(@Header("Authorization") String bearer_token,
+                                  @Field("name") String name,
+                                  @Field("country_id") String country_id,
+                                  @Field("gender") String gender,
+                                  @Field("birthday") String birthday,
+                                  @Field("subscribe_method") String subscribe_method,
+                                  @Field("subscribe_code") String subscribe_code,
+                                  @Field("league_id") String league_id,
+                                  @Field("team_id") String team_id
+    );
+
+    @Multipart
+    @POST("api/profile/update")
+    Call<UserModel> updateProfileImage(@Header("Authorization") String bearer_token,
+                                       @Part("name") RequestBody name,
+                                       @Part("email") RequestBody email,
+                                       @Part("country_id") RequestBody country_id,
+                                       @Part("gender") RequestBody gender,
+                                       @Part("birthday") RequestBody birthday,
+                                       @Part("league_id") RequestBody league_id,
+                                       @Part("team_id") RequestBody team_id,
+                                       @Part MultipartBody.Part logo
+    );
+
+    @FormUrlEncoded
+    @POST("api/profile/update")
+    Call<UserModel> updatePassword(@Header("Authorization") String bearer_token,
+                                   @Field("name") String name,
+                                   @Field("email") String email,
+                                   @Field("country_id") String country_id,
+                                   @Field("password") String password,
+                                   @Field("gender") String gender,
+                                   @Field("birthday") String birthday,
+                                   @Field("league_id") String league_id,
+                                   @Field("team_id") String team_id
+    );
+
     @Multipart
     @POST("api/registerForHaqawat")
     Call<UserModel> signUpWithImage2(@Header("Authorization") String bearer_token,
@@ -213,5 +252,12 @@ public interface Service {
 
     );
 
+
+    @FormUrlEncoded
+    @POST("api/notificationStatusChange")
+    Call<UserModel> updateNotificationStatus(@Header("Authorization") String bearer_token,
+                                             @Field("notification_status") String notification_status
+
+    );
 
 }

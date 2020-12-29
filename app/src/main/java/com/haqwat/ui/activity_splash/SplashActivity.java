@@ -23,6 +23,7 @@ import io.paperdb.Paper;
 public class SplashActivity extends AppCompatActivity implements SplashView {
     private ActivitySplashBinding binding;
     private SplashPresenter presenter;
+    private String lang;
 
 
     @Override
@@ -34,13 +35,16 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_splash);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         initView();
     }
 
     private void initView() {
-       presenter = new SplashPresenter(this,this);
-       presenter.startSplashCounter();
+        Paper.init(this);
+        lang = Paper.book().read("lang","ar");
+        binding.setLang(lang);
+        presenter = new SplashPresenter(this, this);
+        presenter.startSplashCounter();
     }
 
     @Override

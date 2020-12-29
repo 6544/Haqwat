@@ -8,13 +8,19 @@
         <variable
             name="model"
             type="com.haqwat.models.UserModel" />
+        <variable
+            name="giftsCount"
+            type="Integer" />
+        <variable
+            name="lang"
+            type="String" />
     </data>
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.activity_home.HomeActivity"
-        tools:openDrawer="end"
+        tools:openDrawer="start"
         >
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -58,7 +64,9 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="5dp"
-                            android:src="@drawable/logo2" />
+                            android:src='@{lang.equals("ar")?@drawable/logo_ar_home:@drawable/logo_en_home}'
+
+                            />
                     </androidx.appcompat.widget.Toolbar>
                 </com.google.android.material.appbar.AppBarLayout>
 
@@ -130,6 +138,7 @@
                                     user_image="@{model.logo}"
                                     />
                                 <ImageView
+                                    android:id="@+id/imageEdit"
                                     android:layout_width="35dp"
                                     android:layout_height="35dp"
                                     android:layout_gravity="bottom"
@@ -137,7 +146,7 @@
                                     android:src="@drawable/ic_edit"
                                     app:tint="@color/white"
                                     android:padding="8dp"
-                                    android:visibility="invisible"
+                                    android:visibility="visible"
                                     />
                             </FrameLayout>
                             <TextView
@@ -163,12 +172,13 @@
                         android:background="@color/color1"
                         >
                         <LinearLayout
+                            android:id="@+id/llSwitchAccount"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:orientation="horizontal"
                             android:paddingStart="10dp"
                             android:paddingEnd="10dp"
-                            android:visibility="gone"
+                            android:visibility="visible"
                             >
                             <ImageView
                                 android:layout_width="24dp"
@@ -196,7 +206,7 @@
                             android:layout_marginEnd="16dp"
                             android:background="@drawable/stroke_line2"
                             android:layerType="software"
-                            android:visibility="gone"
+                            android:visibility="visible"
                             />
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -213,7 +223,8 @@
                                 android:layout_gravity="center_vertical"
                                 />
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginEnd="16dp"
@@ -221,6 +232,15 @@
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:text="@string/notifications_control"
+                                />
+
+                            <Switch
+                                android:id="@+id/mSwitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                tools:ignore="UseSwitchCompatOrMaterialXml"
+                                android:checked='@{model.notification_status.equals("on")?true:false}'
                                 />
 
                         </LinearLayout>
@@ -232,6 +252,69 @@
                             android:background="@drawable/stroke_line2"
                             android:layerType="software"
                             />
+
+                        <LinearLayout
+                            android:id="@+id/llGifts"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            >
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_giftbox"
+                                app:tint="@color/colorPrimaryDark"
+                                android:layout_gravity="center_vertical"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/white"
+                                android:textSize="13sp"
+                                android:text="@string/invitation"
+                                android:ellipsize="end"
+                                />
+
+                            <FrameLayout
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center_vertical"
+                                >
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@color/color2"
+                                    android:layout_gravity="center"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="2"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp"
+                                    android:text='@{String.valueOf(giftsCount),default="0"}'
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    />
+
+                            </FrameLayout>
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="4dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:background="@drawable/stroke_line2"
+                            android:layerType="software"
+                            />
+
                         <LinearLayout
                             android:id="@+id/llChangeLanguage"
                             android:layout_width="match_parent"
@@ -359,6 +442,89 @@
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:text="@string/contact_us"
+                                />
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="4dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:background="@drawable/stroke_line2"
+                            android:layerType="software"
+                            />
+
+                        <LinearLayout
+                            android:id="@+id/llChangePassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            >
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_lock"
+                                app:tint="@color/colorPrimaryDark"
+                                android:layout_gravity="center_vertical"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:text="@string/change_password"
+                                />
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="4dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:background="@drawable/stroke_line2"
+                            android:layerType="software"
+                            />
+
+                        <LinearLayout
+                            android:id="@+id/llCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            >
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_sheet"
+                                app:tint="@color/colorPrimaryDark"
+                                android:layout_gravity="center_vertical"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/white"
+                                android:textSize="13sp"
+                                android:text="@{model.code}"
+                                android:lines="2"
+                                android:ellipsize="end"
+                                />
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_copy"
+                                app:tint="@color/white"
+                                android:layout_gravity="center_vertical"
                                 />
 
                         </LinearLayout>

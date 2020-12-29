@@ -24,6 +24,7 @@ import com.haqwat.models.UserModel;
 import com.haqwat.mvp.fragment_team_rate.FragmentTeamRatePresenter;
 import com.haqwat.mvp.fragment_team_rate.FragmentTeamRateView;
 import com.haqwat.preferences.Preferences;
+import com.haqwat.tags.Tags;
 import com.haqwat.ui.activity_league_details.LeagueDetailsActivity;
 
 public class Fragment_League_Rating extends Fragment implements FragmentTeamRateView {
@@ -71,6 +72,42 @@ public class Fragment_League_Rating extends Fragment implements FragmentTeamRate
         presenter.getData(league_id, userModel);
         createDialogAlert();
 
+
+        switch (league_id){
+            case Tags.CHAMPIONS_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img1);
+                break;
+            case Tags.EGYPTIAN_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img6);
+
+                break;
+            case Tags.FRANCE_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img2);
+
+                break;
+            case Tags.JERMAN_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img7);
+
+                break;
+            case Tags.LA_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img3);
+
+                break;
+            case Tags.SAUDI_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img5);
+
+                break;
+            case Tags.SERIA_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img4);
+
+                break;
+            case Tags.PREMIER_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img8);
+
+                break;
+
+        }
+
     }
 
     private void createDialogAlert() {
@@ -112,17 +149,26 @@ public class Fragment_League_Rating extends Fragment implements FragmentTeamRate
 
     @Override
     public void onShowAlertDialog() {
-        dialog.show();
+        try {
+            dialog.show();
+
+        }catch (Exception e){}
     }
 
     @Override
     public void showProgressBar() {
-        binding.progBar.setVisibility(View.VISIBLE);
+        try {
+            binding.progBar.setVisibility(View.VISIBLE);
+
+        }catch (Exception e){}
     }
 
     @Override
     public void hideProgressBar() {
-        binding.progBar.setVisibility(View.GONE);
+        try {
+            binding.progBar.setVisibility(View.GONE);
+
+        }catch (Exception e){}
 
     }
 }

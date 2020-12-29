@@ -23,74 +23,105 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-                <androidx.cardview.widget.CardView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="1dp"
-                    app:contentPadding="8dp"
-                    app:cardBackgroundColor="@color/colorPrimary"
+                    android:layout_marginBottom="10dp"
                     >
-                    <LinearLayout
+                    <Space
+                        android:id="@+id/sp"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+                    <FrameLayout
+                        android:id="@+id/card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            >
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center_vertical"
-                                image="@{model.logo}"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginEnd="5dp"
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
-                                android:layout_gravity="center_vertical"
-                                android:text="@{model.title}"
-                                />
-                        </LinearLayout>
+                        android:layout_margin="10dp"
+                        android:padding="8dp"
+                        android:background="@drawable/small_rounded_primary"
+                        app:layout_constraintTop_toBottomOf="@id/sp"
+                        >
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:orientation="horizontal"
-                            >
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
                                 android:layout_gravity="center_horizontal"
-                                >
-                                <ProgressBar
-                                    android:id="@+id/progBarRate"
-                                    android:layout_width="200dp"
-                                    android:layout_height="200dp"
-                                    android:indeterminateOnly="false"
-                                    android:progressDrawable="@drawable/progress_bar_text2"
-                                    android:layout_gravity="center"
+                                android:layout_marginTop="40dp"
 
-                                    />
+                                >
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:textSize="25sp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="5dp"
                                     android:textColor="@color/white"
-                                    android:text='@{model.league_rate+"%"}'
+                                    android:textSize="18sp"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@{model.title}"
+
                                     />
-                            </FrameLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="20dp"
+
+                                >
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_horizontal"
+                                    >
+                                    <ProgressBar
+                                        android:id="@+id/progBarRate"
+                                        android:layout_width="200dp"
+                                        android:layout_height="200dp"
+                                        android:indeterminateOnly="false"
+                                        android:progressDrawable="@drawable/progress_bar_text2"
+                                        android:layout_gravity="center"
+
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:textSize="25sp"
+                                        android:textColor="@color/white"
+                                        android:text='@{model.league_rate+"%"}'
+                                        />
+                                </FrameLayout>
+
+                            </LinearLayout>
 
                         </LinearLayout>
+                    </FrameLayout>
 
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/leagueImage"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        app:civ_border_width="1px"
+                        app:civ_border_color="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/card"
+                        app:layout_constraintBottom_toTopOf="@id/card"
+                        app:civ_circle_background_color="@color/white"
+
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -396,6 +427,7 @@
 
 
                 </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
         <FrameLayout
@@ -403,6 +435,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/primary_transparent"
+            android:visibility="gone"
 
             >
             <ProgressBar

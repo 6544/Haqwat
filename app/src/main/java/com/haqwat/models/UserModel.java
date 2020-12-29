@@ -12,9 +12,10 @@ public class UserModel implements Serializable {
     private String has_haqawat_subscribe;
     private String is_social_media_register;
     private int allowable_teams_count;
-    private String country_id;
-    private String league_id;
-    private String team_id;
+    private int country_id;
+    private int league_id;
+    private int team_id;
+    private String gender;
     private String phone_code;
     private String phone;
     private String logo;
@@ -22,7 +23,9 @@ public class UserModel implements Serializable {
     private String token;
     private String firebase_token;
     private String points_count;
+    private String birthday;
     private Country country;
+    private String notification_status;
 
 
 
@@ -54,15 +57,15 @@ public class UserModel implements Serializable {
         return allowable_teams_count;
     }
 
-    public String getCountry_id() {
+    public int getCountry_id() {
         return country_id;
     }
 
-    public String getLeague_id() {
+    public int getLeague_id() {
         return league_id;
     }
 
-    public String getTeam_id() {
+    public int getTeam_id() {
         return team_id;
     }
 
@@ -96,6 +99,22 @@ public class UserModel implements Serializable {
 
     public Country getCountry() {
         return country;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public String getNotification_status() {
+        return notification_status;
+    }
+
+    public void setNotification_status(String notification_status) {
+        this.notification_status = notification_status;
     }
 
     /////////////////////////

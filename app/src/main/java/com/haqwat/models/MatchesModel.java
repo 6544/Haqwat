@@ -200,9 +200,9 @@ public class MatchesModel implements Serializable {
        private String created_at;
        private String updated_at;
        private String match_expectation_result;
-       private int win_first_team_rate;
-       private int win_second_team_rate;
-       private int win_draw_rate;
+       private double win_first_team_rate;
+       private double win_second_team_rate;
+       private double win_draw_rate;
        private UserExpectationModel user_expectation;
        private String date_for_order;
        private String time_for_order;
@@ -269,15 +269,15 @@ public class MatchesModel implements Serializable {
             return match_expectation_result;
         }
 
-        public int getWin_first_team_rate() {
+        public double getWin_first_team_rate() {
             return win_first_team_rate;
         }
 
-        public int getWin_second_team_rate() {
+        public double getWin_second_team_rate() {
             return win_second_team_rate;
         }
 
-        public int getWin_draw_rate() {
+        public double getWin_draw_rate() {
             return win_draw_rate;
         }
 

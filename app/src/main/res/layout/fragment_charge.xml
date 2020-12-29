@@ -109,7 +109,7 @@
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:text="@string/total"
+                android:text="@string/total_points"
                 android:textStyle="bold"
                 />
             <TextView

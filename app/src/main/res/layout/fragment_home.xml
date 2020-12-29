@@ -5,7 +5,7 @@
     <data>
 
     </data>
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -18,40 +18,62 @@
             >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:layout_height="56dp"
                 android:orientation="horizontal">
 
-                <Button
+                <FrameLayout
                     android:id="@+id/btnUpComingMatches"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/upcoming_matches"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
+                    android:background="@drawable/btn"
 
-                    />
+
+
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/upcoming_matches"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textStyle="bold"
+
+                        />
+                </FrameLayout>
+
 
                 <View
                     android:layout_width="1px"
                     android:layout_height="match_parent"
                     android:background="@color/white" />
 
-                <Button
+                <FrameLayout
                     android:id="@+id/btnPreviousMatches"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/previous_matches"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
+                    android:background="@drawable/btn"
 
-                    />
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/previous_matches"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textStyle="bold"
+
+                        />
+                </FrameLayout>
+
+
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -191,6 +213,7 @@
                 android:orientation="horizontal"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
+                android:visibility="gone"
 
                 >
 
@@ -336,108 +359,30 @@
 
             </LinearLayout>
 
-            <androidx.cardview.widget.CardView
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/color9"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="3dp"
-                app:contentPadding="5dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:minHeight="200dp"
                 >
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
-                    <TextView
-                        android:id="@+id/tvLeagueName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        />
+                    />
 
-                    <FrameLayout
-
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:layout_gravity="center_horizontal"
-                        >
-
-                        <ProgressBar
-                            android:id="@+id/progBar3"
-                            android:layout_width="200dp"
-                            android:layout_height="200dp"
-                            android:indeterminateOnly="false"
-                            android:progress="0"
-                            android:progressDrawable="@drawable/progress_bar_text5"
-                            android:visibility="visible"
-                            android:layout_gravity="center"
-
-                            />
-
-                        <ProgressBar
-                            android:id="@+id/progBar2"
-                            android:layout_width="200dp"
-                            android:layout_height="200dp"
-                            android:indeterminateOnly="false"
-                            android:progress="0"
-                            android:progressDrawable="@drawable/progress_bar_text4"
-                            android:visibility="visible"
-                            android:layout_gravity="center"
-
-
-
-                            />
-
-
-
-                        <ProgressBar
-                            android:id="@+id/progBar1"
-                            android:layout_width="200dp"
-                            android:layout_height="200dp"
-                            android:indeterminateOnly="false"
-                            android:progress="0"
-                            android:progressDrawable="@drawable/progress_bar_text3"
-                            android:visibility="visible"
-                            android:layout_gravity="center"
-
-                            />
-
-                        <ProgressBar
-                            android:id="@+id/progBarLoadTeam"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            />
-                        <TextView
-                            android:id="@+id/tvPercentage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="25sp"
-                            android:layout_gravity="center"
-                            />
-
-                    </FrameLayout>
-
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        />
-
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                <ProgressBar
+                    android:id="@+id/progBarLoadTeam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    />
+            </FrameLayout>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>

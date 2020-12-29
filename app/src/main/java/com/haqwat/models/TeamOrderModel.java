@@ -8,7 +8,7 @@ public class TeamOrderModel implements Serializable {
     private String logo;
     private String started_at;
     private String details;
-    private int rate_to_display;
+    private double rate_to_display;
 
     public TeamOrderModel() {
     }
@@ -37,7 +37,7 @@ public class TeamOrderModel implements Serializable {
         return details;
     }
 
-    public int getRate_to_display() {
+    public double getRate_to_display() {
         return rate_to_display;
     }
 }

@@ -78,7 +78,7 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (matchModel.getWin_first_team_rate()==0){
             myHolder.binding.tvWin.setVisibility(View.GONE);
         }else {
-            myHolder.binding.progBarWin.setProgress(matchModel.getWin_first_team_rate());
+            myHolder.binding.progBarWin.setProgress((int) matchModel.getWin_first_team_rate());
             myHolder.binding.tvWin.setText(String.format(Locale.ENGLISH,"%s%s",matchModel.getWin_first_team_rate(),"%"));
             myHolder.binding.tvWin.setVisibility(View.VISIBLE);
 
@@ -87,7 +87,7 @@ public class MatchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (matchModel.getWin_second_team_rate()==0){
             myHolder.binding.tvLose.setVisibility(View.GONE);
         }else {
-            myHolder.binding.progBarLose.setProgress(matchModel.getWin_second_team_rate());
+            myHolder.binding.progBarLose.setProgress((int) matchModel.getWin_second_team_rate());
 
             myHolder.binding.tvLose.setText(String.format(Locale.ENGLISH,"%s%s",matchModel.getWin_second_team_rate(),"%"));
             myHolder.binding.tvLose.setVisibility(View.VISIBLE);

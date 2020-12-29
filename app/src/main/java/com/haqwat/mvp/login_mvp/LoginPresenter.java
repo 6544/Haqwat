@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.haqwat.R;
+import com.haqwat.models.AccountsModel;
 import com.haqwat.models.LoginModel;
 import com.haqwat.models.UserModel;
 import com.haqwat.remote.Api;
@@ -49,12 +50,15 @@ public class LoginPresenter {
                             view.hideProgressBar();
                             try {
                                 if (response.code()==404){
-                                   view.navigateToSignUp();
+                                    view.navigateToSignUp();
+
+
                                 }else if (response.code()==406){
                                     view.onFailed(context.getString(R.string.user_is_block));
                                 }else if (response.code()==409){
                                     UserModel userModel = new Gson().fromJson(response.errorBody().string(),UserModel.class);
                                     view.navigateToConfirmCode(userModel);
+
                                 }else {
                                     view.onFailed(context.getString(R.string.failed));
 

@@ -4,16 +4,17 @@ import java.io.Serializable;
 import java.util.List;
 
 public class HomeModel implements Serializable {
-    private int currentUserRate;
-    private int allUsersRate;
+    private double currentUserRate;
+    private double allUsersRate;
     private UserDefaultLeague userDefaultLeague;
-    private List<TeamOrderModel> teamsOrderInDesc;
 
-    public int getCurrentUserRate() {
+    private List<HomeJoinedTeamsModel> list_of_leagues_with_teams;
+
+    public double getCurrentUserRate() {
         return currentUserRate;
     }
 
-    public int getAllUsersRate() {
+    public double getAllUsersRate() {
         return allUsersRate;
     }
 
@@ -21,7 +22,8 @@ public class HomeModel implements Serializable {
         return userDefaultLeague;
     }
 
-    public List<TeamOrderModel> getTeamsOrderInDesc() {
-        return teamsOrderInDesc;
+    public List<HomeJoinedTeamsModel> getList_of_leagues_with_teams() {
+        return list_of_leagues_with_teams;
     }
+
 }

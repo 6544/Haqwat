@@ -21,6 +21,7 @@ import com.haqwat.models.SignUpModel;
 import com.haqwat.mvp.activity_league_details_mvp.LeagueDetailsPresenter;
 import com.haqwat.mvp.activity_league_details_mvp.LeagueDetailsView;
 import com.haqwat.mvp.sign_up_mpv.SignUpPresenter;
+import com.haqwat.tags.Tags;
 import com.haqwat.ui.activity_league_details.fragments.Fragment_League_Previous_Matches;
 import com.haqwat.ui.activity_league_details.fragments.Fragment_League_Ranking_Table;
 import com.haqwat.ui.activity_league_details.fragments.Fragment_League_Rating;
@@ -76,6 +77,41 @@ public class LeagueDetailsActivity extends AppCompatActivity implements LeagueDe
         binding.recView.setAdapter(adapter);
         presenter.getLeagueCategory();
         binding.llBack.setOnClickListener(view -> finish());
+
+        switch (league_id){
+            case Tags.CHAMPIONS_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img1);
+                break;
+            case Tags.EGYPTIAN_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img6);
+
+                break;
+            case Tags.FRANCE_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img2);
+
+                break;
+            case Tags.JERMAN_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img7);
+
+                break;
+            case Tags.LA_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img3);
+
+                break;
+            case Tags.SAUDI_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img5);
+
+                break;
+            case Tags.SERIA_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img4);
+
+                break;
+            case Tags.PREMIER_LEAGUE:
+                binding.leagueImage.setImageResource(R.drawable.img8);
+
+                break;
+
+        }
     }
 
     public void secondFragment(){

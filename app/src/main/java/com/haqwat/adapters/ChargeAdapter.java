@@ -48,9 +48,12 @@ public class ChargeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         myHolder.binding.setModel(chargeModel);
         myHolder.binding.progBar.setProgress(chargeModel.getRate());
         if (chargeModel.getIn_haqawat_competition().equals("no")){
+            myHolder.binding.imageBg.setImageResource(R.color.white);
             myHolder.binding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.white));
             myHolder.binding.tvExpectation.setTextColor(ContextCompat.getColor(context,R.color.white));
+
         }else {
+            myHolder.binding.imageBg.setImageResource(R.color.color12);
             myHolder.binding.tvTitle.setTextColor(ContextCompat.getColor(context,R.color.color12));
             myHolder.binding.tvExpectation.setTextColor(ContextCompat.getColor(context,R.color.color12));
 
