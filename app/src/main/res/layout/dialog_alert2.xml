@@ -71,6 +71,26 @@
                     />
 
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="3dp"
+                app:cardCornerRadius="20dp"
+                android:layout_margin="3dp"
+
+
+                >
+                <Button
+                    android:id="@+id/btnInvite"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:text="@string/invite_friends"
+                    android:textColor="@color/colorPrimary"
+                    />
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

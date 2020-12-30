@@ -91,6 +91,9 @@ public class MatchesModel implements Serializable {
         private String updated_at;
         private int count_of_played_matches;
         private int user_true_expectation_count;
+        private int user_expectation_points;
+        private int round_points;
+
 
         public int getId() {
             return id;
@@ -138,6 +141,14 @@ public class MatchesModel implements Serializable {
 
         public int getUser_true_expectation_count() {
             return user_true_expectation_count;
+        }
+
+        public int getUser_expectation_points() {
+            return user_expectation_points;
+        }
+
+        public int getRound_points() {
+            return round_points;
         }
     }
     public static class FirstTeam implements Serializable

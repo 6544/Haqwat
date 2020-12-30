@@ -40,15 +40,12 @@
                     android:padding="5dp"
                     android:rotation='@{lang.equals("ar")?180:0}'
                     />
-                <de.hdodenhof.circleimageview.CircleImageView
+                <ImageView
                     android:id="@+id/leagueImage"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    app:civ_border_width="1px"
-                    app:civ_border_color="@color/white"
-                    app:civ_circle_background_color="@color/white"
                     />
 
                 <TextView

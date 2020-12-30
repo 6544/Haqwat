@@ -68,15 +68,28 @@ public class MatchPreviousAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
 
         if (matchModel.getMatch_expectation_result().equals("no_expect")){
-            myHolder.binding.icon.setVisibility(View.GONE);
+            myHolder.binding.icon.setVisibility(View.VISIBLE);
+            myHolder.binding.icon2.setVisibility(View.GONE);
+            myHolder.binding.icon.setImageResource(R.drawable.ic_minus);
+            myHolder.binding.icon.setColorFilter(ContextCompat.getColor(context,R.color.white));
+
         }else if (matchModel.getMatch_expectation_result().equals("true_expect")){
             myHolder.binding.icon.setVisibility(View.VISIBLE);
             myHolder.binding.icon.setImageResource(R.drawable.ic_correct);
             myHolder.binding.icon.setColorFilter(ContextCompat.getColor(context,R.color.white));
+            if (matchModel.getUser_expectation().getPoints_count()>3){
+                myHolder.binding.icon2.setVisibility(View.VISIBLE);
+                myHolder.binding.icon2.setColorFilter(ContextCompat.getColor(context,R.color.white));
 
+
+            }else {
+                myHolder.binding.icon2.setVisibility(View.GONE);
+
+            }
 
 
         }else {
+            myHolder.binding.icon2.setVisibility(View.GONE);
             myHolder.binding.icon.setVisibility(View.VISIBLE);
             myHolder.binding.icon.setImageResource(R.drawable.ic_close2);
             myHolder.binding.icon.setColorFilter(ContextCompat.getColor(context,R.color.white));

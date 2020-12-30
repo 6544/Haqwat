@@ -154,6 +154,9 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
         homeJoinedTeamsModelList.addAll(homeModel.getList_of_leagues_with_teams());
         adapter.notifyDataSetChanged();
 
+        binding.nestedScrollView.getParent().requestChildFocus(binding.nestedScrollView,binding.nestedScrollView);
+
+
     }
 
 

@@ -162,5 +162,5 @@
     <string name="gifts">Gifts</string>
     <string name="copied">Copied</string>
     <string name="invitation">Friends invitations gifts</string>
-
+    <string name="invite_friends">Invite friends</string>
 </resources>

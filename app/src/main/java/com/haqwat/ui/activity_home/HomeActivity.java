@@ -36,6 +36,7 @@ import com.haqwat.ui.activity_language.LanguageActivity;
 import com.haqwat.ui.activity_login.LoginActivity;
 import com.haqwat.ui.activity_notification.NotificationActivity;
 import com.haqwat.ui.activity_password.PasswordActivity;
+import com.haqwat.ui.activity_web_view.WebViewActivity;
 
 import java.io.ByteArrayOutputStream;
 
@@ -121,6 +122,11 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             }
         });
 
+        binding.llPolicy.setOnClickListener(view -> {
+            Intent intent = new Intent(this, WebViewActivity.class);
+            intent.putExtra("url","http://hqwat.com/app-setting#3z");
+            startActivity(intent);
+        });
         dialog = Common.createProgressDialog(this,getString(R.string.wait));
         dialog.setCanceledOnTouchOutside(false);
 

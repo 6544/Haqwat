@@ -385,6 +385,7 @@
                             android:layerType="software"
                             />
                         <LinearLayout
+                            android:id="@+id/llPolicy"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:orientation="horizontal"

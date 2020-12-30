@@ -52,8 +52,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:visibility="invisible"
-                android:text='@{@string/round+"("+model.next_round.order_number+")"}'
+                android:visibility="visible"
+                android:text='@{@string/points+"("+model.prev_round.user_expectation_points+"/"+model.prev_round.round_points+")"}'
                 />
             <ImageView
                 android:id="@+id/arrow"

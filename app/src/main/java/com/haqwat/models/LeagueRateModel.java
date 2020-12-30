@@ -19,6 +19,7 @@ public class LeagueRateModel implements Serializable {
     private int true_expectations;
     private int false_expectations;
     private int all_expectations;
+    private UserModel user;
     private FavoriteTeam favorite_team;
     private RecommendedTeam recommended_team;
 
@@ -80,6 +81,10 @@ public class LeagueRateModel implements Serializable {
 
     public int getAll_expectations() {
         return all_expectations;
+    }
+
+    public UserModel getUser() {
+        return user;
     }
 
     public FavoriteTeam getFavorite_team() {
@@ -175,6 +180,7 @@ public class LeagueRateModel implements Serializable {
             return updated_at;
         }
     }
+
 
 
 }

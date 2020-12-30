@@ -260,4 +260,12 @@ public interface Service {
 
     );
 
+    @GET("api/leagueShare")
+    Call<LeagueRateModel> getShareData(@Query("league_id") String league_id,
+                                       @Query("user_id") String user_id
+
+
+    );
+
+
 }

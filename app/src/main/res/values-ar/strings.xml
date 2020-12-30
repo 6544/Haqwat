@@ -161,6 +161,7 @@
     <string name="gifts">هدايا</string>
     <string name="copied">تم النسخ</string>
     <string name="invitation">هدايا دعوات الاصدقاء</string>
+    <string name="invite_friends">دعوة صديق</string>
 
 
 </resources>

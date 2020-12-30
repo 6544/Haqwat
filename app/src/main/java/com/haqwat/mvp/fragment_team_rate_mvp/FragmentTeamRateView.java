@@ -1,4 +1,4 @@
-package com.haqwat.mvp.fragment_team_rate;
+package com.haqwat.mvp.fragment_team_rate_mvp;
 
 import com.haqwat.models.LeagueRateModel;
 
