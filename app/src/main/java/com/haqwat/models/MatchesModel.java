@@ -217,6 +217,8 @@ public class MatchesModel implements Serializable {
        private UserExpectationModel user_expectation;
        private String date_for_order;
        private String time_for_order;
+       private String date_for_order_utc;
+       private String time_for_order_utc;
        private FirstTeam first_team;
        private FirstTeam second_team;
 
@@ -310,6 +312,14 @@ public class MatchesModel implements Serializable {
 
         public FirstTeam getSecond_team() {
             return second_team;
+        }
+
+        public String getDate_for_order_utc() {
+            return date_for_order_utc;
+        }
+
+        public String getTime_for_order_utc() {
+            return time_for_order_utc;
         }
     }
 

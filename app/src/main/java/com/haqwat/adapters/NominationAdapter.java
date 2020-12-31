@@ -3,7 +3,9 @@ package com.haqwat.adapters;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -69,6 +71,63 @@ public class NominationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             myHolder.binding.spinnerRecommendedTeam.setSelection(pos2);
 
         }
+
+        myHolder.binding.spinnerFavTeam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i==0){
+                    myHolder.binding.btnSend.setVisibility(View.INVISIBLE);
+                }else {
+                    if (nominationModel.getSingle_nomination()!=null){
+                        myHolder.binding.btnSend.setVisibility(View.INVISIBLE);
+
+                    }else {
+                        TeamModel teamModel = (TeamModel) myHolder.binding.spinnerRecommendedTeam.getSelectedItem();
+                        if (teamModel.getId()==0){
+                            myHolder.binding.btnSend.setVisibility(View.INVISIBLE);
+
+                        }else {
+                            myHolder.binding.btnSend.setVisibility(View.VISIBLE);
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        myHolder.binding.spinnerRecommendedTeam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i==0){
+                    myHolder.binding.btnSend.setVisibility(View.INVISIBLE);
+                }else {
+                    if (nominationModel.getSingle_nomination()!=null){
+                        myHolder.binding.btnSend.setVisibility(View.INVISIBLE);
+
+                    }else {
+                        TeamModel teamModel = (TeamModel) myHolder.binding.spinnerFavTeam.getSelectedItem();
+                        if (teamModel.getId()==0){
+                            myHolder.binding.btnSend.setVisibility(View.INVISIBLE);
+
+                        }else {
+                            myHolder.binding.btnSend.setVisibility(View.VISIBLE);
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
         myHolder.itemView.setOnClickListener(view -> {
             if (myHolder.binding.expandLayout.isExpanded()){

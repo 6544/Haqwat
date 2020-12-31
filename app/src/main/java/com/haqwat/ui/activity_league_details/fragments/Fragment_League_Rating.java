@@ -141,6 +141,16 @@ public class Fragment_League_Rating extends Fragment implements FragmentTeamRate
                 }
 
         );
+        binding.btnInvite.setOnClickListener(view -> {
+
+            String shareLink = getString(R.string.app_name)+"\n"+"يمكنك الاشتراك في الدوريات بإستخدام كود صديقك."+" \n"+userModel.getCode();
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT,shareLink);
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+
+        });
         dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_congratulation_animation;
         dialog.setCanceledOnTouchOutside(false);
         dialog.setView(binding.getRoot());

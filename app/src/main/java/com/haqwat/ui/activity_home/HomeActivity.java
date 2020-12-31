@@ -32,6 +32,7 @@ import com.haqwat.preferences.Preferences;
 import com.haqwat.share.Common;
 import com.haqwat.ui.activity_accounts.AccountsActivity;
 import com.haqwat.ui.activity_contact_us.ContactUsActivity;
+import com.haqwat.ui.activity_gifts.GiftsActivity;
 import com.haqwat.ui.activity_language.LanguageActivity;
 import com.haqwat.ui.activity_login.LoginActivity;
 import com.haqwat.ui.activity_notification.NotificationActivity;
@@ -113,6 +114,11 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             clipboard.setPrimaryClip(clip);
             Toast.makeText(this, R.string.copied, Toast.LENGTH_SHORT).show();
         });
+
+        binding.llGifts.setOnClickListener(view -> {
+            Intent intent = new Intent(this, GiftsActivity.class);
+            startActivityForResult(intent,600);
+        });
         binding.mSwitch.setOnClickListener(view -> {
             if (binding.mSwitch.isChecked()){
                 presenter.updateNotificationStatus("on");
@@ -134,7 +140,9 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
 
     }
 
-
+    public void updateGiftCount(int count){
+        binding.setGiftsCount(count);
+    }
 
     @Override
     public void onBackPressed(int itemId) {
@@ -228,6 +236,10 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             AccountsModel model = (AccountsModel) data.getSerializableExtra("account");
             presenter.logout(userModel,model);
 
+
+        }else if (requestCode == 600 && resultCode == Activity.RESULT_OK && data != null) {
+            int count = data.getIntExtra("count",0);
+            binding.setGiftsCount(count);
 
         }
     }

@@ -150,7 +150,7 @@
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/color9"
                 android:textSize="14sp"
-                android:singleLine="true"
+                android:lines="2"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:text='@{model.first_team_goals_count+"/"+model.second_team_goals_count}'
@@ -211,6 +211,8 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_correct"
+                    android:visibility="gone"
 
                     />
                 <Space

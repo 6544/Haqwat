@@ -2,6 +2,7 @@ package com.haqwat.general_ui_method;
 
 import android.net.Uri;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,6 +14,12 @@ import com.haqwat.R;
 import com.haqwat.tags.Tags;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -116,6 +123,24 @@ public class GeneralMethod {
 
         }
 
+    }
+
+    @BindingAdapter({"general_date","general_time"})
+    public static void dates(TextView textView,String general_date,String general_time) {
+        String date = general_date+" "+general_time;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+        try {
+            dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date d = dateFormat.parse(date);
+            dateFormat.setTimeZone(TimeZone.getDefault());
+            String newDate = dateFormat.format(d);
+            String t1 = newDate.split(" ")[0];
+            String d1 = newDate.split(" ")[1];
+
+            textView.setText(t1+"\n"+d1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 

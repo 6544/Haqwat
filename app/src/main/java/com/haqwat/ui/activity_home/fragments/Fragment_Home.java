@@ -144,7 +144,7 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
 
     @Override
     public void onDataSuccess(HomeModel homeModel) {
-
+        activity.updateGiftCount(homeModel.getAllowable_leagues_count());
         binding.progBarAverageRate.setVisibility(View.VISIBLE);
         binding.progBarYourRate.setVisibility(View.VISIBLE);
         binding.progBarAverageRate.setProgress((int) homeModel.getAllUsersRate());

@@ -1,6 +1,7 @@
 package com.haqwat.services;
 
 import com.haqwat.models.AppDataModel;
+import com.haqwat.models.InvitesLeagueDataModel;
 import com.haqwat.models.NominationDataModel;
 import com.haqwat.models.ChargeDataModel;
 import com.haqwat.models.HomeModel;
@@ -267,5 +268,16 @@ public interface Service {
 
     );
 
+    @GET("api/dataForUpgradeAccount")
+    Call<InvitesLeagueDataModel> getInvitesLeague(@Header("Authorization") String bearer_token);
+
+
+    @FormUrlEncoded
+    @POST("api/addLeaguesToUser")
+    Call<ResponseBody> joinToNewTeam(@Header("Authorization") String bearer_token,
+                                     @Field("league_id") int league_id,
+                                     @Field("team_id") int team_id
+
+    );
 
 }

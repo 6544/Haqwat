@@ -148,17 +148,18 @@
                 android:layout_marginEnd="5dp"
                 />
             <TextView
+                android:id="@+id/tvTime"
                 android:layout_width="0dp"
                 android:layout_weight=".8"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/color9"
                 android:textSize="9sp"
-                android:singleLine="true"
+                android:lines="2"
                 android:ellipsize="end"
                 android:gravity="center"
-                android:text="@{model.date_for_order}"
-
+                general_date="@{model.date_for_order_utc}"
+                general_time="@{model.time_for_order_utc}"
                 />
             <View
                 android:layout_width="1px"

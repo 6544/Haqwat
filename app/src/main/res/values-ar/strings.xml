@@ -162,6 +162,12 @@
     <string name="copied">تم النسخ</string>
     <string name="invitation">هدايا دعوات الاصدقاء</string>
     <string name="invite_friends">دعوة صديق</string>
+    <string name="you_got_a_subscription_gift_from_friends_for">تم حصولك على هدية من اصدقائك. يمكنك الاشتراك فى </string>
+    <string name="league2">دوري</string>
+    <string name="available_league">الدوريات المتاحة:</string>
+    <string name="no_leagues_to_show">لا توجد دوريات لعرضها</string>
+    <string name="join">إشترك</string>
+    <string name="choose">إختر</string>
 
 
 </resources>

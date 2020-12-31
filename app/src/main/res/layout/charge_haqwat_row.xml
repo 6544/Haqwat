@@ -25,7 +25,7 @@
                 android:layout_height="0dp"/>
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1.8"
+                android:layout_weight=".9"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 >
@@ -39,7 +39,7 @@
                         android:layout_height="48dp"
                         app:civ_border_color="@color/white"
                         app:civ_circle_background_color="@color/white"
-                        app:civ_border_width="1dp"
+                        app:civ_border_width="3dp"
                         android:src="@color/white"
                         />
                     <ImageView
@@ -64,13 +64,14 @@
                     android:textStyle="bold"
                     android:maxLines="2"
                     android:text="@{model.title}"
+                    android:visibility="gone"
                     />
             </LinearLayout>
             <TextView
                 android:id="@+id/tvExpectation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="2.4"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -97,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:layout_gravity="center"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     android:text='@{model.rate+"%"}'
                     />
             </FrameLayout>

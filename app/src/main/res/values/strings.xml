@@ -163,4 +163,10 @@
     <string name="copied">Copied</string>
     <string name="invitation">Friends invitations gifts</string>
     <string name="invite_friends">Invite friends</string>
+    <string name="you_got_a_subscription_gift_from_friends_for">You got a subscription gift from friends for</string>
+    <string name="league2">league</string>
+    <string name="available_league">Available League:</string>
+    <string name="no_leagues_to_show">No leagues to show</string>
+    <string name="join">Join</string>
+    <string name="choose">Choose</string>
 </resources>
