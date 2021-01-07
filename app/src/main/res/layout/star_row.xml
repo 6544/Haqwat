@@ -71,7 +71,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         image="@{model.user.country.flag_large}"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitXY"
                         />
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/userImage"

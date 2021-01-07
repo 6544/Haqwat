@@ -47,16 +47,37 @@
                         android:layout_height="wrap_content"
                         >
 
-                        <ImageView
-                            android:id="@+id/imageNotification"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_notification"
-                            android:layout_gravity="start|top"
-                            />
+                       <LinearLayout
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:gravity="center_vertical"
+                           >
+                           <ImageView
+
+                               android:id="@+id/imageProfile"
+                               android:layout_width="35dp"
+                               android:layout_height="35dp"
+                               android:padding="5dp"
+                               android:src="@drawable/ic_nav_user"
+                               android:layout_gravity="start|top"
+                               app:tint="@color/white"
+                               />
+                           <Space
+                               android:layout_width="8dp"
+                               android:layout_height="0dp"/>
+
+                           <ImageView
+                               android:id="@+id/imageNotification"
+                               android:layout_width="35dp"
+                               android:layout_height="35dp"
+                               android:padding="5dp"
+                               android:src="@drawable/ic_notification"
+                               android:layout_gravity="start|top"
+                               />
+                       </LinearLayout>
 
                         <ImageView
+                            android:id="@+id/logo"
                             android:layout_width="60dp"
                             android:layout_height="64dp"
                             android:layout_gravity="end"
@@ -171,19 +192,19 @@
                         android:orientation="vertical"
                         android:background="@color/color1"
                         >
+
                         <LinearLayout
-                            android:id="@+id/llSwitchAccount"
+                            android:id="@+id/llAboutApp"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:orientation="horizontal"
                             android:paddingStart="10dp"
                             android:paddingEnd="10dp"
-                            android:visibility="visible"
                             >
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:src="@drawable/ic_switch_user"
+                                android:src="@drawable/ic_info"
                                 app:tint="@color/colorPrimaryDark"
                                 android:layout_gravity="center_vertical"
                                 />
@@ -195,117 +216,11 @@
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
-                                android:text="@string/switch_user"
+                                android:text="@string/about_app"
                                 />
 
                         </LinearLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:background="@drawable/stroke_line2"
-                            android:layerType="software"
-                            android:visibility="visible"
-                            />
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:orientation="horizontal"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            >
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_notification_control"
-                                app:tint="@color/colorPrimaryDark"
-                                android:layout_gravity="center_vertical"
-                                />
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_gravity="center_vertical"
-                                android:textColor="@color/white"
-                                android:textSize="14sp"
-                                android:text="@string/notifications_control"
-                                />
 
-                            <Switch
-                                android:id="@+id/mSwitch"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                tools:ignore="UseSwitchCompatOrMaterialXml"
-                                android:checked='@{model.notification_status.equals("on")?true:false}'
-                                />
-
-                        </LinearLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:background="@drawable/stroke_line2"
-                            android:layerType="software"
-                            />
-
-                        <LinearLayout
-                            android:id="@+id/llGifts"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:orientation="horizontal"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            >
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_giftbox"
-                                app:tint="@color/colorPrimaryDark"
-                                android:layout_gravity="center_vertical"
-                                />
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_gravity="center_vertical"
-                                android:textColor="@color/white"
-                                android:textSize="13sp"
-                                android:text="@string/invitation"
-                                android:ellipsize="end"
-                                />
-
-                            <FrameLayout
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center_vertical"
-                                >
-                                <de.hdodenhof.circleimageview.CircleImageView
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:src="@color/color2"
-                                    android:layout_gravity="center"
-                                    />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:maxLength="2"
-                                    android:textColor="@color/white"
-                                    android:textSize="12sp"
-                                    android:text='@{String.valueOf(giftsCount),default="0"}'
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    />
-
-                            </FrameLayout>
-
-                        </LinearLayout>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="4dp"
@@ -342,6 +257,55 @@
                                 />
 
                         </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="4dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:background="@drawable/stroke_line2"
+                            android:layerType="software"
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            >
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_notification_control"
+                                app:tint="@color/colorPrimaryDark"
+                                android:layout_gravity="center_vertical"
+                                />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:text="@string/notifications_control"
+                                />
+
+                            <Switch
+                                android:id="@+id/mSwitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                tools:ignore="UseSwitchCompatOrMaterialXml"
+                                android:checked='@{model.notification_status.equals("on")?true:false}'
+                                />
+
+                        </LinearLayout>
+
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="4dp"
@@ -457,122 +421,9 @@
                             android:layerType="software"
                             />
 
-                        <LinearLayout
-                            android:id="@+id/llChangePassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:orientation="horizontal"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            >
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_lock"
-                                app:tint="@color/colorPrimaryDark"
-                                android:layout_gravity="center_vertical"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_gravity="center_vertical"
-                                android:textColor="@color/white"
-                                android:textSize="14sp"
-                                android:text="@string/change_password"
-                                />
 
-                        </LinearLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:background="@drawable/stroke_line2"
-                            android:layerType="software"
-                            />
-
-                        <LinearLayout
-                            android:id="@+id/llCode"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:orientation="horizontal"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            >
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_sheet"
-                                app:tint="@color/colorPrimaryDark"
-                                android:layout_gravity="center_vertical"
-                                />
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_gravity="center_vertical"
-                                android:textColor="@color/white"
-                                android:textSize="13sp"
-                                android:text="@{model.code}"
-                                android:lines="2"
-                                android:ellipsize="end"
-                                />
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_copy"
-                                app:tint="@color/white"
-                                android:layout_gravity="center_vertical"
-                                />
-
-                        </LinearLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:background="@drawable/stroke_line2"
-                            android:layerType="software"
-                            />
 
                     </LinearLayout>
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/color1"
-                        >
-                        <LinearLayout
-                            android:id="@+id/llLogout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="30dp"
-                            >
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_logout"
-                                app:tint="@color/color8"
-                                android:layout_gravity="center_vertical"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16sp"
-                                android:layout_marginEnd="16sp"
-                                android:textColor="@color/white"
-                                android:textSize="16sp"
-                                android:text="@string/logout"
-                                />
-
-                        </LinearLayout>
-
-                    </FrameLayout>
                 </LinearLayout>
             </ScrollView>
         </com.google.android.material.navigation.NavigationView>

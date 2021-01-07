@@ -1,7 +1,10 @@
 package com.haqwat.ui.activity_league_details;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -159,6 +162,27 @@ public class LeagueDetailsActivity extends AppCompatActivity implements LeagueDe
                 break;
         }
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        List<Fragment> fragmentList = fragmentManager.getFragments();
+        for(Fragment fragment:fragmentList){
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+
+        List<Fragment> fragmentList = fragmentManager.getFragments();
+        for(Fragment fragment:fragmentList){
+            fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     @Override

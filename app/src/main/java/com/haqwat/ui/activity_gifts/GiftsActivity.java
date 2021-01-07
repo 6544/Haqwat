@@ -126,7 +126,7 @@ public class GiftsActivity extends AppCompatActivity implements ActivityInviteLe
     @Override
     public void onBackPressed() {
         Intent intent = getIntent();
-        intent.putExtra("count",countAvailableLeague);
+        intent.putExtra("gift",countAvailableLeague);
         setResult(RESULT_OK,intent);
         finish();
     }

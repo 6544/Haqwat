@@ -15,7 +15,7 @@
     <string name="confirm">تأكيد</string>
     <string name="share_app">مشاركة</string>
     <string name="rate_app">تقييم التطبيق</string>
-    <string name="logout">خروج</string>
+    <string name="logout">الخروج من البرنامج</string>
     <string name="about_app">عن التطبيق</string>
     <string name="notifications">الإشعارات</string>
     <string name="wait">انتظر</string>
@@ -168,6 +168,7 @@
     <string name="no_leagues_to_show">لا توجد دوريات لعرضها</string>
     <string name="join">إشترك</string>
     <string name="choose">إختر</string>
+    <string name="update_profile">تعديل الملف الشخصي</string>
 
 
 </resources>

@@ -321,6 +321,10 @@ public class MatchesModel implements Serializable {
         public String getTime_for_order_utc() {
             return time_for_order_utc;
         }
+
+        public void setUser_expectation(UserExpectationModel user_expectation) {
+            this.user_expectation = user_expectation;
+        }
     }
 
     public static class UserExpectationModel implements Serializable{
@@ -353,6 +357,14 @@ public class MatchesModel implements Serializable {
 
         public String getExpect_status() {
             return expect_status;
+        }
+
+        public void setFirst_team_goals_count(int first_team_goals_count) {
+            this.first_team_goals_count = first_team_goals_count;
+        }
+
+        public void setSecond_team_goals_count(int second_team_goals_count) {
+            this.second_team_goals_count = second_team_goals_count;
         }
     }
 

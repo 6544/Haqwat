@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.haqwat.R;
 import com.haqwat.adapters.PreviousRoundAdapter;
-import com.haqwat.adapters.RoundAdapter;
 import com.haqwat.databinding.FragmentLeaguePreviousMatchesBinding;
 import com.haqwat.models.MatchesModel;
 import com.haqwat.models.UserModel;
@@ -102,7 +101,7 @@ public class Fragment_Previous_Matches extends Fragment implements FragmentMatch
     }
 
     @Override
-    public void onExpectationSuccess() {
+    public void onExpectationSuccess(int firstExpectation, int secondExpectation) {
 
     }
 }

@@ -86,7 +86,7 @@ public class FragmentMatchesPresenter {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
                             view.hideProgressDialog();
-                            view.onExpectationSuccess();
+                            view.onExpectationSuccess(firstExpectation,secondExpectation);
                         } else {
                             view.hideProgressDialog();
 

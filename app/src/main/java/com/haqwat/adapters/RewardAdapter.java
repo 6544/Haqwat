@@ -14,6 +14,7 @@ import com.haqwat.databinding.ChargeHaqwatRowBinding;
 import com.haqwat.databinding.RewardRowBinding;
 import com.haqwat.models.ChargeModel;
 import com.haqwat.models.RewardModel;
+import com.haqwat.ui.activity_home.fragments.fragment_champions.Fragment_Rewards;
 
 import java.util.List;
 
@@ -22,10 +23,12 @@ public class RewardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private List<RewardModel> list;
     private Context context;
     private LayoutInflater inflater;
-    public RewardAdapter(List<RewardModel> list, Context context) {
+    private Fragment_Rewards fragment_rewards;
+    public RewardAdapter(List<RewardModel> list, Context context,Fragment_Rewards fragment_rewards) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
+        this.fragment_rewards = fragment_rewards;
 
     }
 
@@ -47,7 +50,9 @@ public class RewardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         RewardModel rewardModel = list.get(position);
         myHolder.binding.setModel(rewardModel);
         myHolder.binding.setCount(String.valueOf(position+1));
-
+        myHolder.itemView.setOnClickListener(view -> {
+            fragment_rewards.showDialog();
+        });
 
     }
 

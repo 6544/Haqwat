@@ -46,4 +46,5 @@ public class RewardModel implements Serializable {
     public int getId() {
         return id;
     }
+
 }

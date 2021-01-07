@@ -2,7 +2,6 @@ package com.haqwat.ui.activity_matches.fragments;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,9 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.haqwat.R;
-import com.haqwat.adapters.MatchAdapter;
 import com.haqwat.adapters.RoundAdapter;
-import com.haqwat.databinding.DialogAlertBinding;
 import com.haqwat.databinding.DialogExpectBinding;
 import com.haqwat.databinding.FragmentLeagueUpcomingMatchesBinding;
 import com.haqwat.models.MatchesModel;
@@ -43,6 +40,7 @@ public class Fragment_UpComing_Matches extends Fragment implements FragmentMatch
     private List<MatchesModel> matchesModelList;
     private RoundAdapter adapter;
     private ProgressDialog dialog;
+    private int parentPos = -1,childPos = -1;
 
     public static Fragment_UpComing_Matches newInstance(){
         return new Fragment_UpComing_Matches();
@@ -112,17 +110,33 @@ public class Fragment_UpComing_Matches extends Fragment implements FragmentMatch
     }
 
     @Override
-    public void onExpectationSuccess() {
-        matchesModelList.clear();
-        adapter.notifyDataSetChanged();
-        presenter.getRounds(userModel);
+    public void onExpectationSuccess(int firstExpectation, int secondExpectation) {
+        if (parentPos!=-1&&childPos!=-1){
+            MatchesModel matchesModel = matchesModelList.get(parentPos);
+            MatchesModel.MatchModel matchModel = matchesModel.getNext_matches().get(childPos);
+            MatchesModel.UserExpectationModel userExpectationModel = new MatchesModel.UserExpectationModel();
+            userExpectationModel.setFirst_team_goals_count(firstExpectation);
+            userExpectationModel.setSecond_team_goals_count(secondExpectation);
+            matchModel.setUser_expectation(userExpectationModel);
+            adapter.updateOpenPos(parentPos);
+            adapter.notifyItemChanged(parentPos);
+            binding.recView.postDelayed(() -> binding.recView.smoothScrollToPosition(parentPos),1000);
+
+        }else {
+            matchesModelList.clear();
+            adapter.notifyDataSetChanged();
+            presenter.getRounds(userModel);
+        }
+
     }
 
     public void showDialogExpectation(MatchesModel.MatchModel matchModel, int child_pos, int parent_pos) {
         CreateDialogAlert(matchModel,child_pos,parent_pos);
     }
 
-    private   void CreateDialogAlert(MatchesModel.MatchModel model,int child_pos, int parent_pos) {
+    private void CreateDialogAlert(MatchesModel.MatchModel model,int child_pos, int parent_pos) {
+        parentPos = parent_pos;
+        childPos = child_pos;
         final AlertDialog dialog = new AlertDialog.Builder(activity)
                 .create();
 

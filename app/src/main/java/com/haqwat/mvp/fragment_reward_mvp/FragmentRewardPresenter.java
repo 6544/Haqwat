@@ -36,7 +36,7 @@ public class FragmentRewardPresenter {
                         if (response.isSuccessful()) {
                             view.hideProgressBar();
                             if (response.body() != null ) {
-                                view.onSuccess(response.body().getData());
+                                view.onSuccess(response.body());
 
                             }
 

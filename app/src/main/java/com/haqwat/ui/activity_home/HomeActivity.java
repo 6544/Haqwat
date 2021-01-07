@@ -30,11 +30,13 @@ import com.haqwat.mvp.activity_home_mvp.ActivityHomePresenter;
 import com.haqwat.mvp.activity_home_mvp.ActivityHomeView;
 import com.haqwat.preferences.Preferences;
 import com.haqwat.share.Common;
+import com.haqwat.tags.Tags;
 import com.haqwat.ui.activity_accounts.AccountsActivity;
 import com.haqwat.ui.activity_contact_us.ContactUsActivity;
 import com.haqwat.ui.activity_gifts.GiftsActivity;
 import com.haqwat.ui.activity_language.LanguageActivity;
 import com.haqwat.ui.activity_login.LoginActivity;
+import com.haqwat.ui.activity_more.MoreActivity;
 import com.haqwat.ui.activity_notification.NotificationActivity;
 import com.haqwat.ui.activity_password.PasswordActivity;
 import com.haqwat.ui.activity_web_view.WebViewActivity;
@@ -53,6 +55,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
     private Preferences preferences;
     private ProgressDialog dialog;
     private String lang;
+    private int count =0;
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
@@ -84,9 +87,13 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             backPress = false;
             return true;
         });
-        binding.llLogout.setOnClickListener(view -> {
-            presenter.logout(userModel, null);
+
+        binding.imageProfile.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MoreActivity.class);
+            intent.putExtra("gift",count);
+            startActivityForResult(intent,400);
         });
+
         binding.llChangeLanguage.setOnClickListener(view -> {
             Intent intent = new Intent(this, LanguageActivity.class);
             startActivityForResult(intent,100);
@@ -99,26 +106,9 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             Intent intent = new Intent(this, NotificationActivity.class);
             startActivity(intent);
         });
-        binding.llChangePassword.setOnClickListener(view -> {
-            Intent intent = new Intent(this, PasswordActivity.class);
-            startActivityForResult(intent,400);
-        });
-        binding.llSwitchAccount.setOnClickListener(view -> {
-            Intent intent = new Intent(this, AccountsActivity.class);
-            startActivityForResult(intent,500);
-        });
-        binding.imageEdit.setOnClickListener(view ->presenter.createImageDialog());
-        binding.llCode.setOnClickListener(view -> {
-            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("Copied new text",userModel.getCode());
-            clipboard.setPrimaryClip(clip);
-            Toast.makeText(this, R.string.copied, Toast.LENGTH_SHORT).show();
-        });
 
-        binding.llGifts.setOnClickListener(view -> {
-            Intent intent = new Intent(this, GiftsActivity.class);
-            startActivityForResult(intent,600);
-        });
+        binding.imageEdit.setOnClickListener(view ->presenter.createImageDialog());
+
         binding.mSwitch.setOnClickListener(view -> {
             if (binding.mSwitch.isChecked()){
                 presenter.updateNotificationStatus("on");
@@ -128,9 +118,21 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             }
         });
 
+        binding.llAboutApp.setOnClickListener(view -> {
+            Intent intent = new Intent(this, WebViewActivity.class);
+            intent.putExtra("url","http://hqwat.com/app-setting#2");
+            startActivity(intent);
+        });
+
         binding.llPolicy.setOnClickListener(view -> {
             Intent intent = new Intent(this, WebViewActivity.class);
-            intent.putExtra("url","http://hqwat.com/app-setting#3z");
+            intent.putExtra("url","http://hqwat.com/app-setting#3");
+            startActivity(intent);
+        });
+
+        binding.logo.setOnClickListener(view -> {
+            Intent intent = new Intent(this, WebViewActivity.class);
+            intent.putExtra("url", Tags.base_url);
             startActivity(intent);
         });
         dialog = Common.createProgressDialog(this,getString(R.string.wait));
@@ -141,6 +143,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
     }
 
     public void updateGiftCount(int count){
+        this.count = count;
         binding.setGiftsCount(count);
     }
 
@@ -227,19 +230,28 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
 
         }else if (requestCode == 400 && resultCode == Activity.RESULT_OK && data != null) {
 
-            String password = data.getStringExtra("password");
-            presenter.changePassword(password);
+            String type = data.getStringExtra("type");
+
+            if (type.equals("password")){
+                String password = data.getStringExtra("password");
+                presenter.changePassword(password);
+            }else if (type.equals("account")){
+                AccountsModel model = (AccountsModel) data.getSerializableExtra("account");
+                presenter.logout(userModel,model);
+
+            }else if (type.equals("logout")){
+                presenter.logout(userModel,null);
+
+            }else if (type.equals("gift")){
+                int count = data.getIntExtra("count",0);
+                binding.setGiftsCount(count);
+            }
+
+            userModel = preferences.getUserData(this);
+            binding.setModel(userModel);
 
 
-        }else if (requestCode == 500 && resultCode == Activity.RESULT_OK && data != null) {
 
-            AccountsModel model = (AccountsModel) data.getSerializableExtra("account");
-            presenter.logout(userModel,model);
-
-
-        }else if (requestCode == 600 && resultCode == Activity.RESULT_OK && data != null) {
-            int count = data.getIntExtra("count",0);
-            binding.setGiftsCount(count);
 
         }
     }

@@ -13,19 +13,17 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.haqwat.R;
 import com.haqwat.adapters.RewardAdapter;
+import com.haqwat.models.RewardDataModel;
 import com.haqwat.models.RewardModel;
-import com.haqwat.adapters.TopChampionAdapter;
 import com.haqwat.databinding.FragmentRewardBinding;
 import com.haqwat.models.UserModel;
 import com.haqwat.mvp.fragment_reward_mvp.FragmentRewardPresenter;
 import com.haqwat.mvp.fragment_reward_mvp.FragmentRewardView;
-import com.haqwat.mvp.fragment_top_champion_mvp.FragmentChampionView;
-import com.haqwat.mvp.fragment_top_champion_mvp.FragmentTopChampionPresenter;
 import com.haqwat.preferences.Preferences;
+import com.haqwat.share.Common;
 import com.haqwat.ui.activity_home.HomeActivity;
 
 import java.util.ArrayList;
@@ -39,6 +37,7 @@ public class Fragment_Rewards extends Fragment implements FragmentRewardView {
     private FragmentRewardPresenter presenter;
     private Preferences preferences;
     private UserModel userModel;
+    private RewardDataModel rewardDataModel;
 
     public static Fragment_Rewards newInstance(){
         return new Fragment_Rewards();
@@ -58,25 +57,32 @@ public class Fragment_Rewards extends Fragment implements FragmentRewardView {
         rewardModelList = new ArrayList<>();
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
         binding.recView.setLayoutManager(new GridLayoutManager(activity,3));
-        adapter = new RewardAdapter(rewardModelList,activity);
+        adapter = new RewardAdapter(rewardModelList,activity,this);
         binding.recView.setAdapter(adapter);
         presenter = new FragmentRewardPresenter(this,activity);
         presenter.getReward(userModel);
+        binding.imageHide.setOnClickListener(view -> {
+            binding.imageHide.setVisibility(View.GONE);
+            binding.tvNote.setVisibility(View.GONE);
+        });
 
     }
 
     @Override
-    public void onSuccess(List<RewardModel> rewardModelList) {
+    public void onSuccess(RewardDataModel rewardDataModel) {
+        this.rewardDataModel = rewardDataModel;
         this.rewardModelList.clear();
-        this.rewardModelList.addAll(rewardModelList);
+        this.rewardModelList.addAll(rewardDataModel.getData());
         if (this.rewardModelList.size()>0){
             binding.tvNoData.setVisibility(View.GONE);
             adapter.notifyDataSetChanged();
             binding.tvNote.setVisibility(View.VISIBLE);
+            binding.imageHide.setVisibility(View.VISIBLE);
 
         }else {
             binding.tvNoData.setVisibility(View.VISIBLE);
             binding.tvNote.setVisibility(View.GONE);
+            binding.imageHide.setVisibility(View.GONE);
 
         }
     }
@@ -95,5 +101,12 @@ public class Fragment_Rewards extends Fragment implements FragmentRewardView {
     public void hideProgressBar() {
         binding.progBar.setVisibility(View.GONE);
 
+    }
+
+    public void showDialog() {
+        if (rewardDataModel!=null&&rewardDataModel.getCompetition()!=null){
+            Common.CreateDialogAlert(activity,rewardDataModel.getCompetition().getTitle());
+
+        }
     }
 }

@@ -109,6 +109,18 @@ public interface Service {
                                        @Part MultipartBody.Part logo
     );
 
+    @Multipart
+    @POST("api/profile/update")
+    Call<UserModel> updateName(@Header("Authorization") String bearer_token,
+                               @Part("name") RequestBody name,
+                               @Part("email") RequestBody email,
+                               @Part("country_id") RequestBody country_id,
+                               @Part("gender") RequestBody gender,
+                               @Part("birthday") RequestBody birthday,
+                               @Part("league_id") RequestBody league_id,
+                               @Part("team_id") RequestBody team_id
+    );
+
     @FormUrlEncoded
     @POST("api/profile/update")
     Call<UserModel> updatePassword(@Header("Authorization") String bearer_token,

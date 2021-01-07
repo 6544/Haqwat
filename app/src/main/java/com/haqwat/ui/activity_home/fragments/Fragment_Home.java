@@ -79,22 +79,22 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
             navigateToLeagueDetailsActivity(getString(R.string.champions_league), Tags.CHAMPIONS_LEAGUE);
         });
         binding.img2.setOnClickListener(view -> {
-            navigateToLeagueDetailsActivity(getString(R.string.french_league),Tags.FRANCE_LEAGUE);
-        });
-        binding.img3.setOnClickListener(view -> {
-            navigateToLeagueDetailsActivity(getString(R.string.la_liga),Tags.LA_LEAGUE);
-        });
-        binding.img4.setOnClickListener(view -> {
-            navigateToLeagueDetailsActivity(getString(R.string.italian_league),Tags.SERIA_LEAGUE);
-        });
-        binding.img5.setOnClickListener(view -> {
-            navigateToLeagueDetailsActivity(getString(R.string.saudi_league),Tags.SAUDI_LEAGUE);
-        });
-        binding.img6.setOnClickListener(view -> {
             navigateToLeagueDetailsActivity(getString(R.string.egyptian_league),Tags.EGYPTIAN_LEAGUE);
         });
-        binding.img7.setOnClickListener(view -> {
+        binding.img3.setOnClickListener(view -> {
+            navigateToLeagueDetailsActivity(getString(R.string.saudi_league),Tags.SAUDI_LEAGUE);
+        });
+        binding.img4.setOnClickListener(view -> {
+            navigateToLeagueDetailsActivity(getString(R.string.french_league),Tags.FRANCE_LEAGUE);
+        });
+        binding.img5.setOnClickListener(view -> {
             navigateToLeagueDetailsActivity(getString(R.string.bundesliga),Tags.JERMAN_LEAGUE);
+        });
+        binding.img6.setOnClickListener(view -> {
+            navigateToLeagueDetailsActivity(getString(R.string.italian_league),Tags.SERIA_LEAGUE);
+        });
+        binding.img7.setOnClickListener(view -> {
+            navigateToLeagueDetailsActivity(getString(R.string.la_liga),Tags.LA_LEAGUE);
         });
         binding.img8.setOnClickListener(view -> {
             navigateToLeagueDetailsActivity(getString(R.string.premier_league),Tags.PREMIER_LEAGUE);

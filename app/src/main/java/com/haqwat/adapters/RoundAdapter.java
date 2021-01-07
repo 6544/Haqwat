@@ -26,6 +26,7 @@ public class RoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private Context context;
     private LayoutInflater inflater;
     private Fragment fragment;
+    private int openPos = 0;
 
     public RoundAdapter(List<MatchesModel> list, Context context,Fragment fragment) {
         this.list = list;
@@ -52,7 +53,7 @@ public class RoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         MyHolder myHolder = (MyHolder) holder;
         MatchesModel matchesModel = list.get(position);
         myHolder.binding.setModel(matchesModel);
-        if (position==0){
+        if (position==openPos){
             myHolder.binding.expandLayout.setExpanded(true,true);
             myHolder.binding.arrow.clearAnimation();
             myHolder.binding.arrow.animate().setDuration(800).rotation(180).start();
@@ -97,6 +98,10 @@ public class RoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             this.binding = binding;
 
         }
+    }
+
+    public void updateOpenPos(int pos){
+        this.openPos = pos;
     }
 
 

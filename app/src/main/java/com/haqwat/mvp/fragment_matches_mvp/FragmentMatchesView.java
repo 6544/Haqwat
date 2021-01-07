@@ -11,5 +11,5 @@ public interface FragmentMatchesView {
     void hideProgressBar();
     void showProgressDialog();
     void hideProgressDialog();
-    void onExpectationSuccess();
+    void onExpectationSuccess(int firstExpectation, int secondExpectation);
 }
