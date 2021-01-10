@@ -19,6 +19,11 @@ public class App extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        TypefaceUtil.setDefaultFont(this, "DEFAULT", "fonts/Cairo-Regular.ttf");
+        TypefaceUtil.setDefaultFont(this, "MONOSPACE", "fonts/Cairo-Regular.ttf");
+        TypefaceUtil.setDefaultFont(this, "SERIF", "fonts/Cairo-Regular.ttf");
+        TypefaceUtil.setDefaultFont(this, "SANS_SERIF", "fonts/Cairo-Regular.ttf");
+
     }
 }
 

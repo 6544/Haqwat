@@ -254,9 +254,7 @@ public interface Service {
 
 
     @GET("api/leagueStarsDisplay")
-    Call<StarDataModel> getStars(@Query("league_id") int league_id
-
-    );
+    Call<StarDataModel> getStars(@Query("league_id") int league_id);
 
     @GET("api/my-notifications")
     Call<NotificationDataModel> getNotifications(@Header("Authorization") String bearer_token,

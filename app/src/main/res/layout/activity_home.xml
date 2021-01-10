@@ -52,15 +52,16 @@
                            android:layout_height="wrap_content"
                            android:gravity="center_vertical"
                            >
-                           <ImageView
-
+                           <de.hdodenhof.circleimageview.CircleImageView
                                android:id="@+id/imageProfile"
                                android:layout_width="35dp"
                                android:layout_height="35dp"
                                android:padding="5dp"
-                               android:src="@drawable/ic_nav_user"
                                android:layout_gravity="start|top"
-                               app:tint="@color/white"
+                               android:src="@drawable/ic_avatar"
+                               app:civ_border_color="@color/white"
+                               app:civ_border_width="3dp"
+                               user_image="@{model.logo}"
                                />
                            <Space
                                android:layout_width="8dp"
