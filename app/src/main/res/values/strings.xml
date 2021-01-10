@@ -170,4 +170,10 @@
     <string name="join">Join</string>
     <string name="choose">Choose</string>
     <string name="update_profile">Update Profile</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="we_will_send_you_a_verification_code_to_your_email">We will send you a verification code to your email</string>
+    <string name="email_incorrect">Email is incorrect</string>
+    <string name="check_code">Check code</string>
+    <string name="verification_code_incorrect">Verification code incorrect</string>
+    <string name="new_password">New password</string>
 </resources>

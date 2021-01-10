@@ -292,4 +292,23 @@ public interface Service {
 
     );
 
+    @FormUrlEncoded
+    @POST("api/forgetPasswordSendCode")
+    Call<UserModel> forgetPassword(@Field("email") String email
+
+    );
+
+    @FormUrlEncoded
+    @POST("api/PasswordCodeCheck")
+    Call<UserModel> sendVerificationCodeForgetPassword(@Header("Authorization") String bearer_token,
+                                                       @Field("code") String code
+
+    );
+
+    @FormUrlEncoded
+    @POST("api/resetPassword")
+    Call<UserModel> restPassword(@Header("Authorization") String bearer_token,
+                                                  @Field("password") String password
+
+    );
 }

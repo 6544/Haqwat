@@ -1,5 +1,6 @@
 package com.haqwat.ui.activity_login;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -21,6 +22,7 @@ import com.haqwat.preferences.Preferences;
 import com.haqwat.share.Common;
 import com.haqwat.ui.activity_complete_sign_up.CompleteSignUpActivity;
 import com.haqwat.ui.activity_confirm_code.ConfirmCodeActivity;
+import com.haqwat.ui.activity_forget_password.ForgetPasswordActivity;
 import com.haqwat.ui.activity_home.HomeActivity;
 import com.haqwat.ui.activity_sign_up.SignUpActivity;
 
@@ -44,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_login);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         getDataFromIntent();
         initView();
     }
@@ -56,14 +58,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     private void initView() {
-        dialog = Common.createProgressDialog(this,getString(R.string.wait));
+        dialog = Common.createProgressDialog(this, getString(R.string.wait));
         dialog.setCanceledOnTouchOutside(false);
 
         preferences = Preferences.getInstance();
         loginModel = new LoginModel();
         binding.setModel(loginModel);
-        presenter = new LoginPresenter(this,this);
-
+        presenter = new LoginPresenter(this, this);
 
 
         binding.tvSignUp.setOnClickListener(view -> {
@@ -78,41 +79,57 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         });
 
 
-
-        if (accountsModel!=null){
+        if (accountsModel != null) {
             loginModel.setEmail(accountsModel.getEmail());
             loginModel.setPassword(accountsModel.getPassword());
             presenter.isDataValid(loginModel);
+        }
+
+        binding.tvForgetPassword.setOnClickListener(view -> {
+            Intent intent = new Intent(this, ForgetPasswordActivity.class);
+            startActivityForResult(intent,100);
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==100&&resultCode==RESULT_OK){
+            navigateToHomeActivity();
         }
     }
 
     @Override
     public void onSuccess(UserModel userModel) {
-        if (userModel.getHas_haqawat_subscribe().equals("no")){
+        if (userModel.getHas_haqawat_subscribe().equals("no")) {
             navigateToCompleteSignUp(userModel);
 
-        }else {
-            preferences.create_update_userdata(this,userModel);
-            AccountsModel model = new AccountsModel(loginModel.getEmail(),loginModel.getPassword());
+        } else {
+            preferences.create_update_userdata(this, userModel);
+            AccountsModel model = new AccountsModel(loginModel.getEmail(), loginModel.getPassword());
             model.setLoggedIn(true);
-            preferences.createAccount(this,model);
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
-            finish();
+            preferences.createAccount(this, model);
+            navigateToHomeActivity();
         }
 
     }
 
+    private void navigateToHomeActivity() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     private void navigateToCompleteSignUp(UserModel userModel) {
-        Intent intent = new Intent(this,CompleteSignUpActivity.class);
-        intent.putExtra("data",userModel);
+        Intent intent = new Intent(this, CompleteSignUpActivity.class);
+        intent.putExtra("data", userModel);
         startActivity(intent);
     }
 
     @Override
     public void navigateToConfirmCode(UserModel userModel) {
         Intent intent = new Intent(this, ConfirmCodeActivity.class);
-        intent.putExtra("data",userModel);
+        intent.putExtra("data", userModel);
         startActivity(intent);
         finish();
     }
