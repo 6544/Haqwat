@@ -14,13 +14,16 @@
         <variable
             name="lang"
             type="String" />
+        <variable
+            name="notificationCount"
+            type="Integer" />
     </data>
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.activity_home.HomeActivity"
-        tools:openDrawer="start"
+        tools:openDrawer="end"
         >
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -67,14 +70,32 @@
                                android:layout_width="8dp"
                                android:layout_height="0dp"/>
 
-                           <ImageView
-                               android:id="@+id/imageNotification"
-                               android:layout_width="35dp"
-                               android:layout_height="35dp"
-                               android:padding="5dp"
-                               android:src="@drawable/ic_notification"
+                           <FrameLayout
+                               android:layout_width="48dp"
+                               android:layout_height="48dp"
                                android:layout_gravity="start|top"
-                               />
+
+                               >
+                               <ImageView
+                                   android:id="@+id/imageNotification"
+                                   android:layout_width="35dp"
+                                   android:layout_height="35dp"
+                                   android:padding="5dp"
+                                   android:src="@drawable/ic_notification"
+                                   android:layout_gravity="center"
+                                   />
+                               <TextView
+                                   android:layout_width="20dp"
+                                   android:layout_height="20dp"
+                                   android:background="@drawable/circle_color13"
+                                   android:textColor="@color/white"
+                                   android:textSize="12sp"
+                                   android:maxLength="2"
+                                   android:gravity="center"
+                                   android:text='@{String.valueOf(notificationCount),default="0"}'
+                                   />
+                           </FrameLayout>
+
                        </LinearLayout>
 
                         <ImageView
@@ -138,7 +159,10 @@
                     >
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="176dp">
+                        android:layout_height="176dp"
+                        android:visibility="gone"
+                        >
+<!--
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -185,6 +209,7 @@
                                 android:text='@{model!=null?model.name:""}'
                                 />
                         </LinearLayout>
+-->
                     </FrameLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -192,6 +217,7 @@
                         android:layout_weight="1"
                         android:orientation="vertical"
                         android:background="@color/color1"
+                        android:paddingTop="8dp"
                         >
 
                         <LinearLayout

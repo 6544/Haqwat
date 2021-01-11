@@ -176,4 +176,7 @@
     <string name="check_code">Check code</string>
     <string name="verification_code_incorrect">Verification code incorrect</string>
     <string name="new_password">New password</string>
+    <string name="subscribers">Subscribers</string>
+    <string name="the_best_leagues">The best leagues</string>
+    <string name="subscribed_leagues">Subscribed leagues</string>
 </resources>

@@ -59,10 +59,13 @@ public class NominationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         myHolder.binding.spinnerFavTeam.setAdapter(adapter1);
         myHolder.binding.spinnerRecommendedTeam.setAdapter(adapter2);
 
+
+
         int pos1 = getFavoritePos(nominationModel.getTeams(),nominationModel.getSingle_nomination());
         int pos2 = getRecommendedPos(nominationModel.getTeams(),nominationModel.getSingle_nomination());
         if (pos1!=-1)
         {
+
             myHolder.binding.spinnerFavTeam.setSelection(pos1);
         }
 
@@ -75,12 +78,9 @@ public class NominationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         myHolder.binding.spinnerFavTeam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i==0){
-                    myHolder.binding.btnSend.setVisibility(View.INVISIBLE);
-                }else {
-                    if (nominationModel.getSingle_nomination()!=null){
+                if (nominationModel.getSingle_nomination()==null){
+                    if (i==0){
                         myHolder.binding.btnSend.setVisibility(View.INVISIBLE);
-
                     }else {
                         TeamModel teamModel = (TeamModel) myHolder.binding.spinnerRecommendedTeam.getSelectedItem();
                         if (teamModel.getId()==0){
@@ -91,7 +91,11 @@ public class NominationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                         }
                     }
+                }else {
+                    myHolder.binding.btnSend.setVisibility(View.INVISIBLE);
                 }
+
+
             }
 
             @Override
@@ -103,12 +107,9 @@ public class NominationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         myHolder.binding.spinnerRecommendedTeam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i==0){
-                    myHolder.binding.btnSend.setVisibility(View.INVISIBLE);
-                }else {
-                    if (nominationModel.getSingle_nomination()!=null){
+                if (nominationModel.getSingle_nomination()==null){
+                    if (i==0){
                         myHolder.binding.btnSend.setVisibility(View.INVISIBLE);
-
                     }else {
                         TeamModel teamModel = (TeamModel) myHolder.binding.spinnerFavTeam.getSelectedItem();
                         if (teamModel.getId()==0){
@@ -119,7 +120,11 @@ public class NominationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                         }
                     }
+                }else {
+                    myHolder.binding.btnSend.setVisibility(View.INVISIBLE);
+
                 }
+
             }
 
             @Override

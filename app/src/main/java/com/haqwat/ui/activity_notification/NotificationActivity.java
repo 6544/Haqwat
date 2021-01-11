@@ -41,6 +41,7 @@ public class NotificationActivity extends AppCompatActivity implements FragmentN
     private NotificationAdapter adapter;
     private UserModel userModel;
     private Preferences preferences;
+    private boolean isNotificationCountChanged = false;
 
 
     @Override
@@ -67,7 +68,7 @@ public class NotificationActivity extends AppCompatActivity implements FragmentN
         binding.recView.setLayoutManager(new LinearLayoutManager(this));
         binding.recView.setAdapter(adapter);
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-        binding.llBack.setOnClickListener(view -> finish());
+        binding.llBack.setOnClickListener(view -> onBackPressed());
         preferences = Preferences.getInstance();
         userModel = preferences.getUserData(this);
         presenter = new FragmentNotificationPresenter(this,this);
@@ -95,6 +96,8 @@ public class NotificationActivity extends AppCompatActivity implements FragmentN
 
     @Override
     public void onSuccess(List<NotificationModel> notificationModelList) {
+        isNotificationCountChanged = true;
+
         if (notificationModelList.size()>0){
             binding.tvNoData.setVisibility(View.GONE);
             this.notificationModelList.addAll(notificationModelList);
@@ -132,5 +135,13 @@ public class NotificationActivity extends AppCompatActivity implements FragmentN
     public void hideProgressBar() {
         binding.progBar.setVisibility(View.GONE);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isNotificationCountChanged){
+            setResult(RESULT_OK);
+        }
+        finish();
     }
 }

@@ -32,6 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:background="@color/color1"
                     >
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -160,13 +161,7 @@
                                     user_image="@{userModel.logo}"
                                     android:layout_gravity="center"
                                     />
-                                <ImageView
-                                    android:layout_width="36dp"
-                                    android:layout_height="30dp"
-                                    image="@{model.flag}"
-                                    android:src="@color/white"
-                                    android:scaleType="centerCrop"
-                                    />
+
                             </FrameLayout>
 
                             <TextView

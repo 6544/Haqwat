@@ -25,6 +25,7 @@ import com.haqwat.R;
 import com.haqwat.databinding.ActivityHomeBinding;
 import com.haqwat.language.Language;
 import com.haqwat.models.AccountsModel;
+import com.haqwat.models.NotificationCountModel;
 import com.haqwat.models.UserModel;
 import com.haqwat.mvp.activity_home_mvp.ActivityHomePresenter;
 import com.haqwat.mvp.activity_home_mvp.ActivityHomeView;
@@ -56,6 +57,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
     private ProgressDialog dialog;
     private String lang;
     private int count =0;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
@@ -76,8 +78,10 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
         userModel = preferences.getUserData(this);
         binding.setModel(userModel);
         binding.setGiftsCount(0);
+        binding.setNotificationCount(0);
         fragmentManager = getSupportFragmentManager();
         presenter = new ActivityHomePresenter(this,this,fragmentManager);
+        presenter.getNotificationCount(userModel);
         toggle = new ActionBarDrawerToggle(this,binding.drawerLayout,binding.toolBar,R.string.open,R.string.close);
         toggle.syncState();
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
@@ -104,10 +108,10 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
         });
         binding.imageNotification.setOnClickListener(view -> {
             Intent intent = new Intent(this, NotificationActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,500);
         });
 
-        binding.imageEdit.setOnClickListener(view ->presenter.createImageDialog());
+        //binding.imageEdit.setOnClickListener(view ->presenter.createImageDialog());
 
         binding.mSwitch.setOnClickListener(view -> {
             if (binding.mSwitch.isChecked()){
@@ -137,6 +141,8 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
         });
         dialog = Common.createProgressDialog(this,getString(R.string.wait));
         dialog.setCanceledOnTouchOutside(false);
+
+
 
 
 
@@ -190,6 +196,11 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
     public void onStatusSuccess(UserModel userModel) {
         this.userModel = userModel;
         binding.setModel(userModel);
+    }
+
+    @Override
+    public void onNotificationCountSuccess(NotificationCountModel notificationCountModel) {
+        binding.setNotificationCount(notificationCountModel.getCount());
     }
 
     @Override
@@ -253,11 +264,10 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
 
 
 
+        }else if (requestCode == 500 && resultCode == Activity.RESULT_OK) {
+            binding.setNotificationCount(0);
         }
     }
-
-
-
     private Uri getUriFromBitmap(Bitmap bitmap)
     {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();

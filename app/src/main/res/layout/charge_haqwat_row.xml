@@ -5,6 +5,9 @@
         <variable
             name="model"
             type="com.haqwat.models.ChargeModel" />
+        <variable
+            name="lang"
+            type="String" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
@@ -77,7 +80,7 @@
                 android:textStyle="bold"
                 android:textSize="15sp"
                 android:gravity="center"
-                android:text='@{model.true_expectations_count+"/"+model.all_expectations_count}'
+                android:text='@{lang.equals("ar")?(model.all_expectations_count+"/"+model.true_expectations_count):(model.true_expectations_count+"/"+model.all_expectations_count)}'
                 />
             <FrameLayout
                 android:layout_width="0dp"

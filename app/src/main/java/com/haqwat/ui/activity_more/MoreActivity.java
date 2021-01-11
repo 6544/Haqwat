@@ -1,15 +1,21 @@
 package com.haqwat.ui.activity_more;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.provider.MediaStore;
 import android.widget.Toast;
 
 import com.haqwat.R;
@@ -17,6 +23,9 @@ import com.haqwat.databinding.ActivityMoreBinding;
 import com.haqwat.language.Language;
 import com.haqwat.models.AccountsModel;
 import com.haqwat.models.UserModel;
+import com.haqwat.mvp.activity_home_mvp.ActivityHomePresenter;
+import com.haqwat.mvp.activity_more_mvp.ActivityMorePresenter;
+import com.haqwat.mvp.activity_more_mvp.ActivityMoreView;
 import com.haqwat.preferences.Preferences;
 import com.haqwat.ui.activity_accounts.AccountsActivity;
 import com.haqwat.ui.activity_champion_system.ChampionSystemActivity;
@@ -24,14 +33,17 @@ import com.haqwat.ui.activity_gifts.GiftsActivity;
 import com.haqwat.ui.activity_password.PasswordActivity;
 import com.haqwat.ui.activity_update_profile.UpdateProfileActivity;
 
+import java.io.ByteArrayOutputStream;
+
 import io.paperdb.Paper;
 
-public class MoreActivity extends AppCompatActivity {
+public class MoreActivity extends AppCompatActivity implements ActivityMoreView {
     private ActivityMoreBinding binding;
     private Preferences preference;
     private UserModel userModel;
     private int giftCount = 0;
     private String lang="ar";
+    private ActivityMorePresenter presenter;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -61,6 +73,7 @@ public class MoreActivity extends AppCompatActivity {
         binding.setGiftsCount(giftCount);
         binding.setLang(lang);
         binding.setModel(userModel);
+        presenter = new ActivityMorePresenter(this,this);
         binding.llSwitchAccount.setOnClickListener(view -> {
             Intent intent = new Intent(this, AccountsActivity.class);
             startActivityForResult(intent, 100);
@@ -91,6 +104,8 @@ public class MoreActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ChampionSystemActivity.class);
             startActivity(intent);
         });
+
+        binding.imageEdit.setOnClickListener(view ->presenter.createImageDialog());
 
 
         binding.llCode.setOnClickListener(view -> {
@@ -129,6 +144,20 @@ public class MoreActivity extends AppCompatActivity {
         else if (requestCode == 400 && resultCode == RESULT_OK) {
            userModel = preference.getUserData(this);
            binding.setModel(userModel);
+        }else if (requestCode == ActivityMorePresenter.READ_REQ && resultCode == Activity.RESULT_OK && data != null) {
+
+            Uri uri = data.getData();
+            presenter.updateImage(uri);
+
+        } else if (requestCode == ActivityMorePresenter.CAMERA_REQ && resultCode == Activity.RESULT_OK && data != null) {
+
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            Uri uri = getUriFromBitmap(bitmap);
+            if (uri != null) {
+                presenter.updateImage(uri);
+            }
+
+
         }
     }
 
@@ -140,4 +169,47 @@ public class MoreActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
+
+    @Override
+    public void onUserUpdate(UserModel userModel) {
+        preference.create_update_userdata(this,userModel);
+        this.userModel = userModel;
+        binding.setModel(userModel);
+    }
+
+    @Override
+    public void onFailed(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    private Uri getUriFromBitmap(Bitmap bitmap)
+    {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        return Uri.parse(MediaStore.Images.Media.insertImage(this.getContentResolver(), bitmap, "", ""));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == ActivityHomePresenter.READ_REQ) {
+
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                presenter.SelectImage(requestCode);
+            } else {
+                Toast.makeText(this, "Permission access photos denied", Toast.LENGTH_SHORT).show();
+            }
+
+        } else if (requestCode == ActivityHomePresenter.CAMERA_REQ) {
+            if (grantResults.length > 0 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                    grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+
+                presenter.SelectImage(requestCode);
+            } else {
+                Toast.makeText(this, "Permission access photos denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 }

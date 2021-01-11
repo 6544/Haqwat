@@ -14,12 +14,15 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.haqwat.R;
+import com.haqwat.adapters.BestLeagueAdapter;
 import com.haqwat.adapters.FavoriteTeamAdapter;
 import com.haqwat.adapters.HomeJoinedTeamAdapter;
 import com.haqwat.databinding.FragmentHomeBinding;
+import com.haqwat.models.BestThreeLeagueModel;
 import com.haqwat.models.HomeJoinedTeamsModel;
 import com.haqwat.models.HomeModel;
 import com.haqwat.models.TeamOrderModel;
@@ -43,6 +46,8 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
     private Preferences preferences;
     private UserModel userModel;
     private List<HomeJoinedTeamsModel> homeJoinedTeamsModelList;
+    private List<BestThreeLeagueModel> bestThreeLeagueModelList;
+    private BestLeagueAdapter bestLeagueAdapter;
     private HomeJoinedTeamAdapter  adapter;
 
 
@@ -60,6 +65,7 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
 
     private void initView()
     {
+        bestThreeLeagueModelList = new ArrayList<>();
         homeJoinedTeamsModelList = new ArrayList<>();
         activity = (HomeActivity) getActivity();
 
@@ -70,8 +76,14 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
         adapter = new HomeJoinedTeamAdapter(homeJoinedTeamsModelList,activity);
         binding.recView.setAdapter(adapter);
 
+        binding.recViewBestLeague.setLayoutManager(new GridLayoutManager(activity,3));
+        bestLeagueAdapter = new BestLeagueAdapter(bestThreeLeagueModelList,activity);
+        binding.recViewBestLeague.setAdapter(bestLeagueAdapter);
+
+
         presenter = new FragmentHomePresenter(this,activity);
         presenter.getData(userModel);
+        presenter.getBestLeague();
 
 
 
@@ -110,6 +122,7 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
         binding.progBarLoadAverageRate.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
         binding.progBarLoadRate.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
         binding.progBarLoadTeam.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
+        binding.progBarBestLeague.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
 
     }
 
@@ -143,6 +156,19 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
     }
 
     @Override
+    public void showProgressBestLeague() {
+        binding.progBarBestLeague.setVisibility(View.VISIBLE);
+        bestThreeLeagueModelList.clear();
+        bestLeagueAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void hideProgressBestLeague() {
+        binding.progBarBestLeague.setVisibility(View.GONE);
+
+    }
+
+    @Override
     public void onDataSuccess(HomeModel homeModel) {
         activity.updateGiftCount(homeModel.getAllowable_leagues_count());
         binding.progBarAverageRate.setVisibility(View.VISIBLE);
@@ -157,6 +183,18 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
         binding.nestedScrollView.getParent().requestChildFocus(binding.nestedScrollView,binding.nestedScrollView);
 
 
+    }
+
+    @Override
+    public void onBestLeagueSuccess(List<BestThreeLeagueModel> data) {
+        if (data.size()>0){
+            binding.tvNoDataBestLeague.setVisibility(View.GONE);
+            bestThreeLeagueModelList.addAll(data);
+            bestLeagueAdapter.notifyDataSetChanged();
+        }else {
+            binding.tvNoDataBestLeague.setVisibility(View.VISIBLE);
+
+        }
     }
 
 

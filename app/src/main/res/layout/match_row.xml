@@ -26,8 +26,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginTop="3dp"
 
             >
@@ -49,9 +49,11 @@
                     android:id="@+id/tvMid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="10sp"
                     android:textColor="@color/white"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
                     />
 
             </FrameLayout>
@@ -75,9 +77,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
+                    android:textSize="10sp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
                     />
             </FrameLayout>
             <FrameLayout
@@ -102,9 +104,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
+                    android:textSize="10sp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
 
                     />
             </FrameLayout>
@@ -124,18 +126,18 @@
             android:layout_marginEnd="20dp"
             >
             <Space
-                android:layout_width="10dp"
+                android:layout_width="35dp"
                 android:layout_height="0dp"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1.1"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="center"
                 android:textColor="@color/black"
-                android:textSize="11sp"
-                android:singleLine="true"
+                android:textSize="10sp"
                 android:ellipsize="end"
-                android:gravity="end"
+                android:lines="2"
+                android:gravity="center"
                 android:text="@{model.first_team.title}"
 
                 />
@@ -175,16 +177,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/black"
-                android:textSize="11sp"
-                android:singleLine="true"
+                android:textSize="10sp"
                 android:ellipsize="end"
-                android:gravity="start"
+                android:gravity="center"
+                android:lines="2"
                 android:text="@{model.second_team.title}"
 
 
                 />
             <Space
-                android:layout_width="10dp"
+                android:layout_width="35dp"
                 android:layout_height="0dp"/>
         </LinearLayout>
 
@@ -296,8 +298,8 @@
         </LinearLayout>
 
         <FrameLayout
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
@@ -312,8 +314,8 @@
                 />
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center"
                 image="@{model.first_team.logo}"
                 />
@@ -328,8 +330,8 @@
         </FrameLayout>
 
         <FrameLayout
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             >
@@ -341,8 +343,8 @@
                 />
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center"
                 image="@{model.second_team.logo}"
                 />

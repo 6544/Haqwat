@@ -24,6 +24,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.haqwat.R;
 import com.haqwat.databinding.DialogSelectImageBinding;
 import com.haqwat.models.AccountsModel;
+import com.haqwat.models.NotificationCountModel;
 import com.haqwat.models.UserModel;
 import com.haqwat.preferences.Preferences;
 import com.haqwat.remote.Api;
@@ -479,4 +480,50 @@ public class ActivityHomePresenter {
                 });
     }
 
+    public void getNotificationCount(UserModel userModel)
+    {
+        if (userModel==null){
+            return;
+        }
+        Api.getService(Tags.base_url).getNotificationCount("Bearer "+userModel.getToken())
+                .enqueue(new Callback<NotificationCountModel>() {
+                    @Override
+                    public void onResponse(Call<NotificationCountModel> call, Response<NotificationCountModel> response) {
+                        if (response.isSuccessful()){
+                            view.onNotificationCountSuccess(response.body());
+                        }else {
+
+                            try {
+                                view.onLogoutFailed(context.getString(R.string.failed));
+                                Log.e("error",response.code()+"_"+response.errorBody().string());
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<NotificationCountModel> call, Throwable t) {
+                        try {
+                            view.hideProgressDialog();
+
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage() + "__");
+
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    view.onLogoutFailed(context.getString(R.string.something));
+
+                                } else {
+                                    view.onLogoutFailed(context.getString(R.string.failed));
+
+                                }
+                            }
+
+
+                        }catch (Exception e){}
+
+                    }
+                });
+    }
 }

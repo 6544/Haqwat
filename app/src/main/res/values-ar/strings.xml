@@ -175,6 +175,9 @@
     <string name="check_code">تحقق</string>
     <string name="verification_code_incorrect">رمز التحقق غير صحيح</string>
     <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="subscribers">مشتركين</string>
+    <string name="the_best_leagues">افضل الدوريات على مستوى التطبيق</string>
+    <string name="subscribed_leagues">الدوريات المشترك فيها</string>
 
 
 </resources>

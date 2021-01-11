@@ -110,13 +110,29 @@
                        android:layout_height="wrap_content"
                        android:orientation="vertical"
                        >
-                       <Spinner
-                           android:id="@+id/spinnerFavTeam"
+                       <FrameLayout
                            android:layout_width="match_parent"
                            android:layout_height="40dp"
-                           app:backgroundTint="@color/colorPrimaryDark"
-                           android:spinnerMode="dialog"
-                           />
+                           >
+                           <Spinner
+                               android:id="@+id/spinnerFavTeam"
+                               android:layout_width="match_parent"
+                               android:layout_height="40dp"
+                               app:backgroundTint="@color/colorPrimaryDark"
+                               android:spinnerMode="dialog"
+                               android:visibility='@{model.single_nomination!=null?View.GONE:View.VISIBLE,default=visible}'
+                               />
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_gravity="center"
+                               android:textSize="15sp"
+                               android:textColor="@color/colorPrimaryDark"
+                               android:text='@{model.single_nomination!=null?model.single_nomination.favorite_team.title:""}'
+                               android:visibility='@{model.single_nomination!=null?View.VISIBLE:View.GONE,default=gone}'
+
+                               />
+                       </FrameLayout>
                        <View
                            android:layout_width="match_parent"
                            android:layout_height="1dp"
@@ -150,14 +166,32 @@
                        android:layout_height="wrap_content"
                        android:orientation="vertical"
                        >
-                       <Spinner
-                           android:id="@+id/spinnerRecommendedTeam"
+                       <FrameLayout
                            android:layout_width="match_parent"
                            android:layout_height="40dp"
-                           app:backgroundTint="@color/colorPrimaryDark"
-                           android:spinnerMode="dialog"
+                           >
+                           <Spinner
+                               android:id="@+id/spinnerRecommendedTeam"
+                               android:layout_width="match_parent"
+                               android:layout_height="40dp"
+                               app:backgroundTint="@color/colorPrimaryDark"
+                               android:spinnerMode="dialog"
+                               android:visibility='@{model.single_nomination!=null?View.GONE:View.VISIBLE,default=visible}'
 
-                           />
+
+                               />
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_gravity="center"
+                               android:textSize="15sp"
+                               android:textColor="@color/colorPrimaryDark"
+                               android:text='@{model.single_nomination!=null?model.single_nomination.recommended_team.title:""}'
+                               android:visibility='@{model.single_nomination!=null?View.VISIBLE:View.GONE,default=gone}'
+
+                               />
+                       </FrameLayout>
+
                        <View
                            android:layout_width="match_parent"
                            android:layout_height="1dp"
@@ -178,7 +212,6 @@
                    android:background="@drawable/rounded_green"
                    android:layout_marginTop="8dp"
                    android:layout_marginBottom="8dp"
-                   android:visibility='@{model.single_nomination==null?View.GONE:View.VISIBLE,default=invisible}'
 
                    />
            </LinearLayout>

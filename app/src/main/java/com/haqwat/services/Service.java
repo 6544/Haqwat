@@ -1,6 +1,7 @@
 package com.haqwat.services;
 
 import com.haqwat.models.AppDataModel;
+import com.haqwat.models.BestThreeLeagueDataModel;
 import com.haqwat.models.InvitesLeagueDataModel;
 import com.haqwat.models.NominationDataModel;
 import com.haqwat.models.ChargeDataModel;
@@ -11,6 +12,7 @@ import com.haqwat.models.LeagueRateModel;
 import com.haqwat.models.MatchesDataModel;
 import com.haqwat.models.MatchesModel;
 import com.haqwat.models.NationalityDataModel;
+import com.haqwat.models.NotificationCountModel;
 import com.haqwat.models.NotificationDataModel;
 import com.haqwat.models.PlaceGeocodeData;
 import com.haqwat.models.PlaceMapDetailsData;
@@ -306,7 +308,14 @@ public interface Service {
     @FormUrlEncoded
     @POST("api/resetPassword")
     Call<UserModel> restPassword(@Header("Authorization") String bearer_token,
-                                                  @Field("password") String password
+                                 @Field("password") String password
 
     );
+
+    @GET("api/bestThreeLeague")
+    Call<BestThreeLeagueDataModel> getBestLeague();
+
+    @GET("api/notification/count")
+    Call<NotificationCountModel> getNotificationCount(@Header("Authorization") String bearer_token);
+
 }
