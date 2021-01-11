@@ -56,23 +56,24 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
     private Preferences preferences;
     private ProgressDialog dialog;
     private String lang;
-    private int count =0;
+    private int count = 0;
 
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
         super.attachBaseContext(Language.updateResources(newBase, Paper.book().read("lang", "ar")));
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_home);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         initView();
     }
 
     private void initView() {
         Paper.init(this);
-        lang = Paper.book().read("lang","ar");
+        lang = Paper.book().read("lang", "ar");
         binding.setLang(lang);
         preferences = Preferences.getInstance();
         userModel = preferences.getUserData(this);
@@ -80,12 +81,13 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
         binding.setGiftsCount(0);
         binding.setNotificationCount(0);
         fragmentManager = getSupportFragmentManager();
-        presenter = new ActivityHomePresenter(this,this,fragmentManager);
+        presenter = new ActivityHomePresenter(this, this, fragmentManager, binding.bottomNavigation);
         presenter.getNotificationCount(userModel);
-        toggle = new ActionBarDrawerToggle(this,binding.drawerLayout,binding.toolBar,R.string.open,R.string.close);
+        toggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolBar, R.string.open, R.string.close);
         toggle.syncState();
+        binding.bottomNavigation.setSelectedItemId(R.id.home);
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
-            if (!backPress){
+            if (!backPress) {
                 presenter.openFragment(item);
             }
             backPress = false;
@@ -94,13 +96,13 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
 
         binding.imageProfile.setOnClickListener(view -> {
             Intent intent = new Intent(this, MoreActivity.class);
-            intent.putExtra("gift",count);
-            startActivityForResult(intent,400);
+            intent.putExtra("gift", count);
+            startActivityForResult(intent, 400);
         });
 
         binding.llChangeLanguage.setOnClickListener(view -> {
             Intent intent = new Intent(this, LanguageActivity.class);
-            startActivityForResult(intent,100);
+            startActivityForResult(intent, 100);
         });
         binding.llContactUs.setOnClickListener(view -> {
             Intent intent = new Intent(this, ContactUsActivity.class);
@@ -108,15 +110,15 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
         });
         binding.imageNotification.setOnClickListener(view -> {
             Intent intent = new Intent(this, NotificationActivity.class);
-            startActivityForResult(intent,500);
+            startActivityForResult(intent, 500);
         });
 
         //binding.imageEdit.setOnClickListener(view ->presenter.createImageDialog());
 
         binding.mSwitch.setOnClickListener(view -> {
-            if (binding.mSwitch.isChecked()){
+            if (binding.mSwitch.isChecked()) {
                 presenter.updateNotificationStatus("on");
-            }else {
+            } else {
                 presenter.updateNotificationStatus("off");
 
             }
@@ -124,13 +126,13 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
 
         binding.llAboutApp.setOnClickListener(view -> {
             Intent intent = new Intent(this, WebViewActivity.class);
-            intent.putExtra("url","http://hqwat.com/app-setting#2");
+            intent.putExtra("url", "http://hqwat.com/app-setting#2");
             startActivity(intent);
         });
 
         binding.llPolicy.setOnClickListener(view -> {
             Intent intent = new Intent(this, WebViewActivity.class);
-            intent.putExtra("url","http://hqwat.com/app-setting#3");
+            intent.putExtra("url", "http://hqwat.com/app-setting#3");
             startActivity(intent);
         });
 
@@ -139,16 +141,13 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             intent.putExtra("url", Tags.base_url);
             startActivity(intent);
         });
-        dialog = Common.createProgressDialog(this,getString(R.string.wait));
+        dialog = Common.createProgressDialog(this, getString(R.string.wait));
         dialog.setCanceledOnTouchOutside(false);
-
-
-
 
 
     }
 
-    public void updateGiftCount(int count){
+    public void updateGiftCount(int count) {
         this.count = count;
         binding.setGiftsCount(count);
     }
@@ -161,17 +160,17 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
     @Override
     public void onLogoutSuccess(AccountsModel model) {
 
-        AccountsModel currentAccount = preferences.getMyCurrentAccount(this,userModel.getEmail());
-        if (currentAccount!=null){
+        AccountsModel currentAccount = preferences.getMyCurrentAccount(this, userModel.getEmail());
+        if (currentAccount != null) {
             currentAccount.setLoggedIn(false);
-            preferences.createAccount(this,currentAccount);
+            preferences.createAccount(this, currentAccount);
         }
 
         preferences.clear(this);
-        Intent intent  = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
 
-        if (model!=null){
-            intent.putExtra("account",model);
+        if (model != null) {
+            intent.putExtra("account", model);
         }
 
         startActivity(intent);
@@ -187,7 +186,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
     @Override
     public void onUserUpdate(UserModel userModel) {
         this.userModel = userModel;
-        preferences.create_update_userdata(this,userModel);
+        preferences.create_update_userdata(this, userModel);
         binding.setModel(userModel);
 
     }
@@ -221,11 +220,11 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==100&&resultCode==RESULT_OK){
+        if (requestCode == 100 && resultCode == RESULT_OK) {
             Paper.init(this);
-            String lang = Paper.book().read("lang","ar");
+            String lang = Paper.book().read("lang", "ar");
             refreshActivity(lang);
-        }else if (requestCode == ActivityHomePresenter.READ_REQ && resultCode == Activity.RESULT_OK && data != null) {
+        } else if (requestCode == ActivityHomePresenter.READ_REQ && resultCode == Activity.RESULT_OK && data != null) {
 
             Uri uri = data.getData();
             presenter.updateImage(uri);
@@ -239,22 +238,22 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             }
 
 
-        }else if (requestCode == 400 && resultCode == Activity.RESULT_OK && data != null) {
+        } else if (requestCode == 400 && resultCode == Activity.RESULT_OK && data != null) {
 
             String type = data.getStringExtra("type");
 
-            if (type.equals("password")){
+            if (type.equals("password")) {
                 String password = data.getStringExtra("password");
                 presenter.changePassword(password);
-            }else if (type.equals("account")){
+            } else if (type.equals("account")) {
                 AccountsModel model = (AccountsModel) data.getSerializableExtra("account");
-                presenter.logout(userModel,model);
+                presenter.logout(userModel, model);
 
-            }else if (type.equals("logout")){
-                presenter.logout(userModel,null);
+            } else if (type.equals("logout")) {
+                presenter.logout(userModel, null);
 
-            }else if (type.equals("gift")){
-                int count = data.getIntExtra("count",0);
+            } else if (type.equals("gift")) {
+                int count = data.getIntExtra("count", 0);
                 binding.setGiftsCount(count);
             }
 
@@ -262,14 +261,12 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             binding.setModel(userModel);
 
 
-
-
-        }else if (requestCode == 500 && resultCode == Activity.RESULT_OK) {
+        } else if (requestCode == 500 && resultCode == Activity.RESULT_OK) {
             binding.setNotificationCount(0);
         }
     }
-    private Uri getUriFromBitmap(Bitmap bitmap)
-    {
+
+    private Uri getUriFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         return Uri.parse(MediaStore.Images.Media.insertImage(this.getContentResolver(), bitmap, "", ""));

@@ -59,10 +59,10 @@ public class LeagueCategoryAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             myHolder.binding.image.setBorderColor(ContextCompat.getColor(context,R.color.color12));
             myHolder.binding.tvName.setTextColor(ContextCompat.getColor(context,R.color.color12));
         }else {
-            myHolder.binding.icon.setColorFilter(ContextCompat.getColor(context,R.color.color13));
+            myHolder.binding.icon.setColorFilter(ContextCompat.getColor(context,R.color.gray5));
             myHolder.binding.image.setBorderWidth(1);
-            myHolder.binding.image.setBorderColor(ContextCompat.getColor(context,R.color.color13));
-            myHolder.binding.tvName.setTextColor(ContextCompat.getColor(context,R.color.color13));
+            myHolder.binding.image.setBorderColor(ContextCompat.getColor(context,R.color.gray5));
+            myHolder.binding.tvName.setTextColor(ContextCompat.getColor(context,R.color.gray5));
 
         }
 

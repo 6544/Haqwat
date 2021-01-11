@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.haqwat.R;
 import com.haqwat.databinding.DialogSelectImageBinding;
 import com.haqwat.models.AccountsModel;
@@ -67,15 +68,18 @@ public class ActivityHomePresenter {
     private HomeActivity activity;
     private UserModel userModel;
     private Preferences preferences;
+    private BottomNavigationView bottomNavigationView;
 
 
-    public ActivityHomePresenter(ActivityHomeView view, Context context, FragmentManager fragmentManager) {
+    public ActivityHomePresenter(ActivityHomeView view, Context context, FragmentManager fragmentManager, BottomNavigationView bottomNavigation) {
         this.view = view;
         this.context = context;
         activity = (HomeActivity) context;
         preferences = Preferences.getInstance();
         userModel = preferences.getUserData(context);
         this.fragmentManager = fragmentManager;
+        this.bottomNavigationView = bottomNavigation;
+        this.bottomNavigationView.setSelectedItemId(R.id.home);
         displayFragment(true,tagHome);
     }
 

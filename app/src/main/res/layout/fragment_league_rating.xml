@@ -149,6 +149,7 @@
                             <FrameLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
 
                                 >
                                 <de.hdodenhof.circleimageview.CircleImageView
@@ -159,7 +160,7 @@
                                     app:civ_border_color="@color/white"
                                     android:src="@drawable/ic_avatar"
                                     user_image="@{userModel.logo}"
-                                    android:layout_gravity="center"
+                                    android:layout_gravity="center_horizontal"
                                     />
 
                             </FrameLayout>
@@ -167,11 +168,12 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
+                                android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="10dp"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
                                 android:singleLine="true"
+
                                 android:text="@{userModel.name}"
                                 />
                         </LinearLayout>
