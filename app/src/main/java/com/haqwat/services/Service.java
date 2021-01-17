@@ -2,6 +2,7 @@ package com.haqwat.services;
 
 import com.haqwat.models.AppDataModel;
 import com.haqwat.models.BestThreeLeagueDataModel;
+import com.haqwat.models.BestThreeTeamDataModel;
 import com.haqwat.models.InvitesLeagueDataModel;
 import com.haqwat.models.NominationDataModel;
 import com.haqwat.models.ChargeDataModel;
@@ -315,7 +316,11 @@ public interface Service {
     @GET("api/bestThreeLeague")
     Call<BestThreeLeagueDataModel> getBestLeague();
 
+    @GET("api/bestThreeNominationsInLeague")
+    Call<BestThreeTeamDataModel> getBestTeams();
+
     @GET("api/notification/count")
     Call<NotificationCountModel> getNotificationCount(@Header("Authorization") String bearer_token);
+
 
 }

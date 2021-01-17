@@ -77,4 +77,54 @@ public class FragmentTeamRatePresenter {
                     }
                 });
     }
+
+    public void getData2(String league_id,String user_id)
+    {
+        view.showProgressBar();
+        Api.getService(Tags.base_url).getShareData(league_id,user_id)
+                .enqueue(new Callback<LeagueRateModel>() {
+                    @Override
+                    public void onResponse(Call<LeagueRateModel> call, Response<LeagueRateModel> response) {
+                        if (response.isSuccessful()) {
+                            view.hideProgressBar();
+                            view.onSuccess(response.body());
+                        } else {
+                            view.hideProgressBar();
+
+                            try {
+                                view.onFailed(context.getString(R.string.failed));
+
+
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<LeagueRateModel> call, Throwable t) {
+                        try {
+                            view.hideProgressBar();
+
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage() + "__");
+
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    view.onFailed(context.getString(R.string.something));
+
+                                } else {
+                                    view.onFailed(context.getString(R.string.failed));
+
+                                }
+                            }
+
+
+                        } catch (Exception e) {
+                        }
+
+                    }
+                });
+    }
 }

@@ -1,6 +1,7 @@
 package com.haqwat.mvp.fragment_home_mvp;
 
 import com.haqwat.models.BestThreeLeagueModel;
+import com.haqwat.models.BestThreeTeamModel;
 import com.haqwat.models.HomeModel;
 import com.haqwat.models.UserModel;
 
@@ -15,6 +16,10 @@ public interface FragmentHomeView {
 
     void onDataSuccess(HomeModel homeModel);
     void onBestLeagueSuccess(List<BestThreeLeagueModel> data);
+    void onBestTeamsSuccess(List<BestThreeTeamModel> data);
+
+    void showProgressBestTeam();
+    void hideProgressBestTeam();
     void onFailed(String msg);
 
 }

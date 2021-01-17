@@ -19,10 +19,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.haqwat.R;
 import com.haqwat.adapters.BestLeagueAdapter;
+import com.haqwat.adapters.BestTeamAdapter;
 import com.haqwat.adapters.FavoriteTeamAdapter;
 import com.haqwat.adapters.HomeJoinedTeamAdapter;
 import com.haqwat.databinding.FragmentHomeBinding;
 import com.haqwat.models.BestThreeLeagueModel;
+import com.haqwat.models.BestThreeTeamModel;
 import com.haqwat.models.HomeJoinedTeamsModel;
 import com.haqwat.models.HomeModel;
 import com.haqwat.models.TeamOrderModel;
@@ -49,6 +51,8 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
     private List<BestThreeLeagueModel> bestThreeLeagueModelList;
     private BestLeagueAdapter bestLeagueAdapter;
     private HomeJoinedTeamAdapter  adapter;
+    private List<BestThreeTeamModel> bestThreeTeamModelList;
+    private BestTeamAdapter bestTeamAdapter;
 
 
 
@@ -65,6 +69,7 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
 
     private void initView()
     {
+        bestThreeTeamModelList = new ArrayList<>();
         bestThreeLeagueModelList = new ArrayList<>();
         homeJoinedTeamsModelList = new ArrayList<>();
         activity = (HomeActivity) getActivity();
@@ -81,9 +86,16 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
         binding.recViewBestLeague.setAdapter(bestLeagueAdapter);
 
 
+        binding.recViewBestRecommended.setLayoutManager(new LinearLayoutManager(activity));
+        bestTeamAdapter = new BestTeamAdapter(bestThreeTeamModelList,activity);
+        binding.recViewBestRecommended.setAdapter(bestTeamAdapter);
+
+
+
         presenter = new FragmentHomePresenter(this,activity);
         presenter.getData(userModel);
         presenter.getBestLeague();
+        presenter.getBestTeams();
 
 
 
@@ -123,6 +135,7 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
         binding.progBarLoadRate.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
         binding.progBarLoadTeam.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
         binding.progBarBestLeague.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
+        binding.progBarBestRecommended.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
 
     }
 
@@ -200,6 +213,32 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
             binding.tvNoDataBestLeague.setVisibility(View.VISIBLE);
 
         }
+    }
+
+    @Override
+    public void onBestTeamsSuccess(List<BestThreeTeamModel> data) {
+        if (data.size()>0){
+            Log.e("ddd","ddd");
+            binding.tvNoDataBestRecommended.setVisibility(View.GONE);
+            bestThreeTeamModelList.addAll(data);
+            bestTeamAdapter.notifyDataSetChanged();
+        }else {
+            binding.tvNoDataBestRecommended.setVisibility(View.VISIBLE);
+
+        }
+    }
+
+    @Override
+    public void showProgressBestTeam() {
+        binding.progBarBestRecommended.setVisibility(View.VISIBLE);
+        bestThreeTeamModelList.clear();
+        bestTeamAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void hideProgressBestTeam() {
+        binding.progBarBestRecommended.setVisibility(View.GONE);
+
     }
 
 

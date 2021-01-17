@@ -238,7 +238,8 @@ public class Fragment_League_Rating extends Fragment implements FragmentTeamRate
 
         binding.btnContinue.setOnClickListener(v -> {
                     dialog.dismiss();
-                    activity.secondFragment();
+                    presenter.getData2(league_id, String.valueOf(userModel.getId()));
+                    //activity.secondFragment();
                 }
 
         );
