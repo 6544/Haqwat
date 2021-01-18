@@ -80,6 +80,7 @@ public class FragmentTeamRatePresenter {
 
     public void getData2(String league_id,String user_id)
     {
+        Log.e("ddd","fff");
         view.showProgressBar();
         Api.getService(Tags.base_url).getShareData(league_id,user_id)
                 .enqueue(new Callback<LeagueRateModel>() {

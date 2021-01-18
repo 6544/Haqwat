@@ -54,10 +54,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".7"
                 android:layout_gravity="center_vertical"
-                android:textSize="18sp"
+                android:textSize="13sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:text="%"
+                android:text="@string/points"
                 android:gravity="center"
                 />
         </LinearLayout>
