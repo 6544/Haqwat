@@ -102,6 +102,8 @@ public class Fragment_Home extends Fragment implements FragmentHomeView {
         binding.img1.setOnClickListener(view -> {
             navigateToLeagueDetailsActivity(getString(R.string.champions_league), Tags.CHAMPIONS_LEAGUE);
         });
+
+
         binding.img2.setOnClickListener(view -> {
             navigateToLeagueDetailsActivity(getString(R.string.egyptian_league),Tags.EGYPTIAN_LEAGUE);
         });
