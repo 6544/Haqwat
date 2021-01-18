@@ -87,14 +87,14 @@
                 android:layout_weight=".7"
                 android:layout_height="match_parent"
                 >
-                <ProgressBar
+               <!-- <ProgressBar
                     android:id="@+id/progBar"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:indeterminateOnly="false"
                     android:progressDrawable='@{model.in_haqawat_competition.equals("no")?@drawable/progress_bar_text6:@drawable/progress_bar_text7}'
-                    />
+                    />-->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                     android:textColor="@color/white"
                     android:layout_gravity="center"
                     android:textSize="13sp"
-                    android:text='@{model.rate+"%"}'
+                    android:text='@{String.valueOf(model.my_points)}'
                     />
             </FrameLayout>
 

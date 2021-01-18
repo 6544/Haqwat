@@ -66,7 +66,6 @@ public class Fragment_Charge extends Fragment implements FragmentChargeView {
     @Override
     public void onSuccess(ChargeDataModel chargeDataModel) {
         binding.setModel(chargeDataModel.getTotal());
-        binding.progBarTotal.setProgress(chargeDataModel.getTotal().getTotal_true_expectation_rate());
         chargeModelList.clear();
         chargeModelList.addAll(chargeDataModel.getLeagues());
         adapter.notifyDataSetChanged();

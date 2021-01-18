@@ -127,22 +127,14 @@
                 android:layout_weight=".7"
                 android:layout_height="match_parent"
                 >
-                <ProgressBar
-                    android:id="@+id/progBarTotal"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:progress="50"
-                    android:indeterminateOnly="false"
-                    android:progressDrawable="@drawable/progress_bar_text6"
-                    />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:layout_gravity="center"
                     android:textSize="13sp"
-                    android:text="0%"
+                    android:text="@{String.valueOf(model.total_my_points)}"
                     />
             </FrameLayout>
 

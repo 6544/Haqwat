@@ -17,6 +17,7 @@ public class ChargeModel implements Serializable {
     private int true_expectations_count;
     private int all_expectations_count;
     private int rate;
+    private int my_points;
 
     public int getId() {
         return id;
@@ -72,5 +73,9 @@ public class ChargeModel implements Serializable {
 
     public int getRate() {
         return rate;
+    }
+
+    public int getMy_points() {
+        return my_points;
     }
 }
