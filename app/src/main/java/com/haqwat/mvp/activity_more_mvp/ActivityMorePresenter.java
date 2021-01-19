@@ -24,6 +24,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.haqwat.R;
 import com.haqwat.databinding.DialogSelectImageBinding;
 import com.haqwat.models.AccountsModel;
+import com.haqwat.models.NotificationCountModel;
 import com.haqwat.models.UserModel;
 import com.haqwat.mvp.activity_home_mvp.ActivityHomeView;
 import com.haqwat.preferences.Preferences;
@@ -218,6 +219,55 @@ public class ActivityMorePresenter {
     }
 
 
+    public void updateNotificationStatus(String status){
+        ProgressDialog dialog = Common.createProgressDialog(context,context.getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        Api.getService(Tags.base_url).updateNotificationStatus("Bearer "+userModel.getToken(),status)
+                .enqueue(new Callback<UserModel>() {
+                    @Override
+                    public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                        dialog.dismiss();
+                        if (response.isSuccessful()&&response.body()!=null){
+                            Toast.makeText(context, context.getString(R.string.suc), Toast.LENGTH_SHORT).show();
+                            userModel.setNotification_status(response.body().getNotification_status());
+                            preferences.create_update_userdata(context,userModel);
+                            view.onStatusSuccess(response.body());
+                        }else {
+                            dialog.dismiss();
+                            try {
+                                view.onFailed(context.getString(R.string.failed));
+                                Log.e("error",response.code()+"_"+response.errorBody().string());
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserModel> call, Throwable t) {
+                        try {
+                            dialog.dismiss();
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage() + "__");
+
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    view.onFailed(context.getString(R.string.something));
+
+                                } else {
+                                    view.onFailed(context.getString(R.string.failed));
+
+                                }
+                            }
+
+
+                        }catch (Exception e){}
+
+                    }
+                });
+    }
 
 
 

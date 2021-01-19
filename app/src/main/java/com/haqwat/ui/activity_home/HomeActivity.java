@@ -19,6 +19,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Toast;
 
 import com.haqwat.R;
@@ -83,8 +84,9 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
         fragmentManager = getSupportFragmentManager();
         presenter = new ActivityHomePresenter(this, this, fragmentManager, binding.bottomNavigation);
         presenter.getNotificationCount(userModel);
-        toggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolBar, R.string.open, R.string.close);
-        toggle.syncState();
+        /*toggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolBar, R.string.open, R.string.close);
+        toggle.syncState();*/
+
         binding.bottomNavigation.setSelectedItemId(R.id.home);
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
             if (!backPress) {

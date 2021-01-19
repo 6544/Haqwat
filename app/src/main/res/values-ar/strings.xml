@@ -178,7 +178,8 @@
     <string name="subscribers">مشتركين</string>
     <string name="the_best_leagues">افضل الدوريات على مستوى التطبيق</string>
     <string name="subscribed_leagues">الدوريات المشترك فيها</string>
-    <string name="most_recommended_teams">أفضل الفرق المرشحة</string>
+    <string name="most_recommended_teams">أكثر الفرق المرشحة بالدوري</string>
+    <string name="about_hqwat">عن هقوات</string>
 
 
 </resources>

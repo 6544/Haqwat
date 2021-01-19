@@ -6,6 +6,7 @@ import com.haqwat.models.UserModel;
 public interface ActivityMoreView {
     void onUserUpdate(UserModel userModel);
     void onFailed(String msg);
+    void onStatusSuccess(UserModel userModel);
 
 
 }

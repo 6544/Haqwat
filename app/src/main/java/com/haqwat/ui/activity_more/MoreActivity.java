@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.Preference;
 import android.provider.MediaStore;
 import android.widget.Toast;
@@ -29,9 +30,13 @@ import com.haqwat.mvp.activity_more_mvp.ActivityMoreView;
 import com.haqwat.preferences.Preferences;
 import com.haqwat.ui.activity_accounts.AccountsActivity;
 import com.haqwat.ui.activity_champion_system.ChampionSystemActivity;
+import com.haqwat.ui.activity_contact_us.ContactUsActivity;
 import com.haqwat.ui.activity_gifts.GiftsActivity;
+import com.haqwat.ui.activity_language.LanguageActivity;
+import com.haqwat.ui.activity_notification.NotificationActivity;
 import com.haqwat.ui.activity_password.PasswordActivity;
 import com.haqwat.ui.activity_update_profile.UpdateProfileActivity;
+import com.haqwat.ui.activity_web_view.WebViewActivity;
 
 import java.io.ByteArrayOutputStream;
 
@@ -100,8 +105,30 @@ public class MoreActivity extends AppCompatActivity implements ActivityMoreView 
             finish();
         });
 
-        binding.llChampionSystem.setOnClickListener(view -> {
-            Intent intent = new Intent(this, ChampionSystemActivity.class);
+        binding.llChangeLanguage.setOnClickListener(view -> {
+            Intent intent = new Intent(this, LanguageActivity.class);
+            startActivityForResult(intent, 700);
+        });
+        binding.llContactUs.setOnClickListener(view -> {
+            Intent intent = new Intent(this, ContactUsActivity.class);
+            startActivity(intent);
+        });
+
+
+        //binding.imageEdit.setOnClickListener(view ->presenter.createImageDialog());
+
+        binding.mSwitch.setOnClickListener(view -> {
+            if (binding.mSwitch.isChecked()) {
+                presenter.updateNotificationStatus("on");
+            } else {
+                presenter.updateNotificationStatus("off");
+
+            }
+        });
+
+        binding.llAboutApp.setOnClickListener(view -> {
+            Intent intent = new Intent(this, WebViewActivity.class);
+            intent.putExtra("url", "http://hqwat.com/app-setting#2");
             startActivity(intent);
         });
 
@@ -140,11 +167,14 @@ public class MoreActivity extends AppCompatActivity implements ActivityMoreView 
             intent.putExtra("password", password);
             setResult(RESULT_OK, intent);
             finish();
-        }
-        else if (requestCode == 400 && resultCode == RESULT_OK) {
+        } else if (requestCode == 400 && resultCode == RESULT_OK) {
            userModel = preference.getUserData(this);
            binding.setModel(userModel);
-        }else if (requestCode == ActivityMorePresenter.READ_REQ && resultCode == Activity.RESULT_OK && data != null) {
+        }else if (requestCode == 700 && resultCode == RESULT_OK) {
+            Paper.init(this);
+            String lang = Paper.book().read("lang", "ar");
+            refreshActivity(lang);
+        } else if (requestCode == ActivityMorePresenter.READ_REQ && resultCode == Activity.RESULT_OK && data != null) {
 
             Uri uri = data.getData();
             presenter.updateImage(uri);
@@ -159,6 +189,8 @@ public class MoreActivity extends AppCompatActivity implements ActivityMoreView 
 
 
         }
+
+
     }
 
     @Override
@@ -182,13 +214,31 @@ public class MoreActivity extends AppCompatActivity implements ActivityMoreView 
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onStatusSuccess(UserModel userModel) {
+        this.userModel = userModel;
+        binding.setModel(userModel);
+    }
+
     private Uri getUriFromBitmap(Bitmap bitmap)
     {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         return Uri.parse(MediaStore.Images.Media.insertImage(this.getContentResolver(), bitmap, "", ""));
     }
+    public void refreshActivity(String lang) {
+        Paper.book().write("lang", lang);
+        Language.updateResources(this, lang);
+        new Handler()
+                .postDelayed(() -> {
 
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+                }, 1050);
+
+
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

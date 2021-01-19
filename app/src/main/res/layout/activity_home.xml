@@ -57,8 +57,8 @@
                            >
                            <de.hdodenhof.circleimageview.CircleImageView
                                android:id="@+id/imageProfile"
-                               android:layout_width="35dp"
-                               android:layout_height="35dp"
+                               android:layout_width="45dp"
+                               android:layout_height="45dp"
                                android:padding="5dp"
                                android:layout_gravity="start|top"
                                android:src="@drawable/ic_avatar"
@@ -145,6 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:visibility="gone"
             android:background="@color/colorPrimary"
             >
             <ScrollView
