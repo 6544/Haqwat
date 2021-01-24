@@ -102,14 +102,14 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             startActivityForResult(intent, 400);
         });
 
-        binding.llChangeLanguage.setOnClickListener(view -> {
+        /*binding.llChangeLanguage.setOnClickListener(view -> {
             Intent intent = new Intent(this, LanguageActivity.class);
             startActivityForResult(intent, 100);
         });
         binding.llContactUs.setOnClickListener(view -> {
             Intent intent = new Intent(this, ContactUsActivity.class);
             startActivity(intent);
-        });
+        });*/
         binding.imageNotification.setOnClickListener(view -> {
             Intent intent = new Intent(this, NotificationActivity.class);
             startActivityForResult(intent, 500);
@@ -117,7 +117,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
 
         //binding.imageEdit.setOnClickListener(view ->presenter.createImageDialog());
 
-        binding.mSwitch.setOnClickListener(view -> {
+       /* binding.mSwitch.setOnClickListener(view -> {
             if (binding.mSwitch.isChecked()) {
                 presenter.updateNotificationStatus("on");
             } else {
@@ -137,7 +137,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityHomeView 
             intent.putExtra("url", "http://hqwat.com/app-setting#3");
             startActivity(intent);
         });
-
+*/
         binding.logo.setOnClickListener(view -> {
             Intent intent = new Intent(this, WebViewActivity.class);
             intent.putExtra("url", Tags.base_url);

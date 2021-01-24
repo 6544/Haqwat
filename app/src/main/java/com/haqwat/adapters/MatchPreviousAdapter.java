@@ -1,8 +1,11 @@
 package com.haqwat.adapters;
 
 import android.content.Context;
+import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,7 @@ import com.haqwat.databinding.MatchRowBinding;
 import com.haqwat.models.MatchesModel;
 import com.haqwat.ui.activity_matches.MatchesActivity;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
@@ -60,6 +64,8 @@ public class MatchPreviousAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (lang.equals("ar")){
             myHolder.binding.progBarWin.setRotation(0);
             myHolder.binding.progBarLose.setRotation(180);
+
+
 
 
         }else {
