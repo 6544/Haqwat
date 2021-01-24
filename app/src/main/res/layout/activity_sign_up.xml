@@ -236,6 +236,7 @@
                         android:layout_marginStart="40dp"
                         android:layout_marginEnd="40dp"
                         android:layout_marginTop="10dp"
+                        android:visibility="gone"
                         android:gravity="center_vertical"
                         >
                         <View
@@ -267,6 +268,7 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginEnd="30dp"
                         android:layout_marginTop="5dp"
+                        android:visibility="gone"
                         android:layout_gravity="center_horizontal"
                         >
                         <ImageView
