@@ -72,10 +72,10 @@ public class ConfirmCodeActivity extends AppCompatActivity implements ConfirmCod
         });
 
         binding.tvResend.setOnClickListener(view -> {
-            presenter.sendCode(userModel);
+           presenter.sendCode(userModel);
         });
 
-        presenter.sendCode(userModel);
+       // presenter.sendCode(userModel);
         dialog = Common.createProgressDialog(this,getString(R.string.wait));
         dialog.setCanceledOnTouchOutside(false);
 

@@ -336,7 +336,8 @@
                         android:text="@{model.code}"
                         android:textColor="@color/black"
                         android:textSize="13sp"
-                        android:gravity="center"
+                        android:gravity="center_vertical"
+                        android:textDirection="rtl"
                         />
 
                     <ImageView
