@@ -134,32 +134,60 @@ public class LeagueDetailsActivity extends AppCompatActivity implements LeagueDe
     @Override
     public void onFragmentSelected(String tag)
     {
-        switch (tag){
-            case "fragment_league_upComing_matches":
-                if (adapter!=null){
-                    adapter.setSelected_pos(1);
-                }
-                break;
-            case "fragment_league_previous_matches":
-                if (adapter!=null){
-                    adapter.setSelected_pos(2);
-                }
-                break;
-            case"fragment_league_ranking_table":
-                if (adapter!=null){
-                    adapter.setSelected_pos(3);
-                }
-                break;
-            case "fragment_league_tournament_history":
-                if (adapter!=null){
-                    adapter.setSelected_pos(4);
-                }
-                break;
-            default:
-                if (adapter!=null){
-                    adapter.setSelected_pos(0);
-                }
-                break;
+        if (league_id.equals("12")){
+            switch (tag){
+                case "fragment_league_upComing_matches":
+                    if (adapter!=null){
+                        adapter.setSelected_pos(1);
+                    }
+                    break;
+                case "fragment_league_previous_matches":
+                    if (adapter!=null){
+                        adapter.setSelected_pos(2);
+                    }
+
+                    break;
+                case "fragment_league_tournament_history":
+                    if (adapter!=null){
+                        adapter.setSelected_pos(3);
+                    }
+                    break;
+                default:
+                    if (adapter!=null){
+                        adapter.setSelected_pos(0);
+                    }
+                    break;
+            }
+
+        }else {
+            switch (tag){
+                case "fragment_league_upComing_matches":
+                    if (adapter!=null){
+                        adapter.setSelected_pos(1);
+                    }
+                    break;
+                case "fragment_league_previous_matches":
+                    if (adapter!=null){
+                        adapter.setSelected_pos(2);
+                    }
+                    break;
+                case"fragment_league_ranking_table":
+                    if (adapter!=null){
+                        adapter.setSelected_pos(3);
+                    }
+                    break;
+                case "fragment_league_tournament_history":
+                    if (adapter!=null){
+                        adapter.setSelected_pos(4);
+                    }
+                    break;
+                default:
+                    if (adapter!=null){
+                        adapter.setSelected_pos(0);
+                    }
+                    break;
+            }
+
         }
 
     }

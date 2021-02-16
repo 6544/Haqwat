@@ -1,6 +1,7 @@
 package com.haqwat.mvp.activity_league_details_mvp;
 
 import android.content.Context;
+import android.nfc.Tag;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -43,13 +44,24 @@ public class LeagueDetailsPresenter {
     }
 
     public void getLeagueCategory(){
-        List<LeagueCategory> list = new ArrayList<>();
-        list.add(new LeagueCategory(R.drawable.ic_user_rating,context.getString(R.string.haqawat_rating),fragmentRateTag));
-        list.add(new LeagueCategory(R.drawable.ic_double_right_arrows,context.getString(R.string.upcoming_matches),fragmentUpComingMatchesTag));
-        list.add(new LeagueCategory(R.drawable.ic_double_left_arrows,context.getString(R.string.previous_matches),fragmentPreviousMatchesTag));
-        list.add(new LeagueCategory(R.drawable.ic_list,context.getString(R.string.ranking_table),fragmentRankTag));
-        list.add(new LeagueCategory(R.drawable.ic_privacy,context.getString(R.string.tournament_history),fragmentHistoryTag));
-        view.onLeagueCategorySuccess(list);
+
+        if (league_id.equals("12")){
+            List<LeagueCategory> list = new ArrayList<>();
+            list.add(new LeagueCategory(R.drawable.ic_user_rating,context.getString(R.string.haqawat_rating),fragmentRateTag));
+            list.add(new LeagueCategory(R.drawable.ic_double_right_arrows,context.getString(R.string.upcoming_matches),fragmentUpComingMatchesTag));
+            list.add(new LeagueCategory(R.drawable.ic_double_left_arrows,context.getString(R.string.previous_matches),fragmentPreviousMatchesTag));
+            list.add(new LeagueCategory(R.drawable.ic_privacy,context.getString(R.string.tournament_history),fragmentHistoryTag));
+            view.onLeagueCategorySuccess(list);
+        }else {
+            List<LeagueCategory> list = new ArrayList<>();
+            list.add(new LeagueCategory(R.drawable.ic_user_rating,context.getString(R.string.haqawat_rating),fragmentRateTag));
+            list.add(new LeagueCategory(R.drawable.ic_double_right_arrows,context.getString(R.string.upcoming_matches),fragmentUpComingMatchesTag));
+            list.add(new LeagueCategory(R.drawable.ic_double_left_arrows,context.getString(R.string.previous_matches),fragmentPreviousMatchesTag));
+            list.add(new LeagueCategory(R.drawable.ic_list,context.getString(R.string.ranking_table),fragmentRankTag));
+            list.add(new LeagueCategory(R.drawable.ic_privacy,context.getString(R.string.tournament_history),fragmentHistoryTag));
+            view.onLeagueCategorySuccess(list);
+        }
+
 
     }
 
